@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile2                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/20 11:01:08 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/19 17:38:40 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,10 @@ PROGNAME			:=	minirt
 
 LIBFT				:=	./libs/libft/libft.a
 MLX					:=	./libs/minilibx-linux/libmlx_Linux.a
+MLX_FLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
 
-INCLUDEDIR			:=	./includes
+
 SRCDIR				:=	./src
-
-MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
 
 OBJDIR				:=	./obj
 
@@ -27,10 +26,10 @@ SRCS				:=	main.c \
 						utils.c \
 						vector_operations.c \
 						color_operations.c \
-						matrix_operations.c \
 						canvas.c \
 
 CC					:=	cc
+
 RM					:=	rm
 
 CCFLAGS				:=	-Wall -Wextra -Werror
@@ -41,14 +40,12 @@ OUTDIR				:=	$(OBJDIR)
 
 $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
-	$(CC) -c $(CCFLAGS) -I $(INCLUDEDIR) $(addprefix -I ,$(dir $(MLX))) $(addprefix -I ,$(dir $(LIBFT))) $< -o $@
+	$(CC) -c $(CCFLAGS) $(MLX) $(MLX_FLAGS) -I ./includes -I ./libs/minilibx-linux $< -o $@
 
-$(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(MLXFLAGS) $(LIBFT) $(MLX) -o $(NAME)
+$(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT)
+	$(CC) $(CCFLAGS) $(MLX) $(MLX_FLAGS) -I ./includes -I ./libs/minilibx-linux  $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) -o $(NAME)
 
-all					:	$(NAME)
-
-bonus				:	$(NAME)
+all					: $(NAME) $(LIBFT)
 
 ifdef LIBFT
 $(LIBFT)			:
@@ -67,28 +64,15 @@ clean				:
 ifdef LIBFT
 	$(MAKE) -C $(dir $(LIBFT)) fclean
 endif
-ifdef MLX
-	$(MAKE) -C $(dir $(MLX)) clean
-endif
-	$(RM) -rf $(OBJDIR) $(DEBUGDIR)
+# ifdef MLX
+# 	$(MAKE) -C $(dir $(MLX)) clean
+# endif
+# 	$(RM) -rf $(OBJDIR)
 
 fclean				:	clean
-	$(RM) -f $(PROGNAME) $(DEBUGNAME)
+	$(RM) -f $(PROGNAME)
 
-re					:	fclean $(NAME)
+re					:	fclean
+					make $(NAME)
 
-norm				:
-	norminette ./libftprintf ./src ./includes
-
-push				:
-	$(MAKE) fclean
-	git add *
-	git status
-	git commit -m "$m"
-	git push github master
-
-MAP 				:= test_maps/10-2.fdf
-test				: $(NAME)
-	./$(NAME) $(MAP)
-
-.PHONY				:	all clean fclean re norm test push
+.PHONY				:	all clean fclean re
