@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/21 11:16:46 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/21 19:22:10 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <math.h>
+# include "tools.h"
 
 # define EPSILON 0.00001
 
@@ -88,20 +89,38 @@ t_color	ft_add_colors(t_color a, t_color b);
 t_color	ft_sub_colors(t_color a, t_color b);
 t_color	ft_multiply_colors(t_color a, t_color b);
 
-// matrix_operations.c
+/*-------------------------------------------------------------------- matrix */
+/* matrix_utils.c */
 t_matrix4	ft_create_matrix(void);
 t_matrix4	ft_get_identity_matrix(void);
 
+/* matrix_operations.c */
+t_matrix4	ft_transpose_matrix(t_matrix4 matrix);
+t_matrix4	ft_inverse_matrix(t_matrix4 m);
+t_matrix4	ft_multiply_matrices(t_matrix4 m4_1, t_matrix4 m4_2);
+
+/* sub_matrix_getter.c */
+t_matrix3	ft_sub_m4tom3(t_matrix4 m4, int row, int column);
+t_matrix2	ft_sub_m3tom2(t_matrix3 m3, int row, int column);
+
+/* inverse_matrix_utils.c */
 float		ft_calculate_m2_determinant(t_matrix2 m2);
 float		ft_calculate_m3_determinant(t_matrix3 m3);
 float		ft_calculate_m4_determinant(t_matrix4 m4);
-float		ft_calculate_minor(t_matrix3 m3, int i, int j);
-float		ft_calculate_cofactor(t_matrix3 m3, int i, int j);
+float		ft_calculate_m3_cofactor(t_matrix3 m3, int i, int j);
+float		ft_calculate_m4_cofactor(t_matrix4 m4, int i, int j);
 
-t_matrix4	ft_transpose_matrix(t_matrix4 matrix);
+/* inverse_matrix_utils_2.c */
+t_matrix4	ft_apply_cofactors_to_matrix(t_matrix4 m);
+t_matrix4	ft_apply_determinant_division_to_matrix(t_matrix4 m, float det);
+bool		ft_is_matrix_invertible(t_matrix4 m);
 
-t_matrix3	ft_sub_m4tom3(t_matrix4 m4, int row, int column);
-t_matrix2	ft_sub_m3tom2(t_matrix3 m3, int row, int column);
+/* init_tools.c */
+t_counter3	init_counter3(void);
+t_counter4	init_counter4(void);
+
+/* transform_matrix.c */
+t_matrix4	ft_translate_matrix(float x, float y, float z);
 
 // print.c
 void	ft_print_tuple(char *tuple_name, t_tuple tuple);

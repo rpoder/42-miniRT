@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/20 11:01:08 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/21 19:23:48 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,19 @@ SRCS				:=	main.c \
 						utils.c \
 						vector_operations.c \
 						color_operations.c \
-						matrix_operations.c \
+						matrix/matrix_operations.c \
+						matrix/inverse_matrix_utils.c \
+						matrix/inverse_matrix_utils_2.c \
+						matrix/matrix_utils.c \
+						matrix/sub_matrix_getters.c \
+						matrix/transform_matrix.c \
+						tools/init_tools.c \
 						canvas.c \
 
 CC					:=	cc
 RM					:=	rm
 
-CCFLAGS				:=	-Wall -Wextra -Werror
+# CCFLAGS				:=	-Wall -Wextra -Werror
 
 NAME				:=	$(PROGNAME)
 

@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/21 13:49:41 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/21 19:22:40 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,53 @@ int	main(void)
 
 	t_matrix4	m4_1;
 
-	m4_1.matrix[0][0] = -2;
-	m4_1.matrix[0][1] = -8;
-	m4_1.matrix[0][2] = 3;
-	m4_1.matrix[0][3] = 5;
+	m4_1.matrix[0][0] = -5;
+	m4_1.matrix[0][1] = 2;
+	m4_1.matrix[0][2] = 6;
+	m4_1.matrix[0][3] = -8;
 
-	m4_1.matrix[1][0] = -3;
-	m4_1.matrix[1][1] = 1;
-	m4_1.matrix[1][2] = 7;
-	m4_1.matrix[1][3] = 3;
+	m4_1.matrix[1][0] = 1;
+	m4_1.matrix[1][1] = -5;
+	m4_1.matrix[1][2] = 1;
+	m4_1.matrix[1][3] = 8;
 
-	m4_1.matrix[2][0] = 1;
-	m4_1.matrix[2][1] = 2;
-	m4_1.matrix[2][2] = -9;
-	m4_1.matrix[2][3] = 6;
+	m4_1.matrix[2][0] = 7;
+	m4_1.matrix[2][1] = 7;
+	m4_1.matrix[2][2] = -6;
+	m4_1.matrix[2][3] = -7;
 
-	m4_1.matrix[3][0] = -6;
-	m4_1.matrix[3][1] = 7;
+	m4_1.matrix[3][0] = 1;
+	m4_1.matrix[3][1] = -3;
 	m4_1.matrix[3][2] = 7;
-	m4_1.matrix[3][3] = -9;
+	m4_1.matrix[3][3] = 4;
+
+	// t_matrix4	m4_2;
+	// m4_2.matrix[0][0] = 0;
+	// m4_2.matrix[0][1] = 1;
+	// m4_2.matrix[0][2] = 2;
+	// m4_2.matrix[0][3] = 4;
+
+	// m4_2.matrix[1][0] = 1;
+	// m4_2.matrix[1][1] = 2;
+	// m4_2.matrix[1][2] = 4;
+	// m4_2.matrix[1][3] = 8;
+
+	// m4_2.matrix[2][0] = 2;
+	// m4_2.matrix[2][1] = 4;
+	// m4_2.matrix[2][2] = 8;
+	// m4_2.matrix[2][3] = 16;
+
+	// m4_2.matrix[3][0] = 4;
+	// m4_2.matrix[3][1] = 8;
+	// m4_2.matrix[3][2] = 16;
+	// m4_2.matrix[3][3] = 32;
 
 
 	ft_print_matrix4(m4_1);
-	printf("determinant = %f\n", ft_calculate_m4_determinant(m4_1));
-
+	// m4_2 = ft_multiply_matrices(m4_1, m4_2);
+	// ft_print_matrix4(m4_2);
+	// printf("determinant = %f\n", ft_calculate_m4_determinant(m4_1));
+	ft_translate_matrix(3.0, 2.6, 8.3);
 	// t_matrix3	m3_1;
 
 	// m3_1.matrix[0][0] = -3;
