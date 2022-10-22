@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:46 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/21 18:05:52 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/22 14:14:34 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_matrix4	ft_multiply_matrices(t_matrix4 m4_1, t_matrix4 m4_2)
 	int			i;
 	int			j;
 	int			k;
-	float			sum;
+	float		sum;
 
 	j = 0;
 	while(j < 4)

@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/21 19:23:48 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/22 14:19:30 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,8 @@ MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
 OBJDIR				:=	./obj
 
 SRCS				:=	main.c \
-						print.c \
-						utils.c \
-						vector_operations.c \
-						color_operations.c \
+						tuple/vector_operations.c \
+						tuple/color_operations.c \
 						matrix/matrix_operations.c \
 						matrix/inverse_matrix_utils.c \
 						matrix/inverse_matrix_utils_2.c \
@@ -34,7 +32,9 @@ SRCS				:=	main.c \
 						matrix/sub_matrix_getters.c \
 						matrix/transform_matrix.c \
 						tools/init_tools.c \
-						canvas.c \
+						tools/print.c \
+						tools/utils.c \
+						renderer/canvas.c \
 
 CC					:=	cc
 RM					:=	rm
