@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/21 19:22:10 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/22 17:32:10 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_color
 
 // utils.c
 bool	ft_floatcmp(float a, float b);
+bool	ft_tuplescmp(t_tuple a, t_tuple b);
 
 // mlx
 void	my_mlx_pixel_put(t_image *data, int x, int y, int color);
@@ -82,6 +83,7 @@ float	ft_tuple_len(t_tuple a);
 t_tuple	ft_normalize_tuple(t_tuple a);
 float	ft_tuple_scalarproduct(t_tuple a, t_tuple b);
 t_tuple	ft_multiply_tuples(t_tuple a, t_tuple b);
+t_tuple	ft_multiply_tuple_by_matrix(t_tuple tuple, t_matrix4 m);
 
 // color_operations.c
 t_color	ft_create_color(float red, float green, float blue);
@@ -120,7 +122,12 @@ t_counter3	init_counter3(void);
 t_counter4	init_counter4(void);
 
 /* transform_matrix.c */
-t_matrix4	ft_translate_matrix(float x, float y, float z);
+t_matrix4	ft_get_translate_matrix(float x, float y, float z);
+t_matrix4	ft_get_scale_matrix(float x, float y, float z);
+t_matrix4	ft_get_rotate_x_matrix(float radian);
+t_matrix4	ft_get_rotate_y_matrix(float radian);
+t_matrix4	ft_get_rotate_z_matrix(float radian);
+t_matrix4	ft_get_shear_matrix(t_shearing_values values);
 
 // print.c
 void	ft_print_tuple(char *tuple_name, t_tuple tuple);

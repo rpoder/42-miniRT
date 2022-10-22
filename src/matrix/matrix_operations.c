@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:46 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/22 14:14:34 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/22 16:33:15 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,9 @@ t_matrix4	ft_inverse_matrix(t_matrix4 m)
 	determinant = ft_calculate_m4_determinant(m);
 	if (ft_is_matrix_invertible(m) == false)
 		return (m);
-	ft_print_matrix4(m);
 	new_m = ft_apply_cofactors_to_matrix(m);
-	ft_print_matrix4(new_m);
 	new_m = ft_transpose_matrix(new_m);
-	ft_print_matrix4(new_m);
 	new_m = ft_apply_determinant_division_to_matrix(new_m, determinant);
-	ft_print_matrix4(new_m);
 
 	return (new_m);
 }

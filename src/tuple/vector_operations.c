@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:05:12 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/19 15:23:26 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/22 16:27:38 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ float	ft_tuple_scalarproduct(t_tuple a, t_tuple b)
 	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
 }
 
- t_tuple	ft_multiply_tuples(t_tuple a, t_tuple b)
+t_tuple	ft_multiply_tuples(t_tuple a, t_tuple b)
 {
 	t_tuple	new_tuple;
 
@@ -105,3 +105,19 @@ float	ft_tuple_scalarproduct(t_tuple a, t_tuple b)
 	new_tuple.w = a.w; // ??
 	return (new_tuple);
 }
+
+t_tuple	ft_multiply_tuple_by_matrix(t_tuple tuple, t_matrix4 m)
+{
+	t_tuple	new_tuple;
+
+	new_tuple.x = (m.matrix[0][0] * tuple.x) + (m.matrix[0][1] * tuple.y)
+		+ (m.matrix[0][2] * tuple.z) + (m.matrix[0][3] * tuple.w);
+	new_tuple.y = (m.matrix[1][0] * tuple.x) + (m.matrix[1][1] * tuple.y)
+		+ (m.matrix[1][2] * tuple.z) + (m.matrix[1][3] * tuple.w);
+	new_tuple.z = (m.matrix[2][0] * tuple.x) + (m.matrix[2][1] * tuple.y)
+		+ (m.matrix[2][2] * tuple.z) + (m.matrix[2][3] * tuple.w);
+	new_tuple.w = (m.matrix[3][0] * tuple.x) + (m.matrix[3][1] * tuple.y)
+		+ (m.matrix[3][2] * tuple.z) + (m.matrix[3][3] * tuple.w);
+	return (new_tuple);
+}
+
