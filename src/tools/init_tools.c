@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   init_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 15:46:08 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/19 10:37:41 by rpoder           ###   ########.fr       */
+/*   Created: 2022/10/21 18:18:32 by rpoder            #+#    #+#             */
+/*   Updated: 2022/10/21 18:29:03 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	ft_print_tuple(char *tuple_name, t_tuple tuple)
+t_counter3	init_counter3(void)
 {
-	printf("%s(%f, %f, %f, %f)\n", tuple_name, tuple.x, tuple.y, tuple.z, tuple.w);
+	t_counter3	counter;
+
+	counter.i = 0;
+	counter.j = 0;
+	counter.k = 0;
+	return (counter);
+}
+
+t_counter4	init_counter4(void)
+{
+	t_counter4	counter;
+
+	counter.i = 0;
+	counter.j = 0;
+	counter.k = 0;
+	counter.l = 0;
+	return (counter);
 }
