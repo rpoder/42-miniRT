@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/22 14:19:30 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/23 18:46:27 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ SRCS				:=	main.c \
 						tools/print.c \
 						tools/utils.c \
 						renderer/canvas.c \
+						ray/ray_utils.c \
+						ray/hits_utils.c \
 
 CC					:=	cc
 RM					:=	rm
@@ -52,18 +54,16 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(MLXFLAGS) $(LIBFT) $(MLX) -o $(NAME)
 
-all					:	$(NAME)
-
-bonus				:	$(NAME)
+all					: $(LIBFT) $(MLX) $(NAME)
 
 ifdef LIBFT
 $(LIBFT)			:
-	$(MAKE) -C $(dir $(LIBFT)) all
+	$(MAKE) -C $(dir $(LIBFT))
 endif
 
 ifdef MLX
 $(MLX)			:
-	$(MAKE) -C $(dir $(MLX)) all
+	$(MAKE) -C $(dir $(MLX))
 endif
 
 $(OUTDIR)			:

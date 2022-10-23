@@ -6,65 +6,30 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/22 19:06:24 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/23 18:44:20 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 #define MINIRT_H
 
+/* our headers */
+# include "tools.h"
+# include "typedefs.h"
+
+/* libs headers */
 # include "mlx.h"
 # include "mlx_int.h"
 # include <stdio.h>
-# include <stdbool.h>
 # include <math.h>
-# include "tools.h"
 
 # define EPSILON 0.00001
 
-typedef struct	s_matrix4{
-	float	matrix[4][4];
-}	t_matrix4;
+# define UNDEFINED_TYPE 100
+# define SPHERE_TYPE 101
 
-typedef struct	s_matrix3{
-	float	matrix[3][3];
-}	t_matrix3;
-
-typedef struct	s_matrix2{
-	float	matrix[2][2];
-}	t_matrix2;
-
-// typedef  float *matrix_ptr[4][4];
-
-typedef struct	s_image {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_image;
-
-typedef struct s_mlx_data
-{
-	void		*mlx;
-	void		*win;
-	t_image		image;
-}	t_mlx_data;
-
-typedef struct s_tuple
-{
-	float	x;
-	float	y;
-	float	z;
-	float	w;
-}	t_tuple;
-
-typedef struct s_color
-{
-	float	red;
-	float	green;
-	float	blue;
-}	t_color;
+# define NO_ERR 0
+# define MALLOC_ERR -1
 
 // utils.c
 bool	ft_floatcmp(float a, float b);
@@ -84,6 +49,7 @@ t_tuple	ft_normalize_tuple(t_tuple a);
 float	ft_tuple_scalarproduct(t_tuple a, t_tuple b);
 t_tuple	ft_multiply_tuples(t_tuple a, t_tuple b);
 t_tuple	ft_multiply_tuple_by_matrix(t_tuple tuple, t_matrix4 m);
+t_tuple	ft_multiply_tuple_by_float(t_tuple tuple, float c);
 
 // color_operations.c
 t_color	ft_create_color(float red, float green, float blue);
@@ -135,5 +101,15 @@ void	ft_print_color(char *color_name, t_color color);
 void	ft_print_matrix4(t_matrix4 m4);
 void	ft_print_matrix3(t_matrix3 m3);
 void	ft_print_matrix2(t_matrix2 m2);
+
+/* ray_operations.c */
+t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
+t_tuple	ft_calculate_new_point_on_ray(t_ray ray, float t);
+t_intersections	ft_get_sphere_intersections(t_sphere sphere, t_ray ray);
+t_intersections	init_intersections(void);
+t_intersections	calculate_sphere_intersections(float discr, t_float3 values);
+
+/* hit.c */
+t_hit	find_hit(t_intersections intersections);
 
 #endif
