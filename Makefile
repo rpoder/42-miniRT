@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/25 12:34:31 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/25 12:49:05 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCDIR				:=	./src
 MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
 
 OBJDIR				:=	./obj
+
 
 SRCS				:=	main.c \
 						tuple/vector_operations.c \
@@ -39,7 +40,6 @@ SRCS				:=	main.c \
 						ray/hits_utils.c \
 						objects/objects_utils.c
 
-
 CC					:=	cc
 RM					:=	rm
 
@@ -51,7 +51,7 @@ OUTDIR				:=	$(OBJDIR)
 
 $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
-	$(CC) -c $(CCFLAGS) -I $(INCLUDEDIR) $(addprefix -I ,$(dir $(MLX))) $(addprefix -I ,$(dir $(LIBFT)))  $< -o $@
+	$(CC) -c $(CCFLAGS) -I $(INCLUDEDIR) $(addprefix -I ,$(dir $(MLX))) $(addprefix -I ,$(dir $(LIBFT))) $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(MLXFLAGS) $(LIBFT) $(MLX) -o $(NAME)
@@ -80,25 +80,12 @@ endif
 ifdef MLX
 	$(MAKE) -C $(dir $(MLX)) clean
 endif
-	$(RM) -rf $(OBJDIR) $(DEBUGDIR)
+	$(RM) -rf $(OBJDIR)
 
 fclean				:	clean
-	$(RM) -f $(PROGNAME) $(DEBUGNAME)
+	$(RM) -f $(PROGNAME)
 
 re					:	fclean $(NAME)
 
-norm				:
-	norminette ./libftprintf ./src ./includes
 
-push				:
-	$(MAKE) fclean
-	git add *
-	git status
-	git commit -m "$m"
-	git push github master
-
-MAP 				:= test_maps/10-2.fdf
-test				: $(NAME)
-	./$(NAME) $(MAP)
-
-.PHONY				:	all clean fclean re norm test push
+.PHONY				:	all clean fclean re

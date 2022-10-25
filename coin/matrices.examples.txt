@@ -61,3 +61,21 @@
 	// m3_1.matrix[2][2] = -9;
 
 	// ft_print_matrix3(m3_1);
+
+
+SRCS				:=	main.c \
+						tuple/vector_operations.c \
+						tuple/color_operations.c \
+						matrix/matrix_operations.c \
+						matrix/inverse_matrix_utils.c \
+						matrix/inverse_matrix_utils_2.c \
+						matrix/matrix_utils.c \
+						matrix/sub_matrix_getters.c \
+						matrix/transform_matrix.c \
+						tools/init_tools.c \
+						tools/print.c \
+						tools/utils.c \
+						renderer/canvas.c \
+						ray/ray_utils.c \
+						ray/hits_utils.c \
+						objects/objects_utils.c

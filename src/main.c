@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/25 12:31:30 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/25 12:57:44 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	main(void)
 	t_mlx_data	mlx_data;
 
 	mlx_data.mlx = mlx_init();
-	mlx_data.win = mlx_new_window(mlx_data.mlx, 1000, 1000, "Hello world!");
+/* 	mlx_data.win = mlx_new_window(mlx_data.mlx, 1000, 1000, "Hello world!");
 	mlx_data.image.img = mlx_new_image(mlx_data.mlx, 1000, 1000);
 	mlx_data.image.addr = mlx_get_data_addr(mlx_data.image.img,
 		&mlx_data.image.bits_per_pixel, &mlx_data.image.line_length,
-		&mlx_data.image.endian);
+		&mlx_data.image.endian); */
 
 
 	t_ray					ray;
