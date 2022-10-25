@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:27:59 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/23 18:54:39 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/25 11:53:27 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,19 @@ t_tuple	ft_calculate_new_point_on_ray(t_ray ray, float t)
 	return (new_tuple);
 }
 
-t_intersections	ft_get_sphere_intersections(t_sphere sphere, t_ray ray)
+t_intersections	ft_get_sphere_intersections(t_object *sphere, t_ray ray)
 {
 	float					discriminant;
 	t_tuple					sphere_to_ray;
 	t_tuple					w_origin;
 	t_float3				values;
+	t_ray					ray2;
 
+	ray2 = transform_ray_by_matrix(ray, ft_inverse_matrix(sphere->transform_m));
 	w_origin = ft_create_tuple(0, 0, 0, 1);
-	sphere_to_ray = ft_sub_tuples(ray.origin, w_origin);
-	values.a = ft_tuple_scalarproduct(ray.direction, ray.direction);
-	values.b = 2 * ft_tuple_scalarproduct(ray.direction, sphere_to_ray);
+	sphere_to_ray = ft_sub_tuples(ray2.origin, w_origin);
+	values.a = ft_tuple_scalarproduct(ray2.direction, ray2.direction);
+	values.b = 2 * ft_tuple_scalarproduct(ray2.direction, sphere_to_ray);
 	values.c = ft_tuple_scalarproduct(sphere_to_ray, sphere_to_ray) - 1;
 	discriminant = powf(values.b, 2) - (4 * values.a * values.c);
 	return (calculate_sphere_intersections(discriminant, values));
@@ -81,4 +83,13 @@ t_intersections	init_intersections(void)
 	new_intersections.i1 = 0;
 	new_intersections.i2 = 0;
 	return (new_intersections);
+}
+
+t_ray	transform_ray_by_matrix(t_ray ray, t_matrix4 m)
+{
+	t_ray	new_ray;
+
+	new_ray.origin = ft_multiply_tuple_by_matrix(ray.origin, m);
+	new_ray.direction = ft_multiply_tuple_by_matrix(ray.direction, m);
+	return (new_ray);
 }

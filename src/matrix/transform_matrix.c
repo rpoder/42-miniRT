@@ -6,13 +6,13 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:13:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/22 19:07:53 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/24 11:29:05 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_matrix4	ft_get_translate_matrix(float x, float y, float z)
+t_matrix4	ft_calculate_translation_matrix(float x, float y, float z)
 {
 	t_matrix4	new_m;
 
@@ -23,7 +23,7 @@ t_matrix4	ft_get_translate_matrix(float x, float y, float z)
 	return (new_m);
 }
 
-t_matrix4	ft_get_scale_matrix(float x, float y, float z)
+t_matrix4	ft_calculate_scaling_matrix(float x, float y, float z)
 {
 	t_matrix4	new_m;
 
@@ -34,7 +34,7 @@ t_matrix4	ft_get_scale_matrix(float x, float y, float z)
 	return (new_m);
 }
 
-t_matrix4	ft_get_rotate_x_matrix(float radian)
+t_matrix4	ft_calculate_rotation_x_matrix(float radian)
 {
 	t_matrix4	new_m;
 
@@ -46,7 +46,7 @@ t_matrix4	ft_get_rotate_x_matrix(float radian)
 	return (new_m);
 }
 
-t_matrix4	ft_get_rotate_y_matrix(float radian)
+t_matrix4	ft_calculate_rotation_y_matrix(float radian)
 {
 	t_matrix4	new_m;
 
@@ -59,7 +59,7 @@ t_matrix4	ft_get_rotate_y_matrix(float radian)
 	return (new_m);
 }
 
-t_matrix4	ft_get_rotate_z_matrix(float radian)
+t_matrix4	ft_calculate_rotation_z_matrix(float radian)
 {
 	t_matrix4	new_m;
 
@@ -71,7 +71,7 @@ t_matrix4	ft_get_rotate_z_matrix(float radian)
 	return (new_m);
 }
 
-t_matrix4	ft_get_shear_matrix(t_shearing_values values)
+t_matrix4	ft_calculate_shearing_matrix(t_shearing_values values)
 {
 	t_matrix4	new_m;
 

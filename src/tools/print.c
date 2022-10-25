@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:46:08 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/21 14:20:16 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/24 11:32:02 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,10 @@ void	ft_print_matrix2(t_matrix2 m2)
 		printf("|\n");
 		j++;
 	}
+}
+
+void	ft_print_ray(t_ray ray)
+{
+	ft_print_tuple("ray.origin", ray.origin);
+	ft_print_tuple("ray.direction", ray.direction);
 }

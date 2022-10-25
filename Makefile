@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/23 18:46:27 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/25 12:34:31 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,8 @@ SRCS				:=	main.c \
 						renderer/canvas.c \
 						ray/ray_utils.c \
 						ray/hits_utils.c \
+						objects/objects_utils.c
+
 
 CC					:=	cc
 RM					:=	rm
@@ -49,21 +51,23 @@ OUTDIR				:=	$(OBJDIR)
 
 $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
-	$(CC) -c $(CCFLAGS) -I $(INCLUDEDIR) $(addprefix -I ,$(dir $(MLX))) $(addprefix -I ,$(dir $(LIBFT))) $< -o $@
+	$(CC) -c $(CCFLAGS) -I $(INCLUDEDIR) $(addprefix -I ,$(dir $(MLX))) $(addprefix -I ,$(dir $(LIBFT)))  $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(MLXFLAGS) $(LIBFT) $(MLX) -o $(NAME)
 
-all					: $(LIBFT) $(MLX) $(NAME)
+all					:	$(NAME)
+
+bonus				:	$(NAME)
 
 ifdef LIBFT
 $(LIBFT)			:
-	$(MAKE) -C $(dir $(LIBFT))
+	$(MAKE) -C $(dir $(LIBFT)) all
 endif
 
 ifdef MLX
 $(MLX)			:
-	$(MAKE) -C $(dir $(MLX))
+	$(MAKE) -C $(dir $(MLX)) all
 endif
 
 $(OUTDIR)			:

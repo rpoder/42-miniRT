@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/23 18:44:20 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:27:03 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,44 +72,50 @@ t_matrix3	ft_sub_m4tom3(t_matrix4 m4, int row, int column);
 t_matrix2	ft_sub_m3tom2(t_matrix3 m3, int row, int column);
 
 /* inverse_matrix_utils.c */
-float		ft_calculate_m2_determinant(t_matrix2 m2);
-float		ft_calculate_m3_determinant(t_matrix3 m3);
-float		ft_calculate_m4_determinant(t_matrix4 m4);
-float		ft_calculate_m3_cofactor(t_matrix3 m3, int i, int j);
-float		ft_calculate_m4_cofactor(t_matrix4 m4, int i, int j);
+float			ft_calculate_m2_determinant(t_matrix2 m2);
+float			ft_calculate_m3_determinant(t_matrix3 m3);
+float			ft_calculate_m4_determinant(t_matrix4 m4);
+float			ft_calculate_m3_cofactor(t_matrix3 m3, int i, int j);
+float			ft_calculate_m4_cofactor(t_matrix4 m4, int i, int j);
 
 /* inverse_matrix_utils_2.c */
-t_matrix4	ft_apply_cofactors_to_matrix(t_matrix4 m);
-t_matrix4	ft_apply_determinant_division_to_matrix(t_matrix4 m, float det);
-bool		ft_is_matrix_invertible(t_matrix4 m);
+t_matrix4		ft_apply_cofactors_to_matrix(t_matrix4 m);
+t_matrix4		ft_apply_determinant_division_to_matrix(t_matrix4 m, float det);
+bool			ft_is_matrix_invertible(t_matrix4 m);
 
 /* init_tools.c */
-t_counter3	init_counter3(void);
-t_counter4	init_counter4(void);
+t_counter3		init_counter3(void);
+t_counter4		init_counter4(void);
 
 /* transform_matrix.c */
-t_matrix4	ft_get_translate_matrix(float x, float y, float z);
-t_matrix4	ft_get_scale_matrix(float x, float y, float z);
-t_matrix4	ft_get_rotate_x_matrix(float radian);
-t_matrix4	ft_get_rotate_y_matrix(float radian);
-t_matrix4	ft_get_rotate_z_matrix(float radian);
-t_matrix4	ft_get_shear_matrix(t_shearing_values values);
+t_matrix4		ft_calculate_translation_matrix(float x, float y, float z);
+t_matrix4		ft_calculate_scaling_matrix(float x, float y, float z);
+t_matrix4		ft_calculate_rotation_x_matrix(float radian);
+t_matrix4		ft_calculate_rotation_y_matrix(float radian);
+t_matrix4		ft_calculate_rotation_z_matrix(float radian);
+t_matrix4		ft_calculate_shearing_matrix(t_shearing_values values);
 
 // print.c
-void	ft_print_tuple(char *tuple_name, t_tuple tuple);
-void	ft_print_color(char *color_name, t_color color);
-void	ft_print_matrix4(t_matrix4 m4);
-void	ft_print_matrix3(t_matrix3 m3);
-void	ft_print_matrix2(t_matrix2 m2);
+void			ft_print_tuple(char *tuple_name, t_tuple tuple);
+void			ft_print_color(char *color_name, t_color color);
+void			ft_print_matrix4(t_matrix4 m4);
+void			ft_print_matrix3(t_matrix3 m3);
+void			ft_print_matrix2(t_matrix2 m2);
+void			ft_print_ray(t_ray ray);
 
-/* ray_operations.c */
-t_ray	ft_create_ray(t_tuple origin, t_tuple direction);
-t_tuple	ft_calculate_new_point_on_ray(t_ray ray, float t);
-t_intersections	ft_get_sphere_intersections(t_sphere sphere, t_ray ray);
+/* ray_utils.c */
+t_ray			ft_create_ray(t_tuple origin, t_tuple direction);
+t_tuple			ft_calculate_new_point_on_ray(t_ray ray, float t);
+t_intersections	ft_get_sphere_intersections(t_object *sphere, t_ray ray);
 t_intersections	init_intersections(void);
 t_intersections	calculate_sphere_intersections(float discr, t_float3 values);
+t_ray			transform_ray_by_matrix(t_ray ray, t_matrix4 m);
 
 /* hit.c */
-t_hit	find_hit(t_intersections intersections);
+t_hit			find_hit(t_intersections intersections);
+
+
+/* object_utils.c */
+t_object		*ft_create_sphere(t_data *data, t_tuple origin, int radius);
 
 #endif
