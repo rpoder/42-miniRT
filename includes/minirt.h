@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/25 12:46:27 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/26 11:18:39 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ bool	ft_tuplescmp(t_tuple a, t_tuple b);
 
 // mlx
 void	my_mlx_pixel_put(t_image *data, int x, int y, int color);
+int		handle_key_event(int keycode);
 
 // vector_operations.c
 t_tuple	ft_create_tuple(float x, float y, float z, float w);
