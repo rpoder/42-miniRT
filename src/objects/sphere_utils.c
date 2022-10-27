@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/26 18:22:37 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:06:45 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,12 @@ t_tuple	sphere_normal_at(t_object sphere, t_tuple world_point)
 	t_tuple	world_normal;
 	t_tuple	object_normal;
 
-	object_point = ft_multiply_tuple_by_matrix(world_point,
-		ft_inverse_matrix(sphere.transform_m));
+	object_point = ft_multiply_matrix_by_tuple(ft_inverse_matrix(sphere.transform_m), world_point);
+	ft_print_matrix4(sphere.transform_m);
+	ft_print_matrix4(ft_inverse_matrix(sphere.transform_m));
 	origin = ft_create_tuple(0, 0, 0, 1);
 	object_normal = ft_sub_tuples(object_point, origin);
-// 	if (ft_tuple_len(object_normal) != 1)
-//		ft_putstr_fd("ERR - This point is not on the sphere.\n", 2);
-	world_normal = ft_multiply_tuple_by_matrix(object_normal,
-		ft_inverse_matrix(sphere.transform_m));
+	world_normal = ft_multiply_matrix_by_tuple(ft_inverse_matrix(sphere.transform_m), object_normal);
 	world_normal.w = 0;
 	world_normal = ft_normalize_tuple(world_normal);
 	return (world_normal);

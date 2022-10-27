@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/26 18:22:26 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:11:28 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,14 @@ int	main(void)
 	t_matrix4	t1;
 	t_matrix4	t2;
 
-	ray.origin = ft_create_tuple(0, 0, -10, 1);
+	ray.origin = ft_create_tuple(0.0, 0.0, -5.0, 1.0);
 
-	point = ft_create_tuple(0, 0.70711, -0.70711, 1);
-	sphere = ft_create_sphere(NULL, ft_create_tuple(0, 0, 0, 1), 1);
-	t1 = ft_calculate_scaling_matrix(1, 0.5, 1);
-	ft_print_matrix4(t1);
-	t2 = ft_calculate_rotation_z_matrix(M_PI/5);
-	ft_print_matrix4(t2);
-	sphere->transform_m = ft_multiply_matrices(t1, t2);
-	ft_print_matrix4(sphere->transform_m);
+	point = ft_create_tuple(0.0, 0.70711, -0.70711, 1.0);
+	sphere = ft_create_sphere(NULL, ft_create_tuple(0.0, 0.0, 0.0, 1.0), 1);
+	t1 = ft_calculate_scaling_matrix(1.0, 0.5, 1.0);
+	t2 = ft_calculate_rotation_z_matrix(M_PI/5.0);
+	sphere->transform_m = ft_multiply_matrices(t2, t1);
 	// sphere->transform_m = ft_calculate_translation_matrix(0, 1, 0);
-//	ft_print_matrix4(sphere->transform_m);
 	normal = sphere_normal_at(*sphere, point);
 	ft_print_tuple("N", normal);
 

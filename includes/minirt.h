@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/26 17:08:21 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:04:31 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_tuple	ft_normalize_tuple(t_tuple a);
 float	ft_tuple_scalarproduct(t_tuple a, t_tuple b);
 t_tuple	ft_multiply_tuples(t_tuple a, t_tuple b);
 t_tuple	ft_multiply_tuple_by_matrix(t_tuple tuple, t_matrix4 m);
+t_tuple	ft_multiply_matrix_by_tuple(t_matrix4 m, t_tuple tuple);
 t_tuple	ft_multiply_tuple_by_float(t_tuple tuple, float c);
 
 // color_operations.c
