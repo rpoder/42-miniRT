@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/24 15:58:17 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/26 11:48:49 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_mlx_data
 	void		*win;
 	t_image		image;
 }	t_mlx_data;
+
 typedef struct	s_data {
 	t_mlx_data	*mlx_data;
 	t_list		*objects;

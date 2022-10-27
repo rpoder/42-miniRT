@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:05:12 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/23 12:50:12 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/26 16:59:53 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,9 @@ t_tuple	ft_multiply_tuple_by_matrix(t_tuple tuple, t_matrix4 m)
 		+ (m.matrix[1][2] * tuple.z) + (m.matrix[1][3] * tuple.w);
 	new_tuple.z = (m.matrix[2][0] * tuple.x) + (m.matrix[2][1] * tuple.y)
 		+ (m.matrix[2][2] * tuple.z) + (m.matrix[2][3] * tuple.w);
-	new_tuple.w = (m.matrix[3][0] * tuple.x) + (m.matrix[3][1] * tuple.y)
-		+ (m.matrix[3][2] * tuple.z) + (m.matrix[3][3] * tuple.w);
+	new_tuple.w = tuple.w;
+	// new_tuple.w = (m.matrix[3][0] * tuple.x) + (m.matrix[3][1] * tuple.y)
+	// 	+ (m.matrix[3][2] * tuple.z) + (m.matrix[3][3] * tuple.w);
 	return (new_tuple);
 }
 

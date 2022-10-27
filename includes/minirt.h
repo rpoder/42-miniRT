@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/26 11:18:39 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/10/26 17:08:21 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "mlx_int.h"
 # include <stdio.h>
 # include <math.h>
+# include <sys/time.h>
 
 # define EPSILON 0.00001
 
@@ -118,5 +119,6 @@ t_hit			find_hit(t_intersections intersections);
 
 /* object_utils.c */
 t_object		*ft_create_sphere(t_data *data, t_tuple origin, int radius);
+t_tuple			sphere_normal_at(t_object sphere, t_tuple world_point);
 
 #endif

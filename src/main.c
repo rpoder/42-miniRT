@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/26 11:40:07 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:22:26 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	handle_key_event(int keycode)
 int	main(void)
 {
 
+	/* TIME */
 	t_mlx_data	mlx_data;
 
 	mlx_data.mlx = mlx_init();
@@ -32,30 +33,64 @@ int	main(void)
 		&mlx_data.image.bits_per_pixel, &mlx_data.image.line_length,
 		&mlx_data.image.endian);
 
+	/* TESTS */
+	t_ray		ray;
+	t_tuple		new_position;
+	t_object	*sphere;
+	t_tuple		normal;
+	t_tuple		point;
+	t_matrix4	t1;
+	t_matrix4	t2;
 
-	t_ray					ray;
-	t_tuple					new_position;
-	t_object				*sphere;
-	t_intersections			sphere_intersects;
-	t_hit					hit;
+	ray.origin = ft_create_tuple(0, 0, -10, 1);
 
-	ray.origin = ft_create_tuple(0, 0, -5, 1);
-	ray.direction = ft_create_tuple(0, 0, 1, 0);
-	printf("\n");
-	ft_print_tuple("ray.direction", ray.direction);
-	printf("\n");
-	ray.direction = ft_normalize_tuple(ray.direction);
+	point = ft_create_tuple(0, 0.70711, -0.70711, 1);
 	sphere = ft_create_sphere(NULL, ft_create_tuple(0, 0, 0, 1), 1);
-	sphere->transform_m = ft_calculate_translation_matrix(0, 0, 1);
-	sphere_intersects = ft_get_sphere_intersections(sphere, ray);
-	t_hit = find_hit(sphere_intersects);
-	printf("i1 %f | i2 %f\n", sphere_intersects.i1, sphere_intersects.i2); 
+	t1 = ft_calculate_scaling_matrix(1, 0.5, 1);
+	ft_print_matrix4(t1);
+	t2 = ft_calculate_rotation_z_matrix(M_PI/5);
+	ft_print_matrix4(t2);
+	sphere->transform_m = ft_multiply_matrices(t1, t2);
+	ft_print_matrix4(sphere->transform_m);
+	// sphere->transform_m = ft_calculate_translation_matrix(0, 1, 0);
+//	ft_print_matrix4(sphere->transform_m);
+	normal = sphere_normal_at(*sphere, point);
+	ft_print_tuple("N", normal);
 
 
-	while(i < 1000)
-	{
-		
-	}
+	/* DISPLAY */
+	// t_intersections			sphere_intersects;
+	// t_hit					hit;
+	// int						win_x;
+	// int						win_y;
+	// float						ray_y;
+	// float						ray_x;
+
+	// win_y = 0;
+	// win_x = 0;
+	// ray_y = 2;
+	// ray_x = -2;
+
+	// while (win_x < 1000)
+	// {
+	// 	ray_x = ray_x + (1.0 / 250.0);
+	// 	win_y = 0;
+	// 	ray_y = 2;
+	// 	while(win_y < 1000)
+	// 	{
+	// 		ray_y = ray_y - (1.0 / 250.0);
+	// 		// printf("ray_y = %f\n", ray_y);
+	// 		ray.direction = ft_create_tuple(ray_x, ray_y, 5, 0);
+	// 		// ft_print_tuple("ray.direction", ray.direction);
+	// 		ray.direction = ft_normalize_tuple(ray.direction);
+	// 		sphere_intersects = ft_get_sphere_intersections(sphere, ray);
+	// 		hit = find_hit(sphere_intersects);
+	// 		if (hit.does_hit == true)
+	// 			my_mlx_pixel_put(&mlx_data.image, win_x, win_y, 0xff00ff00);
+	// 		win_y++;
+	// 	}
+	// 	win_x++;
+	// }
 
 	mlx_put_image_to_window(mlx_data.mlx, mlx_data.win, mlx_data.image.img, 0, 0);
 	mlx_loop(mlx_data.mlx);
