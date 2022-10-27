@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:03:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/21 18:06:06 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:13:45 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	ft_is_matrix_invertible(t_matrix4 m)
 {
-	float	determinant;
+	double	determinant;
 
 	determinant = ft_calculate_m4_determinant(m);
 	if (determinant == 0)
@@ -41,7 +41,7 @@ t_matrix4	ft_apply_cofactors_to_matrix(t_matrix4 m)
 	return (new_m);
 }
 
-t_matrix4	ft_apply_determinant_division_to_matrix(t_matrix4 m, float det)
+t_matrix4	ft_apply_determinant_division_to_matrix(t_matrix4 m, double det)
 {
 	t_matrix4	new_m;
 	int			i;

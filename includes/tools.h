@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/23 15:32:17 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:13:45 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ typedef struct s_counter4
 
 typedef struct s_shearing_values
 {
-	float	xy;
-	float	xz;
-	float	yx;
-	float	yz;
-	float	zx;
-	float	zy;
+	double	xy;
+	double	xz;
+	double	yx;
+	double	yz;
+	double	zx;
+	double	zy;
 }	t_shearing_values;
 
 typedef struct s_offset
@@ -41,9 +41,9 @@ typedef struct s_offset
 	int	y;
 }	t_offset;
 
-typedef struct s_float3
+typedef struct s_double3
 {
-	float	a;
-	float	b;
-	float	c;
-}	t_float3;
+	double	a;
+	double	b;
+	double	c;
+}	t_double3;

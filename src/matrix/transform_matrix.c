@@ -6,13 +6,13 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:13:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/24 11:29:05 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:14:36 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_matrix4	ft_calculate_translation_matrix(float x, float y, float z)
+t_matrix4	ft_calculate_translation_matrix(double x, double y, double z)
 {
 	t_matrix4	new_m;
 
@@ -23,7 +23,7 @@ t_matrix4	ft_calculate_translation_matrix(float x, float y, float z)
 	return (new_m);
 }
 
-t_matrix4	ft_calculate_scaling_matrix(float x, float y, float z)
+t_matrix4	ft_calculate_scaling_matrix(double x, double y, double z)
 {
 	t_matrix4	new_m;
 
@@ -34,40 +34,40 @@ t_matrix4	ft_calculate_scaling_matrix(float x, float y, float z)
 	return (new_m);
 }
 
-t_matrix4	ft_calculate_rotation_x_matrix(float radian)
+t_matrix4	ft_calculate_rotation_x_matrix(double radian)
 {
 	t_matrix4	new_m;
 
 	new_m = ft_get_identity_matrix();
-	new_m.matrix[1][1] = cosf(radian);
-	new_m.matrix[1][2] = -sinf(radian);
-	new_m.matrix[2][1] = sinf(radian);
-	new_m.matrix[2][2] = cosf(radian);
+	new_m.matrix[1][1] = cos(radian);
+	new_m.matrix[1][2] = -sin(radian);
+	new_m.matrix[2][1] = sin(radian);
+	new_m.matrix[2][2] = cos(radian);
 	return (new_m);
 }
 
-t_matrix4	ft_calculate_rotation_y_matrix(float radian)
+t_matrix4	ft_calculate_rotation_y_matrix(double radian)
 {
 	t_matrix4	new_m;
 
 	new_m = ft_get_identity_matrix();
-	new_m.matrix[0][0] = cosf(radian);
-	new_m.matrix[0][2] = sinf(radian);
-	new_m.matrix[2][0] = -sinf(radian);
-	new_m.matrix[2][2] = cosf(radian);
+	new_m.matrix[0][0] = cos(radian);
+	new_m.matrix[0][2] = sin(radian);
+	new_m.matrix[2][0] = -sin(radian);
+	new_m.matrix[2][2] = cos(radian);
 	ft_print_matrix4(new_m);
 	return (new_m);
 }
 
-t_matrix4	ft_calculate_rotation_z_matrix(float radian)
+t_matrix4	ft_calculate_rotation_z_matrix(double radian)
 {
 	t_matrix4	new_m;
 
 	new_m = ft_get_identity_matrix();
-	new_m.matrix[0][0] = cosf(radian);
-	new_m.matrix[0][1] = -sinf(radian);
-	new_m.matrix[1][0] = sinf(radian);
-	new_m.matrix[1][1] = cosf(radian);
+	new_m.matrix[0][0] = cos(radian);
+	new_m.matrix[0][1] = -sin(radian);
+	new_m.matrix[1][0] = sin(radian);
+	new_m.matrix[1][1] = cos(radian);
 	return (new_m);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:27:59 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/25 11:53:27 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:13:45 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ t_ray	ft_create_ray(t_tuple origin, t_tuple direction)
 	return (new_ray);
 }
 
-t_tuple	ft_calculate_new_point_on_ray(t_ray ray, float t)
+t_tuple	ft_calculate_new_point_on_ray(t_ray ray, double t)
 {
 	t_tuple	new_tuple;
 	t_tuple	tmp;
 
-	tmp = ft_multiply_tuple_by_float(ray.direction, t);
+	tmp = ft_multiply_tuple_by_double(ray.direction, t);
 	new_tuple = ft_add_tuples(ray.origin, tmp);
 	return (new_tuple);
 }
 
 t_intersections	ft_get_sphere_intersections(t_object *sphere, t_ray ray)
 {
-	float					discriminant;
+	double					discriminant;
 	t_tuple					sphere_to_ray;
 	t_tuple					w_origin;
-	t_float3				values;
+	t_double3				values;
 	t_ray					ray2;
 
 	ray2 = transform_ray_by_matrix(ray, ft_inverse_matrix(sphere->transform_m));
@@ -49,7 +49,7 @@ t_intersections	ft_get_sphere_intersections(t_object *sphere, t_ray ray)
 	return (calculate_sphere_intersections(discriminant, values));
 }
 
-t_intersections	calculate_sphere_intersections(float discr, t_float3 values)
+t_intersections	calculate_sphere_intersections(double discr, t_double3 values)
 {
 	t_intersections	intersections;
 

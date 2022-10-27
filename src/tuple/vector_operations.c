@@ -6,13 +6,13 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:05:12 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/27 13:05:43 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 15:01:57 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_tuple	ft_create_tuple(float x, float y, float z, float w)
+t_tuple	ft_create_tuple(double x, double y, double z, double w)
 {
 	t_tuple	new_tuple;
 
@@ -57,7 +57,7 @@ t_tuple	ft_neg_tuple(t_tuple a)
 }
 
 // faut-il checker si seulement vecteur ???
-t_tuple	ft_scale_tuple(t_tuple a, float scale)
+t_tuple	ft_scale_tuple(t_tuple a, double scale)
 {
 	t_tuple	new_tuple;
 
@@ -69,9 +69,9 @@ t_tuple	ft_scale_tuple(t_tuple a, float scale)
 }
 
 // faut-il checker si seulement vecteur ???
-float	ft_tuple_len(t_tuple a)
+double	ft_tuple_len(t_tuple a)
 {
-	float	len;
+	double	len;
 
 	len = sqrtf(powf(a.x, 2) + powf(a.y, 2) + powf(a.z, 2));
 	return (len);
@@ -79,7 +79,7 @@ float	ft_tuple_len(t_tuple a)
 
 t_tuple	ft_normalize_tuple(t_tuple a)
 {
-	float	len;
+	double	len;
 	t_tuple	new_tuple;
 
 	len = ft_tuple_len(a);
@@ -90,7 +90,7 @@ t_tuple	ft_normalize_tuple(t_tuple a)
 	return (new_tuple);
 }
 
-float	ft_tuple_scalarproduct(t_tuple a, t_tuple b)
+double	ft_tuple_scalarproduct(t_tuple a, t_tuple b)
 {
 	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
 }
@@ -110,21 +110,6 @@ t_tuple	ft_multiply_tuple_by_matrix(t_tuple tuple, t_matrix4 m)
 {
 	t_tuple	new_tuple;
 
-	new_tuple.x = (m.matrix[0][0] * tuple.x) + (m.matrix[0][1] * tuple.y)
-		+ (m.matrix[0][2] * tuple.z) + (m.matrix[0][3] * tuple.w);
-	new_tuple.y = (m.matrix[1][0] * tuple.x) + (m.matrix[1][1] * tuple.y)
-		+ (m.matrix[1][2] * tuple.z) + (m.matrix[1][3] * tuple.w);
-	new_tuple.z = (m.matrix[2][0] * tuple.x) + (m.matrix[2][1] * tuple.y)
-		+ (m.matrix[2][2] * tuple.z) + (m.matrix[2][3] * tuple.w);
-	new_tuple.w = tuple.w;
-
-	return (new_tuple);
-}
-
-t_tuple	ft_multiply_matrix_by_tuple(t_matrix4 m, t_tuple tuple)
-{
-	t_tuple	new_tuple;
-
 	new_tuple.x = (tuple.x * m.matrix[0][0]) +  (tuple.x * m.matrix[1][0])
 		+ (tuple.x * m.matrix[2][0]) +  (tuple.x * m.matrix[3][0]);
 	new_tuple.y = (tuple.y * m.matrix[0][1]) +  (tuple.y * m.matrix[1][1])
@@ -136,7 +121,22 @@ t_tuple	ft_multiply_matrix_by_tuple(t_matrix4 m, t_tuple tuple)
 	return (new_tuple);
 }
 
-t_tuple	ft_multiply_tuple_by_float(t_tuple tuple, float c)
+t_tuple	ft_multiply_matrix_by_tuple(t_matrix4 m, t_tuple tuple)
+{
+	t_tuple	new_tuple;
+
+	new_tuple.x = (m.matrix[0][0] * tuple.x) + (m.matrix[0][1] * tuple.y)
+		+ (m.matrix[0][2] * tuple.z) + (m.matrix[0][3] * tuple.w);
+	new_tuple.y = (m.matrix[1][0] * tuple.x) + (m.matrix[1][1] * tuple.y)
+		+ (m.matrix[1][2] * tuple.z) + (m.matrix[1][3] * tuple.w);
+	new_tuple.z = (m.matrix[2][0] * tuple.x) + (m.matrix[2][1] * tuple.y)
+		+ (m.matrix[2][2] * tuple.z) + (m.matrix[2][3] * tuple.w);
+	new_tuple.w = tuple.w;
+
+	return (new_tuple);
+}
+
+t_tuple	ft_multiply_tuple_by_double(t_tuple tuple, double c)
 {
 	t_tuple	new_tuple;
 

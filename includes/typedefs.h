@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/26 11:48:49 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 13:13:45 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,30 @@ typedef struct	s_data {
 }	t_data;
 
 typedef struct	s_matrix4{
-	float	matrix[4][4];
+	double	matrix[4][4];
 }	t_matrix4;
 
 typedef struct	s_matrix3{
-	float	matrix[3][3];
+	double	matrix[3][3];
 }	t_matrix3;
 
 typedef struct	s_matrix2{
-	float	matrix[2][2];
+	double	matrix[2][2];
 }	t_matrix2;
 
 typedef struct s_tuple
 {
-	float	x;
-	float	y;
-	float	z;
-	float	w;
+	double	x;
+	double	y;
+	double	z;
+	double	w;
 }	t_tuple;
 
 typedef struct s_color
 {
-	float	red;
-	float	green;
-	float	blue;
+	double	red;
+	double	green;
+	double	blue;
 }	t_color;
 
 typedef struct s_ray
@@ -72,7 +72,7 @@ typedef struct s_object
 	int			object_type;
 	t_matrix4	transform_m;
 	t_tuple		origin;
-	float		radius;
+	double		radius;
 	t_color		color;
 }	t_object;
 
@@ -80,12 +80,12 @@ typedef struct s_intersections
 {
 	int			nb_of_intersections;
 	int			object_type;
-	float		i1;
-	float		i2;
+	double		i1;
+	double		i2;
 }	t_intersections;
 
 typedef struct s_hit
 {
 	bool	does_hit;
-	float	i;
+	double	i;
 }	t_hit;
