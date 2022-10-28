@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/28 14:18:08 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/28 16:11:11 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(void)
 	double					ray_x;
 	t_tuple					point;
 
-	ray = ft_create_ray(ft_create_tuple(0, 0, -5, 1), ft_create_tuple(0, 0, 1, 0));
+	ray = ft_create_ray(ft_create_tuple(0, 0, -4, 1), ft_create_tuple(0, 0, 1, 0));
 
 	win_y = 0;
 	win_x = 0;
@@ -98,7 +98,7 @@ int	main(void)
 		}
 		win_x++;
 	}
-
+	my_mlx_pixel_put(&mlx_data.image, 395, 395, 0xffffffff);
 	mlx_put_image_to_window(mlx_data.mlx, mlx_data.win, mlx_data.image.img, 0, 0);
 	mlx_loop(mlx_data.mlx);
 

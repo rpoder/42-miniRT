@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/27 20:37:29 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/28 15:09:20 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	$(CC) -c $(CCFLAGS) -I $(INCLUDEDIR) $(addprefix -I ,$(dir $(MLX))) $(addprefix -I ,$(dir $(LIBFT))) $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(MLXFLAGS) $(LIBFT) $(MLX) -o $(NAME)
+	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -L libs/libft -lft -L libs/minilibx-linux -lmlx_Linux $(MLXFLAGS) -o $(NAME)
 
 all					:	$(NAME)
 

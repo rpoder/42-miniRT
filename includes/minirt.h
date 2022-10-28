@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/28 13:58:33 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/28 15:50:29 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_color	ft_sub_colors(t_color a, t_color b);
 t_color	ft_scale_color(t_color a, double scale);
 t_color	ft_multiply_colors(t_color a, t_color b);
 int		ft_convert_prime_color_to_int(double prime_color);
+long	ft_convert_color_to_longint(t_color rgb);
 
 /*-------------------------------------------------------------------- matrix */
 
