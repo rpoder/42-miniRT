@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/27 15:04:42 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/28 14:03:25 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_object	*ft_create_sphere(t_data *data, t_tuple origin, int radius)
 {
 	t_object	*new_sphere;
 	t_list		*node;
+	t_material	mat;
 
 	new_sphere = malloc(sizeof(t_object));
 	if (!new_sphere)
@@ -24,6 +25,12 @@ t_object	*ft_create_sphere(t_data *data, t_tuple origin, int radius)
 	new_sphere->origin = origin;
 	new_sphere->radius = radius;
 	new_sphere->transform_m = ft_get_identity_matrix();
+	mat.color = ft_create_color(1, 1, 1);
+	mat.ambient = 0.1;
+	mat.diffuse = 0.9;
+	mat.specular = 1;
+	mat.shininess = 200.0;
+	new_sphere->material = mat;
 	// node = ft_lstnew(new_sphere);
 	// if (!node)
 	// {

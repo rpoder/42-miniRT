@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/27 13:13:45 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/27 20:43:24 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ typedef struct s_ray
 	t_tuple	direction;
 }	t_ray;
 
+typedef struct s_material
+{
+	t_color	color;
+	double	ambient;
+	double	diffuse;
+	double	specular;
+	double	shininess;
+}	t_material;
+
 typedef struct s_object
 {
 	int			id;
@@ -74,6 +83,7 @@ typedef struct s_object
 	t_tuple		origin;
 	double		radius;
 	t_color		color;
+	t_material	material;
 }	t_object;
 
 typedef struct s_intersections
@@ -89,3 +99,10 @@ typedef struct s_hit
 	bool	does_hit;
 	double	i;
 }	t_hit;
+
+typedef struct s_point_light
+{
+	t_color	intensity;
+	t_tuple	position;
+}	t_point_light;
+

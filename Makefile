@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/27 15:43:39 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/27 20:37:29 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS				:=	main.c \
 						tools/utils.c \
 						renderer/canvas.c \
 						renderer/reflection.c \
+						renderer/lights.c \
 						ray/ray_utils.c \
 						ray/hits_utils.c \
 						objects/sphere_utils.c
