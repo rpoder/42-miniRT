@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 12:18:55 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/28 14:01:17 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/28 17:41:25 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ long	ft_convert_color_to_longint(t_color rgb)
 	long	color;
 
 	color = 0;
-	color += (long)ft_convert_prime_color_to_int(rgb.green) << 8;
 	color += (long)ft_convert_prime_color_to_int(rgb.red) << 16;
+	color += (long)ft_convert_prime_color_to_int(rgb.green) << 8;
 	color += (long)ft_convert_prime_color_to_int(rgb.blue);
 	// print_bits_of_long(color);
 	return (color);

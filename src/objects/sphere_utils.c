@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/28 15:58:39 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/28 17:39:22 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_object	*ft_create_sphere(t_data *data, t_tuple origin, int radius)
 	mat.ambient = 0.1;
 	mat.diffuse = 0.9;
 	mat.specular = 1;
-	mat.shininess = 100.0;
+	mat.shininess = 200.0;
 	new_sphere->material = mat;
 	// node = ft_lstnew(new_sphere);
 	// if (!node)

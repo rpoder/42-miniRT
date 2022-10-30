@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/28 16:11:11 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 13:05:05 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,24 @@ int	main(void)
 	t_tuple			eyev;
 	t_point_light	light;
 	t_color			res;
+	t_matrix4		t1;
+	t_matrix4		t2;
+	t_ray			ray;
 
 	sphere = ft_create_sphere(NULL, ft_create_tuple(0, 0, 0, 1), 1);
-	// sphere->transform_m = ft_calculate_translation_matrix(1, -10, 1);
+
+	// t1 = ft_calculate_scaling_matrix(1.2, 0.8, 0.8);
+	// t2 = ft_calculate_shearing_matrix(shearing);
+	// sphere->transform_m = ft_multiply_matrices(t2, t1);
+
 	sphere->material.color = ft_create_color(1, 0, 1);
 
-	// normalv = ft_create_tuple(0, 0, -1, 0);
-	// eyev = ft_create_tuple(0, 0, -1, 0);
 	light = ft_create_point_light(ft_create_color(1, 1, 1), ft_create_tuple(-10, 10, -10, 1));
 
-	// res = get_lighted_color(sphere->material, light, ft_create_tuple(0, 0, 0, 1), eyev, normalv);
-	// ft_print_color("magic res", res);
+	/* CAMERA */
+	ray = ft_create_ray(ft_create_tuple(0, 0, -5, 1), ft_create_tuple(0, 0, 1, 0));
 
 	/* DISPLAY */
-	t_ray					ray;
 	t_intersections			sphere_intersects;
 	t_hit					hit;
 	int						win_x;
@@ -62,8 +66,6 @@ int	main(void)
 	double					ray_y;
 	double					ray_x;
 	t_tuple					point;
-
-	ray = ft_create_ray(ft_create_tuple(0, 0, -4, 1), ft_create_tuple(0, 0, 1, 0));
 
 	win_y = 0;
 	win_x = 0;
@@ -78,19 +80,19 @@ int	main(void)
 		while(win_y < 1000)
 		{
 			ray_y = ray_y - (1.0 / 250.0);
-			// printf("ray_y = %f\n", ray_y);
 			ray.direction = ft_create_tuple(ray_x, ray_y, 5, 0);
-			// ft_print_tuple("ray.direction", ray.direction);
 			ray.direction = ft_normalize_tuple(ray.direction);
 			sphere_intersects = ft_get_sphere_intersections(sphere, ray);
+
 			hit = find_hit(sphere_intersects);
 			if (hit.does_hit == true)
 			{
 				point = ft_calculate_new_point_on_ray(ray, hit.i);
 				normalv = sphere_normal_at(*sphere, point);
 				eyev = ft_neg_tuple(ray.direction);
-				res = get_lighted_color(sphere->material, light, point, eyev, normalv);
+				res = get_lighted_color(sphere->material, light, point, ft_normalize_tuple(eyev), ft_normalize_tuple(normalv));
 
+				// my_mlx_pixel_put(&mlx_data.image, win_x, win_y, 0x00ffff00);
 				my_mlx_pixel_put(&mlx_data.image, win_x, win_y, ft_convert_color_to_longint(res));
 
 			}
@@ -98,8 +100,8 @@ int	main(void)
 		}
 		win_x++;
 	}
-	my_mlx_pixel_put(&mlx_data.image, 395, 395, 0xffffffff);
 	mlx_put_image_to_window(mlx_data.mlx, mlx_data.win, mlx_data.image.img, 0, 0);
+	printf("------------------------------------------------------------------------IMAGE DISPLAYED\n");
 	mlx_loop(mlx_data.mlx);
 
 }

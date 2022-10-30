@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:31:56 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/28 16:10:32 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 13:19:11 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ t_color	get_lighted_color(t_material mat, t_point_light light, t_tuple point, t_
 	else
 	{
 		diffuse_color = ft_scale_color(ft_scale_color(effective_color, mat.diffuse), light_dot_normal);
-		reflectv = ft_reflect_in(ft_neg_tuple(lightv), normalv);
-		reflect_dot_eye = ft_tuple_scalarproduct(reflectv, eyev);
+		reflectv = ft_reflect_in(lightv, normalv);
+		reflect_dot_eye = ft_tuple_scalarproduct(ft_neg_tuple(reflectv), eyev);
 		if (reflect_dot_eye <= 0)
 		{
 			specular_color = ft_create_color(0, 0, 0);

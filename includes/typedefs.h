@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/27 20:43:24 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 13:12:20 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_mlx_data
 typedef struct	s_data {
 	t_mlx_data	*mlx_data;
 	t_list		*objects;
+	t_list		*point_lights;
 }	t_data;
 
 typedef struct	s_matrix4{
@@ -89,15 +90,16 @@ typedef struct s_object
 typedef struct s_intersections
 {
 	int			nb_of_intersections;
-	int			object_type;
+	t_object	*object;
 	double		i1;
 	double		i2;
 }	t_intersections;
 
 typedef struct s_hit
 {
-	bool	does_hit;
-	double	i;
+	bool		does_hit;
+	t_object	*object;
+	double		i;
 }	t_hit;
 
 typedef struct s_point_light

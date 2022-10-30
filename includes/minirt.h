@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/28 15:50:29 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 13:13:30 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ t_hit			find_hit(t_intersections intersections);
 t_object		*ft_create_sphere(t_data *data, t_tuple origin, int radius);
 t_tuple			sphere_normal_at(t_object sphere, t_tuple world_point);
 
-
+/* ---------------------------------------------------------------------WORLD */
 
 // print.c
 void			ft_print_tuple(char *tuple_name, t_tuple tuple);
