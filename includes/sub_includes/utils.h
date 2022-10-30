@@ -6,13 +6,14 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:10:58 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 15:25:19 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 15:59:29 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /* mlx.c--------------------------------------------------------------------- */
+int			handle_key_event(int keycode);
 void		my_mlx_pixel_put(t_image *image, int x, int y, long color);
 t_mlx_data	*start_mlx(void);
 

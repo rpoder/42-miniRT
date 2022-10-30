@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/30 15:55:44 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/30 19:49:41 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS				:=	main.c \
 						tools/init_tools.c \
 						tools/cmp_tools.c \
 						tools/print.c \
+						scene/camera.c \
 						scene/lights.c \
 						utils/init.c \
 						utils/mlx.c \

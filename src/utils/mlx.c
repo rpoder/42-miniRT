@@ -6,11 +6,18 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:01:33 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 15:34:36 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 15:59:00 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int	handle_key_event(int keycode)
+{
+	if (keycode == 65307)
+		exit(0);
+	return (0);
+}
 
 void	my_mlx_pixel_put(t_image *image, int x, int y, long color)
 {

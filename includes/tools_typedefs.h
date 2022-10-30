@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.h                                            :+:      :+:    :+:   */
+/*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 13:57:50 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 19:27:16 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,12 @@ typedef struct s_double3
 	double	b;
 	double	c;
 }	t_double3;
+
+typedef struct s_ray_precompute_tool
+{
+	t_hit	hit;
+	t_tuple	w_point;
+	t_tuple	eyev;
+	t_tuple	normalv;
+	bool	inside;
+}	t_ray_precompute_tool;

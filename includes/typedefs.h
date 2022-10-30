@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 14:09:01 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 18:28:11 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ typedef struct s_object
 	int			id;
 	int			object_type;
 	t_matrix4	transform_m;
-	t_tuple		origin;
-	double		radius;
+	// t_tuple		origin;
+	// double		radius;
 	t_color		color;
 	t_material	material;
 }	t_object;
@@ -91,6 +91,12 @@ typedef struct s_intersections
 	double		i1;
 	double		i2;
 }	t_intersections;
+
+typedef struct s_w_intersections
+{
+	int					nb_of_intersected_obj;
+	t_intersections		i[100];
+}	t_w_intersections;
 
 typedef struct s_hit
 {

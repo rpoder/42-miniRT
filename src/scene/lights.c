@@ -6,21 +6,29 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:31:56 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 15:25:53 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 16:08:02 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_point_light	ft_create_point_light(t_color intensity, t_tuple position)
+t_point_light	*create_point_light(t_data *data, t_color intensity, t_tuple pos)
 {
-	t_point_light	point_light;
+	t_list			*node;
+	t_point_light	*point_light;
 
-	// point_light = malloc(sizeof(point_light));
-	// if (!point_light)
-	// 	return (NULL);
-	point_light.intensity = intensity;
-	point_light.position = position;
+	point_light = malloc(sizeof(point_light));
+	if (!point_light)
+		return (NULL);
+	point_light->intensity = intensity;
+	point_light->position = pos;
+	node = ft_lstnew(point_light);
+	if (!node)
+	{
+		free(point_light);
+		return (NULL);
+	}
+	ft_lstadd_back(&data->point_lights, node);
 	return (point_light);
 }
 

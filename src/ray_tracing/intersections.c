@@ -6,11 +6,31 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:05:31 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 14:17:57 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 20:31:15 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+t_w_intersections	compute_world_intersections(t_data *data, t_ray ray)
+{
+	t_w_intersections	intersections;
+	t_list				*tmp;
+	int					count;
+
+	if (data->objects)
+		tmp = data->objects;
+	intersections.nb_of_intersected_obj = 0;
+	while (tmp)
+	{
+		intersections.i[count] = get_sphere_intersections(((t_object *)tmp->content), ray);
+		intersections.i[count].object = tmp->content;
+		tmp = tmp->next;
+		intersections.nb_of_intersected_obj++;
+		count++;
+	}
+	return (intersections);
+}
 
 t_intersections	init_intersections(void)
 {
