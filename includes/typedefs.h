@@ -6,12 +6,9 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 13:12:20 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 14:09:01 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-# include "libft.h"
-# include <stdbool.h>
 
 typedef struct	s_image {
 	void	*img;
@@ -108,3 +105,12 @@ typedef struct s_point_light
 	t_tuple	position;
 }	t_point_light;
 
+typedef struct s_shearing_values
+{
+	double	xy;
+	double	xz;
+	double	yx;
+	double	yz;
+	double	zx;
+	double	zy;
+}	t_shearing_values;

@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:46:08 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/28 12:24:17 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 15:40:19 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,16 @@ void	ft_print_ray(t_ray ray)
 	ft_print_tuple("ray.direction", ray.direction);
 }
 
-void	print_bits_of_long(long num){
-    unsigned int size = sizeof(int);
-    unsigned int maxPow = 1<<(size*8-1);
-    printf("MAX POW : %u\n",maxPow);
-    int i=0,j;
-	for(;i<size*8;++i){
-	    // print last bit and shift left.
-	    printf("%u ",num&maxPow ? 1 : 0);
-	    num = num<<1;
+void	print_bits_of_long(long num)
+{
+	unsigned int size = sizeof(int);
+	unsigned int maxPow = 1 <<(size * 8 - 1);
+
+	printf("MAX POW : %u\n",maxPow);
+	int i=0,j;
+	for(;i < size * 8; ++i)
+	{
+		printf("%u ",num&maxPow ? 1 : 0);
+		num = num << 1;
 	}
 }

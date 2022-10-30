@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/30 10:35:22 by rpoder           ###   ########.fr        #
+#    Updated: 2022/10/30 15:55:44 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,32 +16,35 @@ LIBFT				:=	./libs/libft/libft.a
 MLX					:=	./libs/minilibx-linux/libmlx_Linux.a
 
 INCLUDEDIR			:=	./includes
+SUBINCLUDEDIR			:=	./includes/sub_includes
 SRCDIR				:=	./src
 
 MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
 
 OBJDIR				:=	./obj
 
-
 SRCS				:=	main.c \
+						matrices/cofactor.c \
+						matrices/compute_transform_matrix_2.c \
+						matrices/compute_transform_matrix.c \
+						matrices/determinant.c \
+						matrices/matrix_operations.c \
+						matrices/matrix_utils.c \
+						matrices/sub_matrix.c \
+						objects/sphere.c \
+						ray_tracing/intersections.c \
+						ray_tracing/ray.c \
+						tuple/vectors.c \
 						tuple/vector_operations.c \
+						tuple/vector_operations_2.c \
 						tuple/color_operations.c \
-						matrix/matrix_operations.c \
-						matrix/inverse_matrix_utils.c \
-						matrix/inverse_matrix_utils_2.c \
-						matrix/matrix_utils.c \
-						matrix/sub_matrix_getters.c \
-						matrix/transform_matrix.c \
+						tuple/colors.c \
 						tools/init_tools.c \
+						tools/cmp_tools.c \
 						tools/print.c \
-						tools/utils.c \
-						renderer/canvas.c \
-						renderer/reflection.c \
-						renderer/lights.c \
-						ray/ray_utils.c \
-						ray/hits_utils.c \
-						objects/sphere_utils.c
-
+						scene/lights.c \
+						utils/init.c \
+						utils/mlx.c \
 
 CC					:=	cc
 RM					:=	rm
@@ -54,7 +57,7 @@ OUTDIR				:=	$(OBJDIR)
 
 $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
-	$(CC) -c $(CCFLAGS) -o3 -I $(INCLUDEDIR) $(addprefix -I ,$(dir $(MLX))) $(addprefix -I ,$(dir $(LIBFT))) $< -o $@
+	$(CC) -c $(CCFLAGS) -o3 -I $(INCLUDEDIR) -I $(SUBINCLUDEDIR) -I $(dir $(MLX)) -I $(dir $(LIBFT)) $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-linux -lmlx_Linux $(MLXFLAGS) -o $(NAME)

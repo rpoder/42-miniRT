@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 13:05:05 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/10/30 15:24:02 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,10 @@ int	handle_key_event(int keycode)
 
 int	main(void)
 {
+	t_data	*data;
 
-	// ft_convert_color_to_longint(ft_create_color(-0.3, 1, 1));
-
- 	/* TIME */
-	t_mlx_data	mlx_data;
-
-	mlx_data.mlx = mlx_init();
- 	mlx_data.win = mlx_new_window(mlx_data.mlx, 1000, 1000, "Hello world!");
-	mlx_hook(mlx_data.win, 2, 1 << 0, handle_key_event, NULL);
-	mlx_data.image.img = mlx_new_image(mlx_data.mlx, 1000, 1000);
-	mlx_data.image.addr = mlx_get_data_addr(mlx_data.image.img,
-		&mlx_data.image.bits_per_pixel, &mlx_data.image.line_length,
-		&mlx_data.image.endian);
+	data = init_data();
+	data->mlx_data = start_mlx();
 
 	/* TESTS */
 	t_object		*sphere;
@@ -47,8 +38,8 @@ int	main(void)
 
 	sphere = ft_create_sphere(NULL, ft_create_tuple(0, 0, 0, 1), 1);
 
-	// t1 = ft_calculate_scaling_matrix(1.2, 0.8, 0.8);
-	// t2 = ft_calculate_shearing_matrix(shearing);
+	// t1 = compute_scaling_matrix(1.2, 0.8, 0.8);
+	// t2 = compute_shearing_matrix(shearing);
 	// sphere->transform_m = ft_multiply_matrices(t2, t1);
 
 	sphere->material.color = ft_create_color(1, 0, 1);
@@ -87,22 +78,22 @@ int	main(void)
 			hit = find_hit(sphere_intersects);
 			if (hit.does_hit == true)
 			{
-				point = ft_calculate_new_point_on_ray(ray, hit.i);
+				point = compute_new_point_on_ray(ray, hit.i);
 				normalv = sphere_normal_at(*sphere, point);
 				eyev = ft_neg_tuple(ray.direction);
 				res = get_lighted_color(sphere->material, light, point, ft_normalize_tuple(eyev), ft_normalize_tuple(normalv));
 
-				// my_mlx_pixel_put(&mlx_data.image, win_x, win_y, 0x00ffff00);
-				my_mlx_pixel_put(&mlx_data.image, win_x, win_y, ft_convert_color_to_longint(res));
+				// my_mlx_pixel_put(&data->mlx_data->image, win_x, win_y, 0x00ffff00);
+				my_mlx_pixel_put(&data->mlx_data->image, win_x, win_y, ft_convert_color_to_longint(res));
 
 			}
 			win_y++;
 		}
 		win_x++;
 	}
-	mlx_put_image_to_window(mlx_data.mlx, mlx_data.win, mlx_data.image.img, 0, 0);
+	mlx_put_image_to_window(data->mlx_data->mlx, data->mlx_data->win, data->mlx_data->image.img, 0, 0);
 	printf("------------------------------------------------------------------------IMAGE DISPLAYED\n");
-	mlx_loop(mlx_data.mlx);
+	mlx_loop(data->mlx_data->mlx);
 
 }
 

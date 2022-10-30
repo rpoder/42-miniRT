@@ -2,6 +2,8 @@
 	"files.associations": {
 		"stdio.h": "c",
 		"minirt.h": "c",
-		"stdbool.h": "c"
+		"stdbool.h": "c",
+		"libft.h": "c",
+		"matrices.h": "c"
 	}
 }
