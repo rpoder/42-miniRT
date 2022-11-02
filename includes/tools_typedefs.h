@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 19:27:16 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/02 12:02:50 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,4 @@ typedef struct s_ray_precompute_tool
 	t_tuple	eyev;
 	t_tuple	normalv;
 	bool	inside;
-}	t_ray_precompute_tool;
+}	t_pcomp_tool;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 20:34:14 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:35:12 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_material	get_default_material(void)
 {
 	t_material	mat;
 
-	mat.color = ft_create_color(1, 1, 1);
+	mat.color = ft_create_color(0.8, 1, 0.6);
 	mat.ambient = 0.1;
-	mat.diffuse = 0.9;
-	mat.specular = 1;
+	mat.diffuse = 0.7;
+	mat.specular = 0.2;
 	mat.shininess = 200.0;
 	return (mat);
 }
@@ -43,22 +43,19 @@ t_object	*create_sphere(t_data *data, t_tuple origin, int radius)
 	t_object	*new_sphere;
 	t_list		*node;
 
-
 	new_sphere = malloc(sizeof(t_object));
 	if (!new_sphere)
 		return (NULL);
-	new_sphere->id = ft_lstlen(data->objects);
-
+	new_sphere->id = ft_lstlen(data->world->objects);
 	new_sphere->transform_m = compute_parsing_sphere_transform_m(origin, radius);
 	new_sphere->material = get_default_material();
-
 	node = ft_lstnew(new_sphere);
 	if (!node)
 	{
 		free(new_sphere);
 		return (NULL);
 	}
-	ft_lstadd_back(&data->objects, node);
+	// ft_lstadd_back(&data->world->objects, node);
 	return (new_sphere);
 }
 

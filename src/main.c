@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 20:32:24 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:37:56 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,38 @@ int	main(void)
 	t_data	*data;
 
 	data = init_data();
-	data->mlx_data = start_mlx();
+	// data->mlx_data = start_mlx();
 
 	/* TESTS */
-	t_object		*sphere;
-	t_object		*sphere2;
-	t_tuple			normalv;
-	t_tuple			eyev;
+	// t_object		*sphere;
+	// t_object		*sphere2;
+	// t_tuple			normalv;
+	// t_tuple			eyev;
 	t_point_light	*light;
-	t_color			res;
-	t_ray			ray;
-	t_w_intersections	w_intersections;
-	t_ray_precompute_tool	tool;
+	// t_color			res;
+	// t_ray			ray;
+	// t_w_intersections	w_intersections;
+	// t_pcomp_tool	tool;
 
-	light = create_point_light(data, ft_create_color(1, 1, 1), ft_create_tuple(-10, 10, -10, 1));
-	sphere = create_sphere(data, ft_create_tuple(0, 0, 0, 1), 1);
+	create_point_light(data, ft_create_color(1, 1, 1), ft_create_tuple(-10, 10, -10, 1));
+	// create_sphere(data, ft_create_tuple(0, 0, 0, 1), 1);
 	// sphere2 = create_sphere(data, ft_create_tuple(0, 0, 0, 1), 1);
 	// sphere2->transform_m = ft_multiply_matrices(sphere2->transform_m, compute_scaling_matrix(0.5, 0.5, 0.5));
 	// t1 = compute_scaling_matrix(1.2, 0.8, 0.8);
 	// t2 = compute_shearing_matrix(shearing);
 	// sphere->transform_m = ft_multiply_matrices(t2, t1);
 
-	sphere->material.color = ft_create_color(1, 0, 1);
+	// sphere->material.color = ft_create_color(1, 0, 1);
 
 
 	/* CAMERA */
-	ray = ft_create_ray(ft_create_tuple(0, 0, 0, 1), ft_create_tuple(0, 0, 1, 0));
+	// ray = ft_create_ray(ft_create_tuple(0, 0, -5, 1), ft_create_tuple(0, 1, 0, 0));
 
-	w_intersections = compute_world_intersections(data, ray);
-
-
-	tool = precompute_ray(w_intersections, ray);
-
-
-
+	// ft_print_color("final_color", color_at(*data->world, ray));
+	// ft_print_tuple("tool", tool.eyev);
+	// ft_print_tuple("tool", tool.normalv);
+	// ft_print_tuple("tool", tool.w_point);
+	// printf("inside %d", tool.inside);
 
 
 

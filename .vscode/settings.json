@@ -4,6 +4,7 @@
 		"minirt.h": "c",
 		"stdbool.h": "c",
 		"libft.h": "c",
-		"matrices.h": "c"
+		"matrices.h": "c",
+		"mlx_int.h": "c"
 	}
 }

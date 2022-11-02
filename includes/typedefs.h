@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedefs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 18:28:11 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/02 11:26:26 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@ typedef struct s_mlx_data
 	t_image		image;
 }	t_mlx_data;
 
-typedef struct	s_data {
-	t_mlx_data	*mlx_data;
+typedef struct s_world
+{
 	t_list		*objects;
 	t_list		*point_lights;
+}	t_world;
+
+
+typedef struct	s_data {
+	t_mlx_data	*mlx_data;
+	t_world		*world;
 }	t_data;
 
 typedef struct	s_matrix4{

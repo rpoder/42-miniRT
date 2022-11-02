@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 18:53:37 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 20:31:44 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/02 12:02:50 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ static t_hit	find_w_hit(t_w_intersections w_intersections)
 	return (hit);
 }
 
-t_ray_precompute_tool precompute_ray(t_w_intersections w_intersections, t_ray ray)
+t_pcomp_tool precompute_ray(t_w_intersections w_intersections, t_ray ray)
 {
-	t_ray_precompute_tool	tool;
+	t_pcomp_tool	tool;
 
 	tool.hit = find_w_hit(w_intersections);
 	tool.w_point = compute_new_point_on_ray(ray, tool.hit.i);
 	tool.eyev = ft_neg_tuple(ray.direction);
-	///////////////envoyer hit a normal_at et y checker le type de l'objet
+	/////////////// maybe envoyer hit a normal_at et y checker le type de l'objet
 	tool.normalv = sphere_normal_at(tool.hit.object, tool.w_point);
 	if (ft_tuple_scalarproduct(tool.normalv, tool.eyev) < 0)
 	{

@@ -3,23 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
+#    By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/10/30 19:49:41 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/02 11:44:14 by ronanpoder       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROGNAME			:=	minirt
 
 LIBFT				:=	./libs/libft/libft.a
-MLX					:=	./libs/minilibx-linux/libmlx_Linux.a
+MLX					:=	./libs/minilibx-macos/libmlx
 
 INCLUDEDIR			:=	./includes
 SUBINCLUDEDIR			:=	./includes/sub_includes
 SRCDIR				:=	./src
 
-MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
+# MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
+MLXFLAGS			:= -framework OpenGL -framework AppKit
 
 OBJDIR				:=	./obj
 
@@ -61,7 +62,7 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	$(CC) -c $(CCFLAGS) -o3 -I $(INCLUDEDIR) -I $(SUBINCLUDEDIR) -I $(dir $(MLX)) -I $(dir $(LIBFT)) $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-linux -lmlx_Linux $(MLXFLAGS) -o $(NAME)
+	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-macos -lmlx $(MLXFLAGS) -o $(NAME)
 
 all					:	$(NAME)
 
