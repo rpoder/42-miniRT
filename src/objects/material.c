@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors.c                                          :+:      :+:    :+:   */
+/*   material.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 15:48:45 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/03 12:14:10 by margot           ###   ########.fr       */
+/*   Created: 2022/11/03 16:54:41 by margot            #+#    #+#             */
+/*   Updated: 2022/11/03 16:55:05 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_tuple	create_tuple(double x, double y, double z, double w)
+t_material	get_default_material(void)
 {
-	t_tuple	new_tuple;
+	t_material	mat;
 
-	new_tuple.x = x;
-	new_tuple.y = y;
-	new_tuple.z = z;
-	new_tuple.w = w;
-	return (new_tuple);
+	mat.color = create_color(0.8, 1, 0.6);
+	mat.ambient = 0.1;
+	mat.diffuse = 0.7;
+	mat.specular = 0.2;
+	mat.shininess = 200.0;
+	return (mat);
 }

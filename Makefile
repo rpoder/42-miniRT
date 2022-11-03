@@ -3,24 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+         #
+#    By: margot <margot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/02 11:44:14 by ronanpoder       ###   ########.fr        #
+#    Updated: 2022/11/03 16:57:45 by margot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROGNAME			:=	minirt
 
 LIBFT				:=	./libs/libft/libft.a
-MLX					:=	./libs/minilibx-macos/libmlx
+MLX					:=	./libs/minilibx-linux/libmlx_Linux.a
 
 INCLUDEDIR			:=	./includes
-SUBINCLUDEDIR			:=	./includes/sub_includes
+SUBINCLUDEDIR		:=	./includes/sub_includes
 SRCDIR				:=	./src
 
-# MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
-MLXFLAGS			:= -framework OpenGL -framework AppKit
+MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
 
 OBJDIR				:=	./obj
 
@@ -32,8 +31,11 @@ SRCS				:=	main.c \
 						matrices/matrix_operations.c \
 						matrices/matrix_utils.c \
 						matrices/sub_matrix.c \
+						objects/object_intersections.c \
+						objects/material.c \
 						objects/sphere.c \
-						ray_tracing/intersections.c \
+						ray_tracing/get_color_on_ray.c \
+						ray_tracing/get_lighted_color.c \
 						ray_tracing/ray.c \
 						tuple/vectors.c \
 						tuple/vector_operations.c \
@@ -43,7 +45,6 @@ SRCS				:=	main.c \
 						tools/init_tools.c \
 						tools/cmp_tools.c \
 						tools/print.c \
-						scene/camera.c \
 						scene/lights.c \
 						utils/init.c \
 						utils/mlx.c \
@@ -62,7 +63,7 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	$(CC) -c $(CCFLAGS) -o3 -I $(INCLUDEDIR) -I $(SUBINCLUDEDIR) -I $(dir $(MLX)) -I $(dir $(LIBFT)) $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-macos -lmlx $(MLXFLAGS) -o $(NAME)
+	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-linux -lmlx_Linux $(MLXFLAGS) -o $(NAME)
 
 all					:	$(NAME)
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:43:59 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 15:44:49 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/03 12:13:38 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_color	ft_create_color(double red, double green, double blue)
+t_color	create_color(double red, double green, double blue)
 {
 	t_color	new_color;
 

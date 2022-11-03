@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/02 12:02:50 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/03 13:21:09 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_double3
 
 typedef struct s_ray_precompute_tool
 {
-	t_hit	hit;
-	t_tuple	w_point;
-	t_tuple	eyev;
-	t_tuple	normalv;
-	bool	inside;
+	t_object	*object;
+	t_tuple		i;
+	t_tuple		eyev;
+	t_tuple		normalv;
+	bool		inside;
 }	t_pcomp_tool;
