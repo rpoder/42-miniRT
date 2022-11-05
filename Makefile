@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: margot <margot@student.42.fr>              +#+  +:+       +#+         #
+#    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/03 16:57:45 by margot           ###   ########.fr        #
+#    Updated: 2022/11/04 12:14:22 by mpourrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS				:=	main.c \
 						tools/cmp_tools.c \
 						tools/print.c \
 						scene/lights.c \
+						scene/world.c \
 						utils/init.c \
 						utils/mlx.c \
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/03 16:44:32 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/04 12:15:03 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,16 @@ int	main(void)
 	t_data	*data;
 
 	data = init_data();
+
+	t_tuple	from = create_tuple(1, 3, 2, 1);
+	t_tuple	to = create_tuple(4, -2, 8, 1);
+	t_tuple	up = create_tuple(1, 1, 0, 0);
+	
+	data->world->view_transform_m = compute_view_transform_m(from, to, up);
 	//data->mlx_data = start_mlx();
 
 	/* TESTS */
-	t_object			*s1;
+/* 	t_object			*s1;
 	t_object			*s2;
 	t_point_light		*light;
 	t_ray				ray;
@@ -64,7 +70,7 @@ int	main(void)
 
 	/* CAMERA */
 	ray = ft_create_ray(create_tuple(0, 0, -5, 1), create_tuple(0, 0, 1, 0));
-	ft_print_color("final_color", get_color_on_ray(*data->world, ray));
+	ft_print_color("final_color", get_color_on_ray(*data->world, ray)); */
 	
 	
 	// /* DISPLAY */

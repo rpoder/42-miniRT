@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   typedefs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/03 12:16:36 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/04 11:59:19 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct	s_image {
+typedef struct	s_image{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -18,36 +18,35 @@ typedef struct	s_image {
 	int		endian;
 }	t_image;
 
-typedef struct s_mlx_data
-{
+typedef struct s_mlx_data {
 	void		*mlx;
 	void		*win;
 	t_image		image;
 }	t_mlx_data;
 
-typedef struct s_world
-{
-	t_list		*objects;
-	t_list		*point_lights;
-}	t_world;
-
-
-typedef struct	s_data {
-	t_mlx_data	*mlx_data;
-	t_world		*world;
-}	t_data;
-
-typedef struct	s_matrix4{
+typedef struct	s_matrix4 {
 	double	matrix[4][4];
 }	t_matrix4;
 
-typedef struct	s_matrix3{
+typedef struct	s_matrix3 {
 	double	matrix[3][3];
 }	t_matrix3;
 
-typedef struct	s_matrix2{
+typedef struct	s_matrix2 {
 	double	matrix[2][2];
 }	t_matrix2;
+
+typedef struct s_world {
+	t_list		*objects;
+	t_list		*point_lights;
+	t_matrix4	view_transform_m;
+}	t_world;
+
+typedef struct	s_data 
+{
+	t_mlx_data	*mlx_data;
+	t_world		*world;
+}	t_data;
 
 typedef struct s_tuple
 {

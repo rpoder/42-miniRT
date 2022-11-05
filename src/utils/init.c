@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:14:24 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/02 11:33:07 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/04 12:02:58 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ t_data	*init_data(void)
 		return (NULL);
 	}
 	data->world->objects = NULL;
-	data->world->point_lights = NULL;
+	data->world->point_lights = NULL;;
 	return (data);
 }
