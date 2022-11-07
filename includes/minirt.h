@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/03 11:56:55 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/07 15:19:04 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 # include "tuples.h"
 
 /* defines */
+# define CANVAS_X 1000
+# define CANVAS_Y 1000
+
 # define EPSILON 0.00001
 
 # define UNDEFINED_TYPE 100

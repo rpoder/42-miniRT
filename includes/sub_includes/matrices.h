@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.h                                           :+:      :+:    :+:   */
+/*   matrices.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 13:28:21 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 14:07:16 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/07 11:44:24 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_matrix4	ft_inverse_matrix(t_matrix4 m);
 /* matrix_utils.c------------------------------------------------------------ */
 t_matrix4	get_identity_matrix(void);
 bool		is_matrix_invertible(t_matrix4 m);
+t_matrix4	m4_bzero(void);
 
 /* sub_matrix.c-------------------------------------------------------------- */
 t_matrix3	sub_m4tom3(t_matrix4 m4, int row, int column);

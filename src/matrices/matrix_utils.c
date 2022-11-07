@@ -6,13 +6,13 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:04:59 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 13:43:48 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/07 11:44:06 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_matrix4	m4_bzero(void)
+t_matrix4	m4_bzero(void)
 {
 	t_matrix4	new_matrix;
 	int			i;

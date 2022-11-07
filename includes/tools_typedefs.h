@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/03 13:21:09 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/07 14:49:40 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_counter4
 
 typedef struct s_offset
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }	t_offset;
 
 typedef struct s_double3

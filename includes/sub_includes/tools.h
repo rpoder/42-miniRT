@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:36:45 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 15:40:39 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:48:56 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void	ft_print_matrix4(t_matrix4 m4);
 void	ft_print_matrix3(t_matrix3 m3);
 void	ft_print_matrix2(t_matrix2 m2);
 void	ft_print_ray(t_ray ray);
+void	ft_print_intersection(t_intersections intersections);
 void	print_bits_of_long(long num);

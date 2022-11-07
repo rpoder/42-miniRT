@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:46:08 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 15:40:19 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/07 17:50:14 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,14 @@ void	ft_print_ray(t_ray ray)
 {
 	ft_print_tuple("ray.origin", ray.origin);
 	ft_print_tuple("ray.direction", ray.direction);
+}
+
+void	ft_print_intersection(t_intersections intersections)
+{
+	printf("intersection.nb = %d\n", intersections.nb_of_intersections);
+	printf("intersection.i1 = %d\n", intersections.nb_of_intersections);
+	printf("intersection.i2 = %d\n", intersections.nb_of_intersections);
+	printf("intersection.objectId = %d\n\n", intersections.object->id);
 }
 
 void	print_bits_of_long(long num)

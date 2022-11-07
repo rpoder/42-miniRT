@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color_on_ray.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:05:31 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/03 16:37:20 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/07 18:14:08 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static t_hit	find_w_hit(t_w_intersections w_intersections)
 	{
 		if (w_intersections.i[j].nb_of_intersections > 0)
 		{
+			ft_print_intersection(w_intersections.i[j]);
 			if (w_intersections.i[j].i1 < hit.i && w_intersections.i[j].i1 > 0)
 			{
 				hit.object = w_intersections.i[j].object;
@@ -46,7 +47,7 @@ static t_hit	find_w_hit(t_w_intersections w_intersections)
 /* ray_computation_tool :
 - the point of the first intersection in world space
 - the interesected object
-- the eyevector = from point to camera 
+- the eyevector = from point to camera
 - the normal vector */
 static t_pcomp_tool get_ray_computation_tool(t_w_intersections w_intersections, t_ray ray)
 {
@@ -54,6 +55,8 @@ static t_pcomp_tool get_ray_computation_tool(t_w_intersections w_intersections, 
 	t_hit			hit;
 
 	hit = find_w_hit(w_intersections);
+	printf("hit.i = %f\n", hit.i);
+	printf("hit.does_hit = %d\n", hit.does_hit);
 	tool.i = compute_new_point_on_ray(ray, hit.i);
 	tool.object = hit.object;
 	tool.eyev = ft_neg_tuple(ray.direction);
@@ -82,11 +85,13 @@ static t_w_intersections	compute_world_intersections(t_world world, t_ray ray) /
 		while (tmp)
 		{
 			w_intersections.i[count] = get_sphere_intersections(((t_object *)tmp->content), ray);
-			w_intersections.i[count].object = tmp->content;	
+			w_intersections.i[count].object = tmp->content;
 			if (w_intersections.i[count].nb_of_intersections != 0)
+			{
 				w_intersections.nb_of_intersected_obj++;
+				count++;
+			}
 			tmp = tmp->next;
-			count++;
 		}
 	}
 	return (w_intersections);
@@ -105,10 +110,10 @@ t_color	get_color_on_ray(t_world world, t_ray ray)
 	{
 		pcomp_tool = get_ray_computation_tool(w_intersections, ray);
 		//print tool//
-		ft_print_tuple("i", pcomp_tool.i);
-		ft_print_tuple("eyev", pcomp_tool.eyev);
-		ft_print_tuple("normalv", pcomp_tool.normalv);
-		printf("inside %d\n", pcomp_tool.inside);
+		// ft_print_tuple("i", pcomp_tool.i);
+		// ft_print_tuple("eyev", pcomp_tool.eyev);
+		// ft_print_tuple("normalv", pcomp_tool.normalv);
+		// printf("inside %d\n", pcomp_tool.inside);
 		//////////////
 		final_color = get_lighted_color(world, pcomp_tool);
 	}

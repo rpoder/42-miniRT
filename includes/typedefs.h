@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedefs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/04 11:59:19 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/07 12:56:07 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,24 @@ typedef struct	s_matrix2 {
 	double	matrix[2][2];
 }	t_matrix2;
 
+typedef struct	s_camera {
+	int			hsize;
+	int			vsize;
+	double		fov;
+	t_matrix4	transform_m;
+	double		pixel_size;
+	double		half_width;
+	double		half_height;
+}	t_camera;
+
 typedef struct s_world {
 	t_list		*objects;
 	t_list		*point_lights;
 	t_matrix4	view_transform_m;
+	t_camera	*camera;
 }	t_world;
 
-typedef struct	s_data 
+typedef struct	s_data
 {
 	t_mlx_data	*mlx_data;
 	t_world		*world;
