@@ -6,7 +6,7 @@
 /*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 14:15:16 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/09 17:37:04 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,21 @@ int	main(void)
 	data = init_data();
 	data->mlx_data = start_mlx();
 
-	create_camera(data, 1000, 1000, M_PI/8);
-	from = create_tuple(0, 5, -5, 1);
+	create_camera(data, CANVAS_X, CANVAS_Y, M_PI/4);
+	from = create_tuple(0, 1, -7, 1);
 	to = create_tuple(0, 1, 0, 1);
 	up = create_tuple(0, 1, 0, 0);
 	data->world->camera->transform_m = compute_view_transform_m(from, to, up);
 
 	data->world->view_transform_m = compute_view_transform_m(from, to, up);
-	light = create_point_light(data, create_color(1, 1, 1), create_tuple(0, 3, -5, 1));
+	light = create_point_light(data, create_color(1, 1, 1), create_tuple(10, 10, -10, 1));
 	s1 = create_sphere(data, create_tuple(0, 0, 0, 1), 1);
 	s1->material.color = create_color(0.8, 1.0, 0.6);
-	s1->material.diffuse = 0.7;
-	s1->material.specular = 0.2;
-	s2 = create_sphere(data, create_tuple(0, 0, 0, 1), 1);
-	s2->transform_m = ft_multiply_matrices(s2->transform_m, compute_translation_matrix(0, 0, 2));
+	printf("plane ptr = %p\n",create_plane(data));
+	// s1->material.diffuse = 0.7;
+	// s1->material.specular = 0.2;
+	// s2 = create_sphere(data, create_tuple(0, 0, 0, 1), 1);
+	s1->transform_m = ft_multiply_matrices(s1->transform_m, compute_translation_matrix(0, 1, 0));
 	render(data, data->world->camera, data->world);
 	// data->world->camera->transform_m = ft_multiply_matrices(data->world->camera->transform_m, compute_rotation_y_matrix(M_PI / 4));
 	// data->world->camera->transform_m = ft_multiply_matrices(data->world->camera->transform_m, compute_translation_matrix(0, -2, 5));

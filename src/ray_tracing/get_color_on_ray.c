@@ -6,7 +6,7 @@
 /*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:05:31 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 14:09:05 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/09 16:54:32 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_hit	find_w_hit(t_w_intersections w_intersections)
 			{
 				hit.object = w_intersections.i[j].object;
 				hit.i = w_intersections.i[j].i1;
-
 			}
 
 			if (w_intersections.i[j].i2 < hit.i && w_intersections.i[j].i2 > 0.0 + EPSILON)
@@ -45,7 +44,10 @@ t_hit	find_w_hit(t_w_intersections w_intersections)
 	if (hit.i < DBL_MAX)
 		hit.does_hit = true;
 	else
+	{
 		hit.does_hit = false;
+		hit.object = NULL;
+	}
 	return (hit);
 }
 
@@ -60,11 +62,16 @@ static t_pcomp_tool get_ray_computation_tool(t_w_intersections w_intersections, 
 	t_hit			hit;
 
 	hit = find_w_hit(w_intersections);
+	if (hit.does_hit == false)
+	{
+		pcomp.object = NULL;
+		return (pcomp);
+	}
 	pcomp.i = compute_new_point_on_ray(ray, hit.i);
 	pcomp.over_i = pcomp.i;
 	pcomp.object = hit.object;
 	pcomp.eyev = ft_neg_tuple(ray.direction);
-	pcomp.normalv = sphere_normal_at(pcomp.object, pcomp.i); //envoyer objet a normal et checker le type
+	pcomp.normalv = normal_at(pcomp.object, pcomp.i);
 	if (ft_tuple_scalarproduct(pcomp.normalv, pcomp.eyev) < 0)
 	{
 		pcomp.normalv = ft_neg_tuple(pcomp.normalv);
@@ -89,11 +96,11 @@ t_w_intersections	compute_world_intersections(t_world world, t_ray ray)
 		tmp = world.objects;
 		while (tmp)
 		{
-			tmp_intersections = get_sphere_intersections(((t_object *)tmp->content), ray);
+			tmp_intersections = get_object_intersections(((t_object *)tmp->content), ray);
 			if (tmp_intersections.nb_of_intersections > 0)
 			{
 				w_intersections.i[count] = tmp_intersections;
-				w_intersections.i[count].object = tmp->content;
+				w_intersections.i[count].object = ((t_object *)tmp->content);
 				w_intersections.nb_of_intersected_obj++;
 				count++;
 			}
@@ -115,7 +122,10 @@ t_color	get_color_on_ray(t_world world, t_ray ray)
 	else
 	{
 		pcomp_tool = get_ray_computation_tool(w_intersections, ray);
-		final_color = get_lighted_color(world, pcomp_tool);
+		if (pcomp_tool.object)
+			final_color = get_lighted_color(world, pcomp_tool);
+		else
+			return (create_color(0, 0, 0));
 	}
 	return (final_color);
 }

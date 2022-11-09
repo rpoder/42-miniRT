@@ -6,7 +6,7 @@
 /*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 12:15:58 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 12:49:38 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/09 16:53:05 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	render(t_data *data, t_camera *camera, t_world *world)
 		x = 0;
 		while (x < camera->hsize)
 		{
-			// if (x == 500 && y == 580)
+			// if (x == 500 && y == 90)
 			// {
 				ray = ray_for_pixel(camera, x, y);
 				color = get_color_on_ray(*world, ray);

@@ -6,7 +6,7 @@
 /*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 14:18:28 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/09 17:33:43 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,19 @@
 # include "tuples.h"
 
 /* defines */
-# define CANVAS_X 1000
-# define CANVAS_Y 1000
+# define CANVAS_X 1280
+# define CANVAS_Y 720
 
 # define EPSILON 0.00001
-# define ACNE_PRECISION 0.0001
 
 # define UNDEFINED_TYPE 100
-# define SPHERE_TYPE 101
 
 # define NO_ERR 0
 # define MALLOC_ERR -1
+
+# define SPHERE_TYPE 10
+# define CUBE_TYPE 11
+# define PLANE_TYPE 12
 
 
 #endif
