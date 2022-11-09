@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 12:15:58 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/07 18:09:18 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/09 12:49:38 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ void	render(t_data *data, t_camera *camera, t_world *world)
 		x = 0;
 		while (x < camera->hsize)
 		{
-			// if (x == 500 && y == 670)
+			// if (x == 500 && y == 580)
 			// {
 				ray = ray_for_pixel(camera, x, y);
 				color = get_color_on_ray(*world, ray);
-				ft_print_color("couco", color);
 				my_mlx_pixel_put(&data->mlx_data->image, x, y, ft_convert_color_to_longint(color));
 			// }
 
@@ -37,8 +36,8 @@ void	render(t_data *data, t_camera *camera, t_world *world)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->mlx_data->mlx, data->mlx_data->win,
-		data->mlx_data->image.img, 0, 0);
+	// mlx_put_image_to_window(data->mlx_data->mlx, data->mlx_data->win,
+	// 	data->mlx_data->image.img, 0, 0);
 
 }
 
@@ -72,6 +71,7 @@ t_camera	*create_camera(t_data *data, int hsize, int vsize, double fov)
 	data->world->camera->fov = fov;
 	data->world->camera->transform_m = get_identity_matrix();
 	data->world->camera->pixel_size = compute_pixel_size(data->world->camera, hsize, vsize, fov);
+	return (data->world->camera);
 }
 
 t_ray	ray_for_pixel(t_camera *camera, double canvas_x, double canvas_y)

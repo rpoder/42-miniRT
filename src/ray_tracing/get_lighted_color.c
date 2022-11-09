@@ -3,14 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   get_lighted_color.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:09:32 by margot            #+#    #+#             */
-/*   Updated: 2022/11/07 17:32:15 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/09 14:21:24 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+bool	is_in_shadow(t_world world, t_tuple point)
+{
+	t_tuple					v;
+	double					distance;
+	t_tuple					direction;
+	t_ray					ray;
+	t_w_intersections	w_intersections;
+	t_hit				hit;
+
+	v = ft_sub_tuples(((t_point_light *)world.point_lights->content)->position, point);
+	distance = ft_tuple_len(v);
+	ray.direction = ft_normalize_tuple(v);
+	ray.origin = point;
+	w_intersections = compute_world_intersections(world, ray);
+	hit = find_w_hit(w_intersections);
+	if (hit.does_hit == true && hit.i < distance)
+	{
+	// printf("true\n");
+
+		return (true);
+	}
+	// printf("false\n");
+	return (false);
+}
 
 static t_color	get_final_specular_color(t_pcomp_tool pcomp, t_point_light *light)
 {
@@ -75,7 +100,8 @@ t_color	get_lighted_color(t_world world, t_pcomp_tool pcomp)
 	light_tmp = (t_point_light *)world.point_lights->content;
 	ambient_color = get_final_ambient_color(pcomp.object->material, light_tmp);
 	light_dot_normal = compute_light_dot_normal(pcomp, light_tmp);
-	if (light_dot_normal < 0)
+	pcomp.over_i = ft_add_tuples(pcomp.i, ft_scale_tuple(pcomp.normalv, EPSILON));
+	if (light_dot_normal < 0 || is_in_shadow(world, pcomp.over_i))
 	{
 		diffuse_color = create_color(0, 0, 0);
 		specular_color = create_color(0, 0, 0);
