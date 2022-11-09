@@ -6,7 +6,7 @@
 #    By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/09 16:15:06 by ronanpoder       ###   ########.fr        #
+#    Updated: 2022/11/09 17:49:45 by ronanpoder       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS				:=	main.c \
 						scene/camera.c \
 						utils/init.c \
 						utils/mlx.c \
+						texture/pattern.c \
 
 CC					:=	cc
 RM					:=	rm

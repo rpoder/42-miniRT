@@ -6,7 +6,7 @@
 /*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:09:32 by margot            #+#    #+#             */
-/*   Updated: 2022/11/09 16:54:19 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/09 18:17:20 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,7 @@ bool	is_in_shadow(t_world world, t_tuple point)
 	w_intersections = compute_world_intersections(world, ray);
 	hit = find_w_hit(w_intersections);
 	if (hit.does_hit == true && hit.i < distance)
-	{
-	// printf("true\n");
-
 		return (true);
-	}
-	// printf("false\n");
 	return (false);
 }
 
@@ -101,6 +96,8 @@ t_color	get_lighted_color(t_world world, t_pcomp_tool pcomp)
 	ambient_color = get_final_ambient_color(pcomp.object->material, light_tmp);
 	light_dot_normal = compute_light_dot_normal(pcomp, light_tmp);
 	pcomp.over_i = ft_add_tuples(pcomp.i, ft_scale_tuple(pcomp.normalv, EPSILON));
+	if (pcomp.object->material.has_pattern == true)
+		pcomp.object->material.color = stripe_at(pcomp.object->material.pattern, pcomp.i);
 	if (light_dot_normal < 0 || is_in_shadow(world, pcomp.over_i))
 	{
 		diffuse_color = create_color(0, 0, 0);

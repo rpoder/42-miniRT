@@ -5,6 +5,8 @@
 		"stdbool.h": "c",
 		"libft.h": "c",
 		"matrices.h": "c",
-		"mlx_int.h": "c"
+		"mlx_int.h": "c",
+		"float.h": "c",
+		"tuples.h": "c"
 	}
 }

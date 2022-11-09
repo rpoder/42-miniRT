@@ -6,7 +6,7 @@
 /*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 14:25:35 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/09 18:16:34 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ typedef struct s_color
 	double	blue;
 }	t_color;
 
+typedef struct s_pattern
+{
+	t_color	a;
+	t_color	b;
+}	t_pattern;
+
 typedef struct s_ray
 {
 	t_tuple	origin;
@@ -82,11 +88,13 @@ typedef struct s_ray
 
 typedef struct s_material
 {
-	t_color	color;
-	double	ambient;
-	double	diffuse;
-	double	specular;
-	double	shininess;
+	t_color		color;
+	double		ambient;
+	double		diffuse;
+	double		specular;
+	double		shininess;
+	bool		has_pattern;
+	t_pattern	pattern;
 }	t_material;
 
 typedef struct s_object

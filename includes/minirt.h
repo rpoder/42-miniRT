@@ -6,7 +6,7 @@
 /*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 17:33:43 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/09 18:00:40 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include "scene.h"
 # include "tools.h"
 # include "tuples.h"
+# include "texture.h"
 
 /* defines */
 # define CANVAS_X 1280
