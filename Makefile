@@ -1,26 +1,25 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile copy                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+         #
+#    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/09 17:49:45 by ronanpoder       ###   ########.fr        #
+#    Updated: 2022/11/10 10:55:02 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROGNAME			:=	minirt
 
 LIBFT				:=	./libs/libft/libft.a
-MLX					:=	./libs/minilibx-macos/libmlx
+MLX					:=	./libs/minilibx-linux/libmlx_Linux.a
 
 INCLUDEDIR			:=	./includes
-SUBINCLUDEDIR			:=	./includes/sub_includes
+SUBINCLUDEDIR		:=	./includes/sub_includes
 SRCDIR				:=	./src
 
-# MLXFLAGS			:=	-ou/usr/lib -lXext -lX11 -lm -lz
-MLXFLAGS			:= -framework OpenGL -framework AppKit
+MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
 
 OBJDIR				:=	./obj
 
@@ -69,7 +68,7 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	$(CC) -c $(CCFLAGS) -o3 -I $(INCLUDEDIR) -I $(SUBINCLUDEDIR) -I $(dir $(MLX)) -I $(dir $(LIBFT)) $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-macos -lmlx $(MLXFLAGS) -o $(NAME)
+	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-linux -lmlx_Linux $(MLXFLAGS) -o $(NAME)
 
 all					:	$(NAME)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_lighted_color.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:09:32 by margot            #+#    #+#             */
-/*   Updated: 2022/11/09 18:17:20 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/10 11:51:26 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ t_color	get_lighted_color(t_world world, t_pcomp_tool pcomp)
 	light_tmp = (t_point_light *)world.point_lights->content;
 	ambient_color = get_final_ambient_color(pcomp.object->material, light_tmp);
 	light_dot_normal = compute_light_dot_normal(pcomp, light_tmp);
-	pcomp.over_i = ft_add_tuples(pcomp.i, ft_scale_tuple(pcomp.normalv, EPSILON));
-	if (pcomp.object->material.has_pattern == true)
-		pcomp.object->material.color = stripe_at(pcomp.object->material.pattern, pcomp.i);
+	pcomp.over_i = ft_add_tuples(pcomp.i, ft_scale_tuple(pcomp.normalv, ACNE_PRECISION));
+	if (pcomp.object->material.texture_type == PATTERN_TEXTURE_TYPE)
+		pcomp.object->material.color = checker_at_object(pcomp.object->material.pattern, *pcomp.object, pcomp.over_i);
 	if (light_dot_normal < 0 || is_in_shadow(world, pcomp.over_i))
 	{
 		diffuse_color = create_color(0, 0, 0);

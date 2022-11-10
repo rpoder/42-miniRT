@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 18:00:40 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/10 11:45:10 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@
 # include "texture.h"
 
 /* defines */
-# define CANVAS_X 1280
-# define CANVAS_Y 720
+# define CANVAS_X 640
+# define CANVAS_Y 360
 
 # define EPSILON 0.00001
+# define ACNE_PRECISION 0.0001
 
 # define UNDEFINED_TYPE 100
 
@@ -50,5 +51,8 @@
 # define CUBE_TYPE 11
 # define PLANE_TYPE 12
 
+/* TEXTURE TYPES */
+# define SOLID_TEXTURE_TYPE 200
+# define PATTERN_TEXTURE_TYPE 201
 
 #endif

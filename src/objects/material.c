@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:54:41 by margot            #+#    #+#             */
-/*   Updated: 2022/11/09 18:17:46 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/10 11:43:29 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ t_material	get_default_material(void)
 	mat.diffuse = 0.7;
 	mat.specular = 0.5;
 	mat.shininess = 200.0;
-	mat.has_pattern = false;
+	mat.texture_type = SOLID_TEXTURE_TYPE;
 	return (mat);
 }
