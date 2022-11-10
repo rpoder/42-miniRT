@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:34:34 by ronanpoder        #+#    #+#             */
-/*   Updated: 2022/11/09 16:40:10 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/10 18:00:48 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_tuple	normal_at(t_object *object, t_tuple world_point)
 		object_normal = sphere_normal_at(object, object_point);
 	else if (object->object_type == PLANE_TYPE)
 		object_normal = plane_normal_at();
+	else if (object->object_type == CUBE_TYPE)
+		object_normal = cube_normal_at(object, object_point);
 	else
 	{
 		printf("ERR: undefined object type on normal_at().\n");

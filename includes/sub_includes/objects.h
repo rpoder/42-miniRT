@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 14:09:51 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/10 15:14:26 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:48:51 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ t_intersections		get_plane_intersections(t_object *plane, t_ray ray);
 
 /* cube.c-------------------------------------------------------------------- */
 t_object			*create_cube(t_data *data);
+t_tuple				cube_normal_at(t_object *cube, t_tuple point);
 t_intersections		get_cube_intersections(t_object *cube, t_ray ray);
+
 /* material.c ----------------------------------------------------------------*/
 t_material			get_default_material(void);
 

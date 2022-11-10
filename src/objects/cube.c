@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:40:19 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/10 15:36:43 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:03:09 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_object	*create_cube(t_data *data)
 	new_cube->id = ft_lstlen(data->world->objects);
 	new_cube->object_type = CUBE_TYPE;
 	new_cube->material = get_default_material();
+	new_cube->transform_m = get_identity_matrix();
 	node = ft_lstnew(new_cube);
 	if (!node)
 	{
@@ -41,8 +42,7 @@ static t_cube_faces_intersections	check_axis(double origin, double direction)
 	double						tmp;
 
 	t_min_numerator = (-1.0 - origin);
-	t_min_numerator = (1.0 - origin);
-	printf("fabs = %f\n", fabs(direction));
+	t_max_numerator = (1.0 - origin);
 	if (fabs(direction) >= EPSILON)
 	{
 		faces_intersections.t_min = t_min_numerator / direction;
@@ -50,7 +50,6 @@ static t_cube_faces_intersections	check_axis(double origin, double direction)
 	}
 	else
 	{
-		printf("infinite\n");
 		faces_intersections.t_min = t_min_numerator * INFINITY;
 		faces_intersections.t_max = t_max_numerator * INFINITY;
 	}
@@ -60,8 +59,7 @@ static t_cube_faces_intersections	check_axis(double origin, double direction)
 		faces_intersections.t_min = faces_intersections.t_max;
 		faces_intersections.t_max = tmp;
 	}
-	printf("faces_intersections.t1 = %f\n", faces_intersections.t_min);
-	printf("faces_intersections.t2 = %f\n", faces_intersections.t_max);
+
 	return (faces_intersections);
 }
 
@@ -92,14 +90,29 @@ t_intersections	get_cube_intersections(t_object *cube, t_ray ray)
 	t_cube_faces_intersections	faces_intersections_y;
 	t_cube_faces_intersections	faces_intersections_z;
 
+	cube_intersections = init_intersections(cube);
 	faces_intersections_x = check_axis(ray.origin.x, ray.direction.x);
 	faces_intersections_y = check_axis(ray.origin.y, ray.direction.y);
 	faces_intersections_z = check_axis(ray.origin.z, ray.direction.z);
 
 	cube_intersections.i1 = get_max(faces_intersections_x.t_min, faces_intersections_y.t_min, faces_intersections_z.t_min);
 	cube_intersections.i2 = get_min(faces_intersections_x.t_max, faces_intersections_y.t_max, faces_intersections_z.t_max);
-	cube_intersections.nb_of_intersections = 2;
-	cube_intersections.object = cube;
+	if (cube_intersections.i1 < cube_intersections.i2)
+		cube_intersections.nb_of_intersections = 2;
+	else
+		cube_intersections.nb_of_intersections = 0;
 	return (cube_intersections);
 }
 
+t_tuple	cube_normal_at(t_object *cube, t_tuple point)
+{
+	double	maxc;
+
+	maxc = get_max(fabs(point.x), fabs(point.y), fabs(point.z));
+	if (maxc == fabs(point.x))
+		return (create_tuple(point.x, 0, 0, 1));
+	if (maxc == fabs(point.y))
+		return (create_tuple(0, point.y, 0, 1));
+	if (maxc == fabs(point.z))
+		return (create_tuple(0, 0, point.z, 1));
+}
