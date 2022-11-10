@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/10 14:16:42 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/10 15:36:14 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(void)
 	t_object	*c1;
 
 	c1 = create_cube(data);
-	ray = ft_create_ray(create_tuple(5, 0.5, 0, 1), create_tuple(-1, 0, 0, 0));
-	ft_print_intersection(get_cube_faces_intersections(c1, ray));
+	ray = ft_create_ray(create_tuple(-5, 0.5, 0, 1), create_tuple(-1, 0, 0, 0));
+	ft_print_intersection(get_object_intersections(c1, ray));
 	return (0);
 }

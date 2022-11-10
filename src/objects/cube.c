@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:40:19 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/10 14:50:04 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/10 15:36:43 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static	double get_max(double a, double b, double c)
 		return (c);
 }
 
-t_intersections	get_cube_faces_intersections(t_object *cube, t_ray ray)
+t_intersections	get_cube_intersections(t_object *cube, t_ray ray)
 {
 	t_intersections				cube_intersections;
 	t_cube_faces_intersections	faces_intersections_x;

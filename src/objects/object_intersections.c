@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_intersections.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:48:27 by margot            #+#    #+#             */
-/*   Updated: 2022/11/09 16:14:42 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/10 15:35:49 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_intersections	get_object_intersections(t_object *object, t_ray ray)
 		ret = get_sphere_intersections(object, ray2);
 	else if (object->object_type == PLANE_TYPE)
 		ret = get_plane_intersections(object, ray2);
+	else if (object->object_type == CUBE_TYPE)
+		ret = get_cube_intersections(object, ray2);
 	else
 	{
 		printf("ERR: No object_type.");
