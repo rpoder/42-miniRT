@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/10 11:45:10 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/10 14:25:45 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define CANVAS_X 640
 # define CANVAS_Y 360
 
+# define INFINITY2 1000000000000.0
 # define EPSILON 0.00001
 # define ACNE_PRECISION 0.0001
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 14:07:03 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/10 14:01:38 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,9 @@ typedef struct s_ray_precompute_tool
 	t_tuple		normalv;
 	bool		inside;
 }	t_pcomp_tool;
+
+typedef struct s_cube_faces_intersections_tool
+{
+	double	t_min;
+	double	t_max;
+}	t_cube_faces_intersections;

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile copy                                      :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/10 10:55:02 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/10 14:17:17 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS				:=	main.c \
 						objects/material.c \
 						objects/sphere.c \
 						objects/plane.c \
+						objects/cube.c \
 						ray_tracing/get_color_on_ray.c \
 						ray_tracing/get_lighted_color.c \
 						ray_tracing/ray.c \

@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:46:08 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/07 17:50:14 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/10 14:18:46 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ void	ft_print_ray(t_ray ray)
 void	ft_print_intersection(t_intersections intersections)
 {
 	printf("intersection.nb = %d\n", intersections.nb_of_intersections);
-	printf("intersection.i1 = %d\n", intersections.nb_of_intersections);
-	printf("intersection.i2 = %d\n", intersections.nb_of_intersections);
+	printf("intersection.i1 = %f\n", intersections.i1);
+	printf("intersection.i2 = %f\n", intersections.i2);
 	printf("intersection.objectId = %d\n\n", intersections.object->id);
 }
 
