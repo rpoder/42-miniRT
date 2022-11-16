@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 14:09:51 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/10 17:48:51 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/16 15:30:45 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ t_intersections		get_plane_intersections(t_object *plane, t_ray ray);
 t_object			*create_cube(t_data *data);
 t_tuple				cube_normal_at(t_object *cube, t_tuple point);
 t_intersections		get_cube_intersections(t_object *cube, t_ray ray);
+
+/* cylinder.c---------------------------------------------------------------- */
+t_object			*create_cylinder(t_data *data, t_tuple origin, int radius);
+t_intersections		get_cylinder_intersections(t_object *cylinder, t_ray ray);
+t_tuple				cylinder_normal_at(t_object *cylinder, t_tuple object_point);
 
 /* material.c ----------------------------------------------------------------*/
 t_material			get_default_material(void);

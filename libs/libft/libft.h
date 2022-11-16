@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:32:48 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/09/25 20:03:10 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:46:53 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
+# include <stdbool.h>
 
 # define BUFFER_SIZE 50
 
@@ -33,6 +34,7 @@ int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
 int		ft_isdigit(int c);
+bool	ft_is_space(char c);
 int		ft_char_isinset(char c, char *set);
 int		ft_isprint(int c);
 char	*ft_itoa(int c);
@@ -114,5 +116,10 @@ int		ft_putint_fd(int n, int fd);
 int		ft_putunint_fd(unsigned int n, char *base, int fd);
 int		ft_itoabase_uli_fd(unsigned long int n, char *base, int fd);
 int		ft_itoabase_ui_fd(unsigned int n, char *base, int fd);
+
+/* GNL */
+bool	ft_gnl_strrchr(char *str, char c);
+char	*ft_gnl_strjoin(char *s1, char *s2);
+char	*get_next_line(int fd);
 
 #endif

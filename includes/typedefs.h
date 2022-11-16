@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/10 11:42:32 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/16 15:54:39 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ typedef struct s_object
 	int			id;
 	int			object_type;
 	t_matrix4	transform_m;
+	double		min;
+	double		max;
 	t_material	material;
 }	t_object;
 

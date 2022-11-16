@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
+#    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 17:12:53 by mpourrey          #+#    #+#              #
-#    Updated: 2022/09/25 15:01:42 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/11/16 12:08:15 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ SRC = ft_atoi.c ft_atoli.c \
 	ft_printf.c printf_handle_write.c printf_utils.c \
 	ft_printf_fd.c printf_fd_handle_write.c printf_fd_utils.c \
 	ft_alloc_and_fill.c \
+	get_next_line.c get_next_line_utils.c \
+	ft_is_space.c \
 
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
 
