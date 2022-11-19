@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/16 14:33:44 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/19 18:22:51 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@
 # include "tools.h"
 # include "tuples.h"
 # include "texture.h"
+# include "parsing.h"
 
 /* defines */
-# define CANVAS_X 				640
-# define CANVAS_Y				360
+# define CANVAS_X 				680
+# define CANVAS_Y				300
 
-# define INFINITY2				1000000000000.0
 # define EPSILON				0.00001
 # define ACNE_PRECISION			0.0001
 
@@ -53,6 +53,7 @@
 # define CUBE_TYPE				11
 # define PLANE_TYPE				12
 # define CYLINDER_TYPE			13
+# define CONE_TYPE			14
 
 /* TEXTURE TYPES */
 # define SOLID_TEXTURE_TYPE		200

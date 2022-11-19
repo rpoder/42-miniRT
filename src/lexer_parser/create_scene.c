@@ -1,85 +1,74 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   create_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 11:07:27 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/16 14:18:53 by rpoder           ###   ########.fr       */
+/*   Created: 2022/11/18 22:26:42 by mpourrey          #+#    #+#             */
+/*   Updated: 2022/11/18 23:07:16 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	open_file(char *file)
+int	get_parsing_value(int i, char *line)
 {
-	int	fd;
-	int	len;
-	int	i;
-
-	i = 0;
-	len = ft_strlen(file);
-	if (file[len - 2] != '.' || file[len - 1] != 'r' || file[len] != 't')
+	int		len;
+	char	*p_value;
+	int		j;
+	
+	len = 0;
+	while (!ft_is_space(line[i + len]))
+		len++;
+	p_value = malloc(sizeof(char) * len + 1);
+	j = 0;
+	while (j < len)
 	{
-		ft_putstr_fd("ERR:	Your scene file ought to end with '.rt'.\n", 2);
-		return (-1);
+		p_value[j] = line[i + j];
+		j++;	
 	}
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd("ERR:	Your scene.rt ought to be a file.\n", 2);
-		return (-1);
-	}
-	return (fd);
+	p_value[j] == '\0';
+	return (p_value);
 }
 
-bool	is_empty_line(char *line)
+int	parse_sphere(t_data *data, char *line)
 {
-	int	i;
+	t_tuple	origin;
+	int		value;
+	char	*parsing_value;
+	int		radius;
+	int		i;
 
-	i = 0;
+	i = 2;
 	while (line[i] && ft_is_space(line[i]))
 		i++;
-	if (line[i])
-		return (true);
-	return (false);
+	parsing_value = get_parsing_value(i + 1, line);
+	//atof parsing_value
+	//recup en tant que x/radius etc
+	
+	
+	
+	
+	create_sphere(data, origin, radius);
 }
 
-t_list	*lexer(int fd)
+int	parse_camera(t_data *data, char *line)
 {
-	t_list	*alst;
-	t_list	*node;
-	char	*line;
+	int 	hsize;
+	int		vsize;
+	double	fov;
 
-	line = get_next_line(fd); ////////////////
-	alst = NULL;
-	while (line)
-	{
-		if (!is_empty_line(line))
-		{
-			node = ft_lstnew(line);
-			if (!node)
-				return (NULL);
-			ft_lstadd_back(&alst, node);
-		}
-		line = get_next_line(fd); /////////////
-	}
-	close (fd);
-	return (alst);
+	
+	create_camera(data, hsize, vsize, fov);
 }
-
-// int	check_file(int fd)
-// {
-
-// }
 
 int	create_scene(t_data *data, t_list *lst)
 {
 	while (lst)
 	{
 		if (((char *)lst->content)[0] == 'C')
-			parse_camera(data, );
+			parse_camera(data, (char *)lst->content);
 		else if (((char *)lst->content)[0] == 'A')
 			parse_ambient_light();
 		else if (((char *)lst->content)[0] == 'L')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:40:19 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/10 18:03:09 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/18 22:20:17 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ t_tuple	cube_normal_at(t_object *cube, t_tuple point)
 	maxc = get_max(fabs(point.x), fabs(point.y), fabs(point.z));
 	if (maxc == fabs(point.x))
 		return (create_tuple(point.x, 0, 0, 1));
-	if (maxc == fabs(point.y))
+	else if (maxc == fabs(point.y))
 		return (create_tuple(0, point.y, 0, 1));
-	if (maxc == fabs(point.z))
+	else
 		return (create_tuple(0, 0, point.z, 1));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedefs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/16 15:54:39 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/19 15:32:26 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_object
 	t_matrix4	transform_m;
 	double		min;
 	double		max;
+	bool		is_capped;
 	t_material	material;
 }	t_object;
 

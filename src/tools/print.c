@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:46:08 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/10 14:18:46 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/19 16:59:59 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_print_ray(t_ray ray)
 	ft_print_tuple("ray.direction", ray.direction);
 }
 
-void	ft_print_intersection(t_intersections intersections)
+void	print_intersection(t_intersections intersections)
 {
 	printf("intersection.nb = %d\n", intersections.nb_of_intersections);
 	printf("intersection.i1 = %f\n", intersections.i1);

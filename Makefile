@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
+#    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/16 15:03:32 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/19 18:24:08 by mpourrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS				:=	main.c \
 						objects/plane.c \
 						objects/cube.c \
 						objects/cylinder.c \
+						objects/cone.c \
 						ray_tracing/get_color_on_ray.c \
 						ray_tracing/get_lighted_color.c \
 						ray_tracing/ray.c \
