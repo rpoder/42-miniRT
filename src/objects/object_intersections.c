@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_intersections.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:48:27 by margot            #+#    #+#             */
-/*   Updated: 2022/11/19 15:20:05 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/20 17:26:29 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_intersections	get_object_intersections(t_object *object, t_ray ray)
 		ret = get_cube_intersections(object, ray2);
 	else if (object->object_type == CYLINDER_TYPE)
 		ret = get_cylinder_intersections(object, ray2);
+	else if (object->object_type == CONE_TYPE)
+		ret = get_cone_intersections(object, ray2);
 	else
 	{
 		printf("ERR: No object_type.");

@@ -1,0 +1,29 @@
+	// cy1 = create_cylinder(data, create_tuple(0, 0, 0, 1), 1);
+
+	// s1 = create_sphere(data, create_tuple(0, 0, 0, 1), 1);
+	// s1->material.pattern = create_checker_pattern(create_color(0,0,0), create_color(1,1,1));
+	// s1->material.texture_type = PATTERN_TEXTURE_TYPE;
+	// s1->material.pattern.transform_m = ft_multiply_matrices(s1->material.pattern.transform_m, compute_scaling_matrix(0.3, 0.3, 0.3));
+	// s1->material.pattern.transform_m = ft_multiply_matrices(s1->material.pattern.transform_m, compute_rotation_z_matrix(M_PI / 4));
+	// s1->transform_m = ft_multiply_matrices(s1->transform_m, compute_translation_matrix(0, 1, 0));
+	// s1->transform_m = ft_multiply_matrices(s1->transform_m, compute_scaling_matrix(3, 3, 3));
+	// s1->material.color = create_color(1, 0, 0);
+
+
+	// s2 = create_sphere(data, create_tuple(0, 0, 0, 1), 1);
+	// s2->transform_m = ft_multiply_matrices(s2->transform_m, compute_translation_matrix(3, 0, 0));
+	// s2->transform_m = ft_multiply_matrices(s2->transform_m, compute_scaling_matrix(2, 2, 2));
+	// s2->material.color = create_color(0.2, 0.2, 0.2);
+
+	// s2->material.pattern = create_checker_pattern(create_color(0,0,0), create_color(1,1,1));
+	// s2->material.texture_type = PATTERN_TEXTURE_TYPE;
+
+	// c1 = create_cube(data);
+	// c1->transform_m = ft_multiply_matrices(c1->transform_m, compute_rotation_y_matrix(M_PI/4));
+	// c1->material.color = create_color(1, 0, 1);
+	// c1->transform_m = ft_multiply_matrices(c1->transform_m, compute_translation_matrix(-10, 1, 0));
+
+	// p1 = create_plane(data);
+	// p1->transform_m = ft_multiply_matrices(p1->transform_m, compute_rotation_x_matrix(M_PI/2));
+	// p1->transform_m = ft_multiply_matrices(p1->transform_m, compute_translation_matrix(0, 0, -5));
+	// p1->material.color = create_color(1, 1, 0.2);

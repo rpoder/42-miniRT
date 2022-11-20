@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color_on_ray.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:05:31 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/19 17:11:24 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/20 20:20:23 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_hit	find_w_hit(t_w_intersections w_intersections)
 		hit.does_hit = true;
 	else
 	{
+		hit.i = 0;
 		hit.does_hit = false;
 		hit.object = NULL;
 	}
@@ -62,7 +63,6 @@ static t_pcomp_tool get_ray_computation_tool(t_w_intersections w_intersections, 
 	t_hit			hit;
 
 	hit = find_w_hit(w_intersections);
-	printf("hit.i %f\n", hit.i);
 	if (hit.does_hit == false)
 	{
 		pcomp.object = NULL;

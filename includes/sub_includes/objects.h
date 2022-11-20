@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 14:09:51 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/19 18:23:43 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/20 20:10:14 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,12 @@ t_intersections		get_cube_intersections(t_object *cube, t_ray ray);
 t_object			*create_cylinder(t_data *data, t_tuple origin, int radius);
 t_intersections		get_cylinder_intersections(t_object *cylinder, t_ray ray);
 t_tuple				cylinder_normal_at(t_object *cylinder, t_tuple object_point);
-t_intersections		get_caps_intersections(t_object *cylinder, t_ray ray, t_intersections intersections);
+t_intersections		get_cylinder_caps_intersections(t_object *cylinder, t_ray ray, t_intersections intersections);
 
 /* cone.c-------------------------------------------------------------------- */
 t_intersections	get_cone_intersections(t_object *cone, t_ray ray);
 t_object		*create_cone(t_data *data, t_tuple origin, int radius);
+t_tuple			cone_normal_at(t_object *cone, t_tuple object_point);
 
 /* material.c ----------------------------------------------------------------*/
 t_material			get_default_material(void);
