@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_scene.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 22:26:42 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/18 23:07:16 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/21 20:06:28 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_parsing_value(int i, char *line)
 	int		j;
 	
 	len = 0;
-	while (!ft_is_space(line[i + len]))
+	while (!ft_is_space(line[i + len]) && line[i + len] != ',')
 		len++;
 	p_value = malloc(sizeof(char) * len + 1);
 	j = 0;
@@ -32,23 +32,47 @@ int	get_parsing_value(int i, char *line)
 	return (p_value);
 }
 
+t_tuple get_coordinates(char *line, int ret)
+{
+	int		i;
+	int		count;
+	char	*str_value;
+	double	double_value;
+	double	coordinates[3];
+	
+	i = 2;
+	count = 0;
+	while (count < 3)
+	{
+		while (line[i] && ft_is_space(line[i]))
+			i++;
+		str_value = get_parsing_value(i + 1, line);
+		if (ft_atof_checker(str_value) != 1)
+		{
+			printf("ERR : %s in your scene.rt is not a valid value\n", str_value);
+			ret = PARSING_ERR;
+			return (create_tuple(0, 0, 0, 0));
+		}
+		coordinates[count] = ft_atof(str_value);
+		count++;
+		if (count < 2)
+		{
+			while (line[i] && line[i] != ',')
+				i++;
+		}
+	}
+	return(create_tuple(coordinates[0], coordinates[1], coordinates[2], 1));
+}
+
 int	parse_sphere(t_data *data, char *line)
 {
 	t_tuple	origin;
-	int		value;
-	char	*parsing_value;
 	int		radius;
-	int		i;
+	int		ret;
 
-	i = 2;
-	while (line[i] && ft_is_space(line[i]))
-		i++;
-	parsing_value = get_parsing_value(i + 1, line);
-	//atof parsing_value
-	//recup en tant que x/radius etc
-	
-	
-	
+	origin = get_coordinates(line, ret);
+	if (ret != NO_ERR)
+		return (ret);
 	
 	create_sphere(data, origin, radius);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:32:48 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/16 13:46:53 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/21 18:41:26 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define BUFFER_SIZE 50
 
+double	ft_atof(char *str);
+int		ft_atof_checker(char *str);
 int		ft_atoi(char *str);
 long	ft_atoli(char *str);
 void	ft_bzero(void *s, size_t n);

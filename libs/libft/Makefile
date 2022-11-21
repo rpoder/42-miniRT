@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
+#    By: margot <margot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 17:12:53 by mpourrey          #+#    #+#              #
-#    Updated: 2022/11/16 12:08:15 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/21 19:11:31 by margot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME		= libft.a
 HEADER		= libft.h
 OBJ_PATH	= ./obj
 
-SRC = ft_atoi.c ft_atoli.c \
+SRC = ft_atoi.c ft_atof.c ft_atof_checker.c ft_atoli.c \
 	ft_bzero.c ft_calloc.c \
 	ft_free_tab.c ft_free_int_tab.c \
 	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isinset.c ft_isprint.c ft_isint.c \
