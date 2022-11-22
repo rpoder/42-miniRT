@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:31:10 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/20 20:10:14 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/22 22:23:19 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_object	*create_cylinder(t_data *data, t_tuple origin, int radius)
+t_object	*create_cylinder(t_data *data, t_tuple origin, double radius)
 {
 	t_object	*new_cylinder;
 	t_list		*node;

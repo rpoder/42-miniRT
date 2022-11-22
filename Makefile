@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
+#    By: margot <margot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/19 18:24:08 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/11/22 22:33:59 by margot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,11 @@ SRCS				:=	main.c \
 						utils/init.c \
 						utils/mlx.c \
 						texture/pattern.c \
+						lexer_parser/create_scene.c \
+						lexer_parser/lexer.c \
+						lexer_parser/parsing_tool.c \
+						lexer_parser/value_getters.c \
+
 
 CC					:=	cc
 RM					:=	rm

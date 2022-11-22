@@ -3,12 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/19 15:52:23 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:32:16 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+typedef struct s_parsing_tool
+{
+	int i;
+	int ret;
+}	t_parsing_tool;
 
 typedef struct s_counter3
 {

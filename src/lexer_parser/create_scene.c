@@ -6,75 +6,36 @@
 /*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 22:26:42 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/21 20:06:28 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/22 23:38:09 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	get_parsing_value(int i, char *line)
+int	parse_sphere(t_data *data, char *line, t_parsing_tool *tool)
 {
-	int		len;
-	char	*p_value;
-	int		j;
-	
-	len = 0;
-	while (!ft_is_space(line[i + len]) && line[i + len] != ',')
-		len++;
-	p_value = malloc(sizeof(char) * len + 1);
-	j = 0;
-	while (j < len)
-	{
-		p_value[j] = line[i + j];
-		j++;	
-	}
-	p_value[j] == '\0';
-	return (p_value);
-}
+	t_tuple		origin;
+	double		radius;
+	t_color		color;
+	t_object	*new_sphere;
 
-t_tuple get_coordinates(char *line, int ret)
-{
-	int		i;
-	int		count;
-	char	*str_value;
-	double	double_value;
-	double	coordinates[3];
-	
-	i = 2;
-	count = 0;
-	while (count < 3)
-	{
-		while (line[i] && ft_is_space(line[i]))
-			i++;
-		str_value = get_parsing_value(i + 1, line);
-		if (ft_atof_checker(str_value) != 1)
-		{
-			printf("ERR : %s in your scene.rt is not a valid value\n", str_value);
-			ret = PARSING_ERR;
-			return (create_tuple(0, 0, 0, 0));
-		}
-		coordinates[count] = ft_atof(str_value);
-		count++;
-		if (count < 2)
-		{
-			while (line[i] && line[i] != ',')
-				i++;
-		}
-	}
-	return(create_tuple(coordinates[0], coordinates[1], coordinates[2], 1));
-}
+	origin = get_coordinates(line, tool);
+	if (tool->ret != NO_ERR)
+		return (tool->ret);
+	radius = get_one_value(line, tool) / 2;
+	if (tool->ret != NO_ERR)
+		return (tool->ret);
+	color = get_color(line, tool);
+	if (tool->ret != NO_ERR)
+		return (tool->ret);
+	new_sphere = create_sphere(data, origin, radius);
+	new_sphere->material.color = color;
 
-int	parse_sphere(t_data *data, char *line)
-{
-	t_tuple	origin;
-	int		radius;
-	int		ret;
-
-	origin = get_coordinates(line, ret);
-	if (ret != NO_ERR)
-		return (ret);
-	
-	create_sphere(data, origin, radius);
+	/* TEST */
+	ft_print_tuple("origin", origin);
+	printf("radius = %f\n", radius);
+	ft_print_color("color", new_sphere->material.color);
+	return (0);
 }
 
 int	parse_camera(t_data *data, char *line)
@@ -82,27 +43,32 @@ int	parse_camera(t_data *data, char *line)
 	int 	hsize;
 	int		vsize;
 	double	fov;
-
 	
 	create_camera(data, hsize, vsize, fov);
 }
 
-int	create_scene(t_data *data, t_list *lst)
+int	create_scene(t_data *data, t_list *lst, t_parsing_tool *tool)
 {
 	while (lst)
 	{
-		if (((char *)lst->content)[0] == 'C')
+		set_parsing_tool(tool, 0, NO_ERR);
+/* 		if (((char *)lst->content)[0] == 'C')
 			parse_camera(data, (char *)lst->content);
 		else if (((char *)lst->content)[0] == 'A')
 			parse_ambient_light();
 		else if (((char *)lst->content)[0] == 'L')
-			parse_light();
-		else if (((char *)lst->content)[0] == 's' && ((char *)lst->content)[1] == 'p')
-			parse_sphere();
-		else if (((char *)lst->content)[0] == 'p' && ((char *)lst->content)[1] == 'l')
+			parse_light(); */
+		if (((char *)lst->content)[0] == 's' && ((char *)lst->content)[1] == 'p')
+			parse_sphere(data, (char *)lst->content, tool);
+/* 		else if (((char *)lst->content)[0] == 'p' && ((char *)lst->content)[1] == 'l')
 			parse_plane();
 		else if (((char *)lst->content)[0] == 'c' && ((char *)lst->content)[1] == 'y')
-			parse_cylinder();
+			parse_cylinder(); */
+		if (tool-> ret != NO_ERR)
+			return(tool->ret);
 		lst = lst->next;
+		
 	}
+	free(tool);
+	return (NO_ERR);
 }

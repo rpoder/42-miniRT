@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:07:27 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/18 22:28:46 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/22 23:17:02 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static bool	is_empty_line(char *line)
 	i = 0;
 	while (line[i] && ft_is_space(line[i]))
 		i++;
-	if (line[i])
-		return (true);
-	return (false);
+	if (line[i] && line[i] != '\n')
+		return (false);
+	return (true);
 }
 
 static t_list	*lexer(int fd)
@@ -38,7 +38,7 @@ static t_list	*lexer(int fd)
 		{
 			node = ft_lstnew(line);
 			if (!node)
-				return (NULL);
+				return (NULL); // recup erreur
 			ft_lstadd_back(&alst, node);
 		}
 		line = get_next_line(fd); /////////////
@@ -55,7 +55,7 @@ static int	open_file(char *file)
 
 	i = 0;
 	len = ft_strlen(file);
-	if (file[len - 2] != '.' || file[len - 1] != 'r' || file[len] != 't')
+	if (file[len - 3] != '.' || file[len - 2] != 'r' || file[len - 1] != 't')
 	{
 		ft_putstr_fd("ERR:	Your scene file ought to end with '.rt'.\n", 2);
 		return (-1);
@@ -73,13 +73,26 @@ int	lexer_parser(t_data *data, char *file)
 {
 	int		fd;
 	t_list	*objects_lst;
+	t_parsing_tool *tool;
 
 	fd = open_file(file);
 	if (fd == -1)
 		return (-1);
 	objects_lst = lexer(fd);
 	if (!objects_lst)
+	{
+		//free lst si existe
 		return (-1);
+	}
+	tool = init_parsing_tool();
+	if (!tool)
+		return (MALLOC_ERR);
+	create_scene(data, objects_lst, tool);
+	if (tool->ret != NO_ERR)
+	{
+		//freelst
+		free(tool);
+		return (-1);
+	}
 	return (0);
-	create_scene(data, objects_lst);
 }

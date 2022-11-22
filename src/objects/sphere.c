@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 15:49:43 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/22 22:23:19 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_object	*create_sphere(t_data *data, t_tuple origin, int radius)
+t_object	*create_sphere(t_data *data, t_tuple origin, double radius)
 {
 	t_object	*new_sphere;
 	t_list		*node;
@@ -34,7 +34,7 @@ t_object	*create_sphere(t_data *data, t_tuple origin, int radius)
 	return (new_sphere);
 }
 
-static t_matrix4	compute_parsing_sphere_transform_m(t_tuple origin, int radius)
+static t_matrix4	compute_parsing_sphere_transform_m(t_tuple origin, double radius)
 {
 	t_matrix4	t1;
 	t_matrix4	t2;

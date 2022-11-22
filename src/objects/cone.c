@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:03:32 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/20 20:27:28 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/22 22:23:19 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_object	*create_cone(t_data *data, t_tuple origin, int radius)
+t_object	*create_cone(t_data *data, t_tuple origin, double radius)
 {
 	t_object	*new_cone;
 	t_list		*node;

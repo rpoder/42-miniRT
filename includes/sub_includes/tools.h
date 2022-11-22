@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:36:45 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/19 16:59:59 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:31:17 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ bool		ft_tuplescmp(t_tuple a, t_tuple b);
 /* init_tools.c-------------------------------------------------------------- */
 t_counter3	init_counter3(void);
 t_counter4	init_counter4(void);
+
 
 /* prints.c ------------------------------------------------------------------*/
 void	ft_print_tuple(char *tuple_name, t_tuple tuple);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/20 20:29:52 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/22 22:55:55 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ int	main(int argc, char **argv)
 	t_point_light		*light;
 
 	data = init_data();
-	data->mlx_data = start_mlx();
+//	data->mlx_data = start_mlx();
 
-	create_camera(data, CANVAS_X, CANVAS_Y, M_PI/2);
+	lexer_parser(data, argv[1]);
+
+/* 	create_camera(data, CANVAS_X, CANVAS_Y, M_PI/2);
 	from = create_tuple(0, -2, -3, 1);
 	to = create_tuple(0, 0, 0, 1);
 	up = create_tuple(0, 1, 0, 0);
@@ -47,11 +49,7 @@ int	main(int argc, char **argv)
 		data->mlx_data->image.img, 0, 0);
 	my_mlx_pixel_put(&data->mlx_data->image, 340, 121, 0xffffff00);
 	printf("IMAGE DISPLAYED ------------------------------------------------------------------------------------\n");
-	mlx_loop(data->mlx_data->mlx);
-
-
-
-
+	mlx_loop(data->mlx_data->mlx); */
 
 	// t_ray		ray;
 
