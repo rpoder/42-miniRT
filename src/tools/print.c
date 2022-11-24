@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:46:08 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/19 16:59:59 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/24 11:41:48 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,29 @@ void	print_bits_of_long(long num)
 	{
 		printf("%u ",num&maxPow ? 1 : 0);
 		num = num << 1;
+	}
+}
+
+void	print_world(t_data *data)
+{
+	t_world	*world;
+
+	world = data->world;
+	if (!world)
+	{
+		printf("No world. Sheh\n");
+		return ;
+	}
+	while (world->objects)
+	{
+		printf("Object type:	%d\n", ((t_object *)world->objects->content)->object_type);
+		ft_print_color("Object color:	", ((t_object *)world->objects->content)->material.color);
+		world->objects = world->objects->next;
+	}
+	while (world->point_lights)
+	{
+		ft_print_tuple("Light position:	", ((t_point_light *)world->point_lights->content)->position);
+		ft_print_color("Light intensity:	", ((t_point_light *)world->point_lights->content)->intensity);
+		world->point_lights = world->point_lights->next;
 	}
 }

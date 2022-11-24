@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:14:58 by margot            #+#    #+#             */
-/*   Updated: 2022/11/23 19:39:13 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/24 10:37:33 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
 
 int	parse_sphere(t_data *data, char *line, t_parsing_tool *tool)
 {
@@ -36,7 +35,7 @@ int	parse_sphere(t_data *data, char *line, t_parsing_tool *tool)
 		tool->ret = MALLOC_ERR;
 		return (tool->ret);
 	}
-	
+
 	/* couleur */
 	new_sphere->material.color = color;
 
@@ -72,7 +71,7 @@ int	parse_cylinder(t_data *data, char *line, t_parsing_tool *tool)
 	color = get_color(line, tool);
 	if (tool->ret != NO_ERR)
 		return (tool->ret);
-		
+
 	/* scaling et translation */
 	new_cylinder = create_cylinder(data, origin, radius, height);
 	if (!new_cylinder)
@@ -100,7 +99,7 @@ int	parse_plane(t_data *data, char *line, t_parsing_tool *tool)
 	t_tuple		origin;
 	t_tuple		orientation_vector;
 	t_object	*new_plane;
-		
+
 	origin = get_coordinates(line, tool);
 	if (tool->ret != NO_ERR)
 		return (tool->ret);

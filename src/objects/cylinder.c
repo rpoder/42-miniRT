@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 14:31:10 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/23 18:16:32 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/24 10:48:21 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	transform_cylinder_orientation(t_object *cylinder, t_tuple orientation)
 	float	radian_x;
 	float	radian_y;
 	float	radian_z;
-	
-	//si -1 >> -90 degres >> M_PI  
+
+	//si -1 >> -90 degres >> M_PI
 	//si 1 >> 90 degres >> - M_PI
-	
+
 	if (orientation.x > 0.0 + EPSILON || orientation.x < 0.0 - EPSILON)
 	{
 		radian_x = (orientation.x * 90) * M_PI / 180;
@@ -62,7 +62,7 @@ t_object	*create_cylinder(t_data *data, t_tuple origin, double radius, double he
 		return (NULL);
 	new_cylinder->id = ft_lstlen(data->world->objects);
 	new_cylinder->object_type = CYLINDER_TYPE;
-	new_cylinder->transform_m = compute_parsing_sphere_transform_m(origin, radius);
+	new_cylinder->transform_m = compute_parsing_cylinder_transform_m(origin, radius);
 	new_cylinder->material = get_default_material();
 	new_cylinder->min = -height / 2;
 	new_cylinder->max = height / 2;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: margot <margot@student.42.fr>              +#+  +:+       +#+         #
+#    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/22 22:33:59 by margot           ###   ########.fr        #
+#    Updated: 2022/11/24 10:47:29 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRCS				:=	main.c \
 						lexer_parser/lexer.c \
 						lexer_parser/parsing_tool.c \
 						lexer_parser/value_getters.c \
+						lexer_parser/parse_objects.c \
 
 
 CC					:=	cc
