@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/24 15:20:58 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/24 17:58:29 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	t_tuple	from;
 	t_tuple	to;
+	t_tuple	tmp;
 	t_tuple	up;
  	t_object			*s1;
 	t_object			*s2;
@@ -34,18 +35,23 @@ int	main(int argc, char **argv)
 	data->mlx_data = start_mlx();
 
 	create_camera(data, CANVAS_X, CANVAS_Y, M_PI/2);
-	// from = create_tuple(0, 5, -5, 1);
-	parsing_origin = create_tuple(0, 2, -10, 1);
-	parsing_orientation = create_tuple(20, -0.5, 0.01, 0);
 
-	parsing_ray.origin = parsing_origin;
-	parsing_ray.direction = parsing_orientation;
+	parsing_origin = create_tuple(-5, 5, -5, 1);
+	parsing_orientation = create_tuple(1, -1, 1, 0);
 
-	to = compute_new_point_on_normalized_ray(parsing_ray, 1.0);
+	to = ft_add_tuples(parsing_origin, parsing_orientation);
 	ft_print_tuple("to", to);
-	up = create_tuple(0, 1, 0, 0);
+
+	tmp = ft_multiply_tuples(create_tuple(0, 1, 0, 0), to);
+	if (ft_tuple_scalarproduct(create_tuple(0, 0, 1, 0), ft_normalize_tuple(parsing_orientation)) >= 0.0)
+		tmp = ft_neg_tuple(tmp);
+	ft_print_tuple("tmp", tmp);
+
+	up = ft_normalize_tuple(ft_multiply_tuples(parsing_orientation, tmp));
+	ft_print_tuple("up", up);
+
+	printf("dot product %f\n", ft_tuple_scalarproduct(create_tuple(0, 1, 0, 0), ft_normalize_tuple(parsing_orientation)));
 	data->world->camera->transform_m = compute_view_transform_m(parsing_origin, to, up);
-	data->world->view_transform_m = compute_view_transform_m(parsing_origin, to, up);
 
 	light = create_point_light(data, create_color(1, 1, 1), create_tuple(10, 5, -10, 1));
 

@@ -3,23 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
+#    By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/24 10:47:29 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/24 15:58:48 by ronanpoder       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROGNAME			:=	minirt
 
 LIBFT				:=	./libs/libft/libft.a
-MLX					:=	./libs/minilibx-linux/libmlx_Linux.a
+MLX					:=	./libs/minilibx-macos/libmlx
 
 INCLUDEDIR			:=	./includes
-SUBINCLUDEDIR		:=	./includes/sub_includes
+SUBINCLUDEDIR			:=	./includes/sub_includes
 SRCDIR				:=	./src
 
-MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
+# MLXFLAGS			:=	-ou/usr/lib -lXext -lX11 -lm -lz
+MLXFLAGS			:= -framework OpenGL -framework AppKit
 
 OBJDIR				:=	./obj
 
@@ -56,12 +57,6 @@ SRCS				:=	main.c \
 						utils/init.c \
 						utils/mlx.c \
 						texture/pattern.c \
-						lexer_parser/create_scene.c \
-						lexer_parser/lexer.c \
-						lexer_parser/parsing_tool.c \
-						lexer_parser/value_getters.c \
-						lexer_parser/parse_objects.c \
-
 
 CC					:=	cc
 RM					:=	rm
@@ -77,7 +72,7 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	$(CC) -c $(CCFLAGS) -o3 -I $(INCLUDEDIR) -I $(SUBINCLUDEDIR) -I $(dir $(MLX)) -I $(dir $(LIBFT)) $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-linux -lmlx_Linux $(MLXFLAGS) -o $(NAME)
+	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-macos -lmlx $(MLXFLAGS) -o $(NAME)
 
 all					:	$(NAME)
 
