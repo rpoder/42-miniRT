@@ -6,11 +6,25 @@
 /*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/22 22:23:19 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/23 18:07:43 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static t_matrix4	compute_parsing_sphere_transform_m(t_tuple origin, double radius)
+{
+	t_matrix4	t1;
+	t_matrix4	t2;
+	t_matrix4	transform_matrix;
+
+	t1 = get_identity_matrix();
+	if (origin.x != 0.0 || origin.y != 0.0 || origin.x != 0.0)
+		t1 = compute_translation_matrix(origin.x, origin.y, origin.z);
+	t2 = compute_scaling_matrix(radius, radius, radius);
+	transform_matrix = ft_multiply_matrices(t1, t2);
+	return (transform_matrix);
+}
 
 t_object	*create_sphere(t_data *data, t_tuple origin, double radius)
 {
@@ -32,20 +46,6 @@ t_object	*create_sphere(t_data *data, t_tuple origin, double radius)
 	}
 	ft_lstadd_back(&data->world->objects, node);
 	return (new_sphere);
-}
-
-static t_matrix4	compute_parsing_sphere_transform_m(t_tuple origin, double radius)
-{
-	t_matrix4	t1;
-	t_matrix4	t2;
-	t_matrix4	transform_matrix;
-
-	t1 = get_identity_matrix();
-	if (origin.x != 0 || origin.y != 0 || origin.x != 0)
-		t1 = compute_translation_matrix(origin.x, origin.y, origin.z);
-	t2 = compute_scaling_matrix(radius, radius, radius);
-	transform_matrix = ft_multiply_matrices(t1, t2);
-	return (transform_matrix);
 }
 
 t_tuple	sphere_normal_at(t_object *sphere, t_tuple object_point)

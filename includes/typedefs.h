@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typedefs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/19 15:32:26 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:25:01 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_material
 {
 	int			texture_type;
 	t_color		color;
-	double		ambient;
+	double		ambient; ///////////mettre dans world ?
 	double		diffuse;
 	double		specular;
 	double		shininess;

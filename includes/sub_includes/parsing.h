@@ -6,7 +6,7 @@
 /*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 22:17:49 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/22 23:27:12 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/23 19:20:29 by margot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void			set_parsing_tool(t_parsing_tool *tool, int i, int ret);
 
 /* value_getters------------------------------------------------------------- */
 t_tuple 		get_coordinates(char *line, t_parsing_tool *tool);
-double			get_one_value(char *line, t_parsing_tool *tool);
+t_tuple 		get_orientation_vector(char *line, t_parsing_tool *tool);
+double			get_one_parsing_value(char *line, t_parsing_tool *tool);
 t_color 		get_color(char *line, t_parsing_tool *tool);
