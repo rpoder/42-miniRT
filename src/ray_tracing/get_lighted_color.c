@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_lighted_color.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:09:32 by margot            #+#    #+#             */
-/*   Updated: 2022/11/10 11:51:26 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/25 15:56:17 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static t_tuple	reflect_in(t_tuple in, t_tuple normal)
+{
+	return (ft_sub_tuples(in, ft_scale_tuple(normal, 2.0 * ft_tuple_scalarproduct(in, normal))));
+}
 
 bool	is_in_shadow(t_world world, t_tuple point)
 {
@@ -41,7 +46,7 @@ static t_color	get_final_specular_color(t_pcomp_tool pcomp, t_point_light *light
 	double	factor;
 
 	lightv = ft_normalize_tuple(ft_sub_tuples(light->position, pcomp.i));
-	reflectv = ft_reflect_in(ft_neg_tuple(lightv), pcomp.normalv);
+	reflectv = reflect_in(ft_neg_tuple(lightv), pcomp.normalv);
 	reflect_dot_eye = ft_tuple_scalarproduct(reflectv, pcomp.eyev);
 	if (reflect_dot_eye <= 0)
 		specular_color = create_color(0, 0, 0);

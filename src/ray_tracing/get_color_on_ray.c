@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color_on_ray.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:05:31 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/20 20:20:23 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/25 19:10:58 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static t_pcomp_tool get_ray_computation_tool(t_w_intersections w_intersections, 
 	pcomp.over_i = pcomp.i;
 	pcomp.object = hit.object;
 	pcomp.eyev = ft_neg_tuple(ray.direction);
-	pcomp.normalv = normal_at(pcomp.object, pcomp.i);
+	pcomp.normalv = get_object_normal_at(pcomp.object, pcomp.i);
 	if (ft_tuple_scalarproduct(pcomp.normalv, pcomp.eyev) < 0)
 	{
 		pcomp.normalv = ft_neg_tuple(pcomp.normalv);

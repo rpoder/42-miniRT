@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   create_cube.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 15:14:24 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/25 18:17:14 by mpourrey         ###   ########.fr       */
+/*   Created: 2022/11/25 19:42:28 by mpourrey          #+#    #+#             */
+/*   Updated: 2022/11/25 19:42:47 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_data	*init_data(void)
+t_object	*create_cube(t_data *data)
 {
-	t_data	*data;
+	t_object	*new_cube;
+	t_list		*node;
 
-	data = malloc(sizeof(t_data));
-	if (!data)
+	new_cube = malloc(sizeof(t_object));
+	if (!new_cube)
 		return (NULL);
-	data->mlx_data = NULL;
-	data->world = malloc(sizeof(t_world));
-	if (!data->world)
+	new_cube->id = ft_lstlen(data->world->objects);
+	new_cube->object_type = CUBE_TYPE;
+	new_cube->material = get_default_material();
+	new_cube->transform_m = get_identity_matrix();
+	node = ft_lstnew(new_cube);
+	if (!node)
 	{
-		free(data);
+		free(new_cube);
 		return (NULL);
 	}
-	data->world->objects = NULL;
-	data->world->point_lights = NULL;
-	data->world->ambient_light = create_color(0.1, 0.1, 0.1);
-	data->world->camera = NULL;
-	return (data);
+	ft_lstadd_back(&data->world->objects, node);
+	return (new_cube);
 }

@@ -3,12 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/22 21:32:16 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:55:38 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+typedef struct s_parsing_values_tool
+{
+	t_tuple	origin;
+	t_tuple	orientation_vector;
+	double	ratio;
+	double	radius;
+	double	height;
+	double	fov;
+	t_color	color;
+}	t_parsing_values_tool;
 
 typedef struct s_parsing_tool
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/24 17:58:29 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/25 18:44:49 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,33 @@
 
 int	main(int argc, char **argv)
 {
-
 	t_data	*data;
-	t_tuple	from;
+	int		ret;
+
+	if (argc != 2)
+	{
+		ft_putstr_fd("ERR:	Your program ought to compile with one argument.\n", 2);
+		return (PARSING_ERR);
+	}
+	data = init_data();
+	if (!data)
+		return (MALLOC_ERR);
+	/* 
+	data->mlx_data = start_mlx();
+	if (!data->mlx)
+		return (MALLOC_ERR); 
+	 */
+	ret = lexer_parser(data, argv[1]);
+	if (ret != NO_ERR)
+		return (ret);
+	/* render(data, data->world->camera, data->world);
+	mlx_put_image_to_window(data->mlx_data->mlx, data->mlx_data->win,
+		data->mlx_data->image.img, 0, 0);
+	printf("IMAGE DISPLAYED ------------------------------------------------------------------------------------\n");
+	mlx_loop(data->mlx_data->mlx); */
+
+
+		/*t_tuple	from;
 	t_tuple	to;
 	t_tuple	tmp;
 	t_tuple	up;
@@ -28,13 +52,13 @@ int	main(int argc, char **argv)
 
 	t_tuple				parsing_origin;
 	t_tuple				parsing_orientation;
-	t_ray				parsing_ray;
+	t_ray				parsing_ray; */
+	
+//	print_world(data);
 
-	data = init_data();
+//	data->mlx_data = start_mlx();
 
-	data->mlx_data = start_mlx();
-
-	create_camera(data, CANVAS_X, CANVAS_Y, M_PI/2);
+	/* create_camera(data, CANVAS_X, CANVAS_Y, M_PI/2);
 
 	parsing_origin = create_tuple(-5, 5, -5, 1);
 	parsing_orientation = create_tuple(1, -1, 1, 0);
@@ -59,13 +83,14 @@ int	main(int argc, char **argv)
 	// c1->transform_m = ft_multiply_matrices(c1->transform_m, compute_rotation_y_matrix(M_PI/4));
 	c1->material.color = create_color(1, 0, 1);
 	// c1->transform_m = ft_multiply_matrices(c1->transform_m, compute_translation_matrix(-10, 1, 0));
+ */
 
-	render(data, data->world->camera, data->world);
+/* 	render(data, data->world->camera, data->world);
 
 	mlx_put_image_to_window(data->mlx_data->mlx, data->mlx_data->win,
 		data->mlx_data->image.img, 0, 0);
 	printf("IMAGE DISPLAYED ------------------------------------------------------------------------------------\n");
-	mlx_loop(data->mlx_data->mlx);
+	mlx_loop(data->mlx_data->mlx); */
 
 	return (0);
 }

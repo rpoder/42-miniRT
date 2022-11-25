@@ -3,23 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
+#    By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/25 19:49:50 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/11/24 15:58:48 by ronanpoder       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROGNAME			:=	minirt
 
 LIBFT				:=	./libs/libft/libft.a
-MLX					:=	./libs/minilibx-linux/libmlx_Linux.a
+MLX					:=	./libs/minilibx-macos/libmlx
 
 INCLUDEDIR			:=	./includes
-SUBINCLUDEDIR		:=	./includes/sub_includes
+SUBINCLUDEDIR			:=	./includes/sub_includes
 SRCDIR				:=	./src
 
-MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
+# MLXFLAGS			:=	-ou/usr/lib -lXext -lX11 -lm -lz
+MLXFLAGS			:= -framework OpenGL -framework AppKit
 
 OBJDIR				:=	./obj
 
@@ -31,21 +32,14 @@ SRCS				:=	main.c \
 						matrices/matrix_operations.c \
 						matrices/matrix_utils.c \
 						matrices/sub_matrix.c \
-						objects/abstract_object/abstract_object_intersections.c \
-						objects/abstract_object/abstract_object_normal.c \
-						objects/abstract_object/material.c \
-						objects/cone/cone_intersections.c \
-						objects/cone/cone_normal.c \
-						objects/cone/create_cone.c \
-						objects/cube/create_cube.c \
-						objects/cube/cube_normal_and_intersections.c \
-						objects/cylinder/create_cylinder.c \
-						objects/cylinder/cylinder_intersections.c \
-						objects/cylinder/cylinder_normal.c \
-						objects/plane/create_plane.c \
-						objects/plane/plane_normal_and_intersections.c \
-						objects/sphere/create_sphere.c \
-						objects/sphere/sphere_normal_and_intersections.c \
+						objects/object.c \
+						objects/object_intersections.c \
+						objects/material.c \
+						objects/sphere.c \
+						objects/plane.c \
+						objects/cube.c \
+						objects/cylinder.c \
+						objects/cone.c \
 						ray_tracing/get_color_on_ray.c \
 						ray_tracing/get_lighted_color.c \
 						ray_tracing/ray.c \
@@ -57,18 +51,12 @@ SRCS				:=	main.c \
 						tools/init_tools.c \
 						tools/cmp_tools.c \
 						tools/print.c \
-						scene/point_lights.c \
+						scene/lights.c \
+						scene/world.c \
 						scene/camera.c \
-						scene/renderer.c \
 						utils/init.c \
 						utils/mlx.c \
 						texture/pattern.c \
-						lexer_parser/lexer_parser.c \
-						lexer_parser/create_scene.c \
-						lexer_parser/parsing_tool.c \
-						lexer_parser/value_getters.c \
-						lexer_parser/parse_objects.c \
-
 
 CC					:=	cc
 RM					:=	rm
@@ -84,7 +72,7 @@ $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	$(CC) -c $(CCFLAGS) -o3 -I $(INCLUDEDIR) -I $(SUBINCLUDEDIR) -I $(dir $(MLX)) -I $(dir $(LIBFT)) $< -o $@
 
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
-	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-linux -lmlx_Linux $(MLXFLAGS) -o $(NAME)
+	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-macos -lmlx $(MLXFLAGS) -o $(NAME)
 
 all					:	$(NAME)
 

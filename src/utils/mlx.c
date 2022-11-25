@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:01:33 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 17:33:39 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/25 18:20:44 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	my_mlx_pixel_put(t_image *image, int x, int y, long color)
 	*(unsigned int*)dst = color;
 }
 
-t_mlx_data	*start_mlx(void)
+t_mlx_data	*start_mlx(void) //proteger mlx ?
 {
 	t_mlx_data	*mlx_data;
 

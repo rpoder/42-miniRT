@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 15:14:24 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/25 18:17:14 by mpourrey         ###   ########.fr       */
+/*   Created: 2022/11/09 15:43:54 by ronanpoder        #+#    #+#             */
+/*   Updated: 2022/11/25 19:31:10 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_data	*init_data(void)
+t_intersections	get_plane_intersections(t_object *plane, t_ray ray)
 {
-	t_data	*data;
+	t_intersections	intersections;
 
-	data = malloc(sizeof(t_data));
-	if (!data)
-		return (NULL);
-	data->mlx_data = NULL;
-	data->world = malloc(sizeof(t_world));
-	if (!data->world)
+	intersections = init_intersections(plane);
+	if (fabs(ray.direction.y) < EPSILON)
+		intersections.nb_of_intersections = 0;
+	else
 	{
-		free(data);
-		return (NULL);
+		intersections.nb_of_intersections = 1;
+		intersections.i1 = -ray.origin.y / ray.direction.y;
 	}
-	data->world->objects = NULL;
-	data->world->point_lights = NULL;
-	data->world->ambient_light = create_color(0.1, 0.1, 0.1);
-	data->world->camera = NULL;
-	return (data);
+	return (intersections);
+}
+
+t_tuple	get_plane_normal_at(void)
+{
+	return (create_tuple(0, 1, 0, 0));
 }

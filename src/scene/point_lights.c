@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   point_lights.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 15:14:24 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/25 18:17:14 by mpourrey         ###   ########.fr       */
+/*   Created: 2022/10/27 20:31:56 by rpoder            #+#    #+#             */
+/*   Updated: 2022/11/25 15:56:07 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_data	*init_data(void)
+t_point_light	*create_point_light(t_data *data, t_color intensity, t_tuple pos)
 {
-	t_data	*data;
+	t_list			*node;
+	t_point_light	*point_light;
 
-	data = malloc(sizeof(t_data));
-	if (!data)
+	point_light = malloc(sizeof(t_point_light));
+	if (!point_light)
 		return (NULL);
-	data->mlx_data = NULL;
-	data->world = malloc(sizeof(t_world));
-	if (!data->world)
+	point_light->intensity = intensity;
+	point_light->position = pos;
+	node = ft_lstnew(point_light);
+	if (!node)
 	{
-		free(data);
+		free(point_light);
 		return (NULL);
 	}
-	data->world->objects = NULL;
-	data->world->point_lights = NULL;
-	data->world->ambient_light = create_color(0.1, 0.1, 0.1);
-	data->world->camera = NULL;
-	return (data);
+	ft_lstadd_back(&data->world->point_lights, node);
+	return (point_light);
 }
+
