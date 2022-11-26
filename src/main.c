@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/24 17:58:29 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/26 21:42:51 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int argc, char **argv)
 {
 
-	t_data	*data;
 	t_tuple	from;
 	t_tuple	to;
 	t_tuple	tmp;
@@ -30,14 +29,31 @@ int	main(int argc, char **argv)
 	t_tuple				parsing_orientation;
 	t_ray				parsing_ray;
 
+	////////////////////////////////////////////////////////
+	t_data	*data;
+	int		ret;
+
+	if (argc != 2)
+	{
+		ft_putstr_fd("ERR:	One argument is required.\n", 2);
+		return (PARSING_ERR);
+	}
 	data = init_data();
+	if (!data)
+		return (MALLOC_ERR);
 
 	data->mlx_data = start_mlx();
+	if (!data->mlx_data)
+		return (MALLOC_ERR);
 
+	ret = lexer_parser(data, argv[1]);
+	if (ret != NO_ERR)
+		return (ret);
+	///////////////////////////////////////////////////
 	create_camera(data, CANVAS_X, CANVAS_Y, M_PI/2);
 
-	parsing_origin = create_tuple(-5, 5, -5, 1);
-	parsing_orientation = create_tuple(1, -1, 1, 0);
+	parsing_origin = create_tuple(0, 0, -10, 1);
+	parsing_orientation = create_tuple(0, 0, 1, 0);
 
 	to = ft_add_tuples(parsing_origin, parsing_orientation);
 	ft_print_tuple("to", to);
@@ -55,9 +71,9 @@ int	main(int argc, char **argv)
 
 	light = create_point_light(data, create_color(1, 1, 1), create_tuple(10, 5, -10, 1));
 
-	c1 = create_cube(data);
+	// c1 = create_cube(data);
 	// c1->transform_m = ft_multiply_matrices(c1->transform_m, compute_rotation_y_matrix(M_PI/4));
-	c1->material.color = create_color(1, 0, 1);
+	// c1->material.color = create_color(1, 0, 1);
 	// c1->transform_m = ft_multiply_matrices(c1->transform_m, compute_translation_matrix(-10, 1, 0));
 
 	render(data, data->world->camera, data->world);

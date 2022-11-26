@@ -3,17 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/22 21:32:16 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/26 21:55:57 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+typedef struct s_cylinder_values_tool
+{
+	t_tuple	origin;
+	t_tuple	orientation_vector;
+	double	radius;
+	double	height;
+	t_color	color;
+
+}	t_cylinder_values_tool;
+
+typedef struct s_cube_values_tool
+{
+	t_tuple	origin;
+	double	radius;
+	t_color	color;
+}	t_cube_values_tool;
 
 typedef struct s_parsing_tool
 {
 	int i;
-	int ret;
+	int error;
 }	t_parsing_tool;
 
 typedef struct s_counter3

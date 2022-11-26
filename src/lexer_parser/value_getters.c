@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   value_getters.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:32:37 by margot            #+#    #+#             */
-/*   Updated: 2022/11/23 19:20:29 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/26 20:26:48 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*get_parsing_value(int i, char *line)
 	int		len;
 	char	*p_value;
 	int		j;
-	
+
 	len = 0;
 	while (line[i + len] && !ft_is_space(line[i + len]) && line[i + len] != ',')
 		len++;
@@ -40,7 +40,7 @@ t_color get_color(char *line, t_parsing_tool *tool)
 	char	*str_value;
 	double	double_value;
 	double	color[3];
-	
+
 	count = 0;
 	while (count < 3)
 	{
@@ -49,13 +49,13 @@ t_color get_color(char *line, t_parsing_tool *tool)
 		str_value = get_parsing_value(tool->i, line);
 		if (!str_value)
 		{
-			tool->ret = MALLOC_ERR;
+			tool->error = MALLOC_ERR;
 			return (create_color(0, 0, 0));
 		}
 		if (ft_atof_checker(str_value) != 1)
 		{
 			printf("ERR : %s in your scene.rt is not a valid value\n", str_value);
-			tool->ret = PARSING_ERR;
+			tool->error = PARSING_ERR;
 			free(str_value);
 			return (create_color(0, 0, 0));
 		}
@@ -66,7 +66,7 @@ t_color get_color(char *line, t_parsing_tool *tool)
 		count++;
 		free(str_value);
 	}
-	return (create_color(color[0], color[1], color[2]));
+	return (create_color(color[0] / 255, color[1] / 255, color[2] / 255));
 }
 
 t_tuple get_orientation_vector(char *line, t_parsing_tool *tool)
@@ -75,7 +75,7 @@ t_tuple get_orientation_vector(char *line, t_parsing_tool *tool)
 	char	*str_value;
 	double	double_value;
 	double	coordinates[3];
-	
+
 	count = 0;
 	while (count < 3)
 	{
@@ -84,13 +84,13 @@ t_tuple get_orientation_vector(char *line, t_parsing_tool *tool)
 		str_value = get_parsing_value(tool->i, line);
 		if (!str_value)
 		{
-			tool->ret = MALLOC_ERR;
+			tool->error = MALLOC_ERR;
 			return (create_tuple(0, 0, 0, 0));
 		}
 		if (ft_atof_checker(str_value) != 1)
 		{
 			printf("ERR : %s in your scene.rt is not a valid value\n", str_value);
-			tool->ret = PARSING_ERR;
+			tool->error = PARSING_ERR;
 			free(str_value);
 			return (create_tuple(0, 0, 0, 0));
 		}
@@ -110,7 +110,7 @@ t_tuple get_coordinates(char *line, t_parsing_tool *tool)
 	char	*str_value;
 	double	double_value;
 	double	coordinates[3];
-	
+
 	tool->i = 2;
 	count = 0;
 	while (count < 3)
@@ -120,13 +120,13 @@ t_tuple get_coordinates(char *line, t_parsing_tool *tool)
 		str_value = get_parsing_value(tool->i, line);
 		if (!str_value)
 		{
-			tool->ret = MALLOC_ERR;
+			tool->error = MALLOC_ERR;
 			return (create_tuple(0, 0, 0, 0));
 		}
 		if (ft_atof_checker(str_value) != 1)
 		{
 			printf("ERR : %s in your scene.rt is not a valid value\n", str_value);
-			tool->ret = PARSING_ERR;
+			tool->error = PARSING_ERR;
 			free(str_value);
 			return (create_tuple(0, 0, 0, 0));
 		}
@@ -144,19 +144,19 @@ double	get_one_parsing_value(char *line, t_parsing_tool *tool)
 {
 	char	*str_value;
 	double	double_value;
-	
+
 	while (line[tool->i] && ft_is_space(line[tool->i]))
 		tool->i++;
 	str_value = get_parsing_value(tool->i, line);
 	if (!str_value)
 	{
-		tool->ret = MALLOC_ERR;
+		tool->error = MALLOC_ERR;
 		return (0.0);
 	}
 	if (ft_atof_checker(str_value) != 1)
 	{
 		printf("ERR : %s in your scene.rt is not a valid value\n", str_value);
-		tool->ret = PARSING_ERR;
+		tool->error = PARSING_ERR;
 		free(str_value);
 		return (0.0);
 	}

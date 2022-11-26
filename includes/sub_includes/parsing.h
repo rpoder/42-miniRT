@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 22:17:49 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/23 19:20:29 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/26 20:20:44 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* lexer.c------------------------------------------------------------------- */
 int				lexer_parser(t_data *data, char *file);
 
-/* create_scene.c------------------------------------------------------------ */
-int				create_scene(t_data *data, t_list *lst, t_parsing_tool *tool);
+/* parse_scene.c------------------------------------------------------------ */
+int				parse_scene(t_data *data, t_list *lst);
 
+/* parse_objects------------------------------------------------------------- */
+int				parse_cube(t_data *data, char *line, t_parsing_tool *tool);
 
 /* parsing_tool.c------------------------------------------------------------ */
 t_parsing_tool	*init_parsing_tool();

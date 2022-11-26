@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 14:09:51 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/23 19:38:45 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/26 20:19:55 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_intersections		get_plane_intersections(t_object *plane, t_ray ray);
 void				transform_plane_orientation(t_object *plane, t_tuple orientation);
 
 /* cube.c-------------------------------------------------------------------- */
-t_object			*create_cube(t_data *data);
+t_object			*create_cube(t_data *data, t_cube_values_tool values);
 t_tuple				cube_normal_at(t_object *cube, t_tuple point);
 t_intersections		get_cube_intersections(t_object *cube, t_ray ray);
 
