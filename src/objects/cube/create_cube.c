@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube.c                                             :+:      :+:    :+:   */
+/*   create_cube.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:40:19 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/26 21:50:37 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/26 22:12:43 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ t_intersections	get_cube_intersections(t_object *cube, t_ray ray)
 	return (cube_intersections);
 }
 
-t_tuple	cube_normal_at(t_object *cube, t_tuple point)
+t_tuple	get_cube_normal_at(t_object *cube, t_tuple point)
 {
 	double	maxc;
 

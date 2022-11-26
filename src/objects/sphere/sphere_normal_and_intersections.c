@@ -3,52 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/23 18:07:43 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/25 19:00:01 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_matrix4	compute_parsing_sphere_transform_m(t_tuple origin, double radius)
-{
-	t_matrix4	t1;
-	t_matrix4	t2;
-	t_matrix4	transform_matrix;
-
-	t1 = get_identity_matrix();
-	if (origin.x != 0.0 || origin.y != 0.0 || origin.x != 0.0)
-		t1 = compute_translation_matrix(origin.x, origin.y, origin.z);
-	t2 = compute_scaling_matrix(radius, radius, radius);
-	transform_matrix = ft_multiply_matrices(t1, t2);
-	return (transform_matrix);
-}
-
-t_object	*create_sphere(t_data *data, t_tuple origin, double radius)
-{
-	t_object	*new_sphere;
-	t_list		*node;
-
-	new_sphere = malloc(sizeof(t_object));
-	if (!new_sphere)
-		return (NULL);
-	new_sphere->id = ft_lstlen(data->world->objects);
-	new_sphere->object_type = SPHERE_TYPE;
-	new_sphere->transform_m = compute_parsing_sphere_transform_m(origin, radius);
-	new_sphere->material = get_default_material();
-	node = ft_lstnew(new_sphere);
-	if (!node)
-	{
-		free(new_sphere);
-		return (NULL);
-	}
-	ft_lstadd_back(&data->world->objects, node);
-	return (new_sphere);
-}
-
-t_tuple	sphere_normal_at(t_object *sphere, t_tuple object_point)
+t_tuple	get_sphere_normal_at(t_object *sphere, t_tuple object_point)
 {
 	t_tuple	origin;
 	t_tuple	object_normal;

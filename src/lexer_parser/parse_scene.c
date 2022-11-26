@@ -12,6 +12,8 @@
 
 #include "minirt.h"
 
+
+
 int	parse_scene(t_data *data, t_list *lst)
 {
 	int				ret;
@@ -24,8 +26,14 @@ int	parse_scene(t_data *data, t_list *lst)
 	{
 		if (((char *)lst->content)[0] == 'c' && ((char *)lst->content)[1] == 'u')
 			ret = parse_cube(data, (char *)lst->content, tool);
-		if (((char *)lst->content)[0] == 'c' && ((char *)lst->content)[1] == 'y')
+		else if (((char *)lst->content)[0] == 's' && ((char *)lst->content)[1] == 'p')
+			ret = parse_sphere(data, (char *)lst->content, tool);
+ 		else if (((char *)lst->content)[0] == 'p' && ((char *)lst->content)[1] == 'l')
+			ret = parse_plane(data, (char *)lst->content, tool);
+		else if (((char *)lst->content)[0] == 'c' && ((char *)lst->content)[1] == 'y')
 			ret = parse_cylinder(data, (char *)lst->content, tool);
+		else if (((char *)lst->content)[0] == 'L')
+			ret = parse_light(data, (char *)lst->content, tool);
 		else
 			printf("No object match.\n");
 		if (ret != NO_ERR)

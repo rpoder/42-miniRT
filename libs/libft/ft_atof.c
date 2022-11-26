@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:22:04 by margot            #+#    #+#             */
-/*   Updated: 2022/11/21 19:12:28 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/26 22:54:16 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ static double	compute_decimal(char *str, int i)
 {
 	int		j;
 	double	decimal;
-	
+
 	j = 0;
 	decimal = 0.0;
 	while (str[i + j])
 	{
-		decimal = decimal * 10 + ((double)str[i + j] - 48);
+		decimal = decimal * 10.0 + ((double)str[i + j] - 48);
 		j++;
-		
+
 	}
 	while (j > 0)
 	{
-		decimal = decimal / 10;
+		decimal = decimal / 10.0;
 		j--;
 	}
 	return (decimal);
@@ -47,17 +47,17 @@ double	ft_atof(char *str)
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			sign = -sign;
+			sign = -1.0;
 		str++;
 	}
 	i = 0;
 	while(str[i] && str[i] != '.')
 	{
-		nb = nb * 10 + ((double)str[i] - 48);
+		nb = nb * 10.0 + ((double)str[i] - 48);
 		i++;
 	}
 	if (!str[i])
-		return (nb); 
+		return (nb * sign);
 	else
 		decimal = compute_decimal(str, i + 1);
 	return((nb + decimal) * sign);

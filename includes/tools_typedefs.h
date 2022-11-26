@@ -6,9 +6,25 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/26 21:55:57 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/26 22:07:36 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+typedef struct s_plane_values_tool
+{
+	t_tuple	origin;
+	t_tuple	orientation_vector;
+	t_color	color;
+
+}	t_plane_values_tool;
+
+typedef struct s_sphere_values_tool
+{
+	t_tuple	origin;
+	double	radius;
+	t_color	color;
+
+}	t_sphere_values_tool;
 
 typedef struct s_cylinder_values_tool
 {

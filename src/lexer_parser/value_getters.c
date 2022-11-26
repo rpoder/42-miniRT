@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:32:37 by margot            #+#    #+#             */
-/*   Updated: 2022/11/26 20:26:48 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/26 22:52:52 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_color get_color(char *line, t_parsing_tool *tool)
 		count++;
 		free(str_value);
 	}
-	return (create_color(color[0] / 255, color[1] / 255, color[2] / 255));
+	return (create_color(color[0] / 255.0, color[1] / 255.0, color[2] / 255.0));
 }
 
 t_tuple get_orientation_vector(char *line, t_parsing_tool *tool)

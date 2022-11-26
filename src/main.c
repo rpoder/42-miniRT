@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/26 21:42:51 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/26 23:16:03 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,22 @@ int	main(int argc, char **argv)
 	parsing_orientation = create_tuple(0, 0, 1, 0);
 
 	to = ft_add_tuples(parsing_origin, parsing_orientation);
-	ft_print_tuple("to", to);
+	// ft_print_tuple("to", to);
 
 	tmp = ft_multiply_tuples(create_tuple(0, 1, 0, 0), to);
 	if (ft_tuple_scalarproduct(create_tuple(0, 0, 1, 0), ft_normalize_tuple(parsing_orientation)) >= 0.0)
 		tmp = ft_neg_tuple(tmp);
-	ft_print_tuple("tmp", tmp);
+	// ft_print_tuple("tmp", tmp);
 
 	up = ft_normalize_tuple(ft_multiply_tuples(parsing_orientation, tmp));
-	ft_print_tuple("up", up);
+	// ft_print_tuple("up", up);
 
-	printf("dot product %f\n", ft_tuple_scalarproduct(create_tuple(0, 1, 0, 0), ft_normalize_tuple(parsing_orientation)));
+	// printf("dot product %f\n", ft_tuple_scalarproduct(create_tuple(0, 1, 0, 0), ft_normalize_tuple(parsing_orientation)));
 	data->world->camera->transform_m = compute_view_transform_m(parsing_origin, to, up);
 
-	light = create_point_light(data, create_color(1, 1, 1), create_tuple(10, 5, -10, 1));
+	// light = create_point_light(data, create_color(0, 0, 0), create_tuple(10, 5, -10, 1));
 
-	// c1 = create_cube(data);
-	// c1->transform_m = ft_multiply_matrices(c1->transform_m, compute_rotation_y_matrix(M_PI/4));
-	// c1->material.color = create_color(1, 0, 1);
-	// c1->transform_m = ft_multiply_matrices(c1->transform_m, compute_translation_matrix(-10, 1, 0));
-
+	print_world(data);
 	render(data, data->world->camera, data->world);
 
 	mlx_put_image_to_window(data->mlx_data->mlx, data->mlx_data->win,

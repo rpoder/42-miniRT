@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/26 20:20:44 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/26 23:03:56 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,20 @@ SRCS				:=	main.c \
 						matrices/matrix_operations.c \
 						matrices/matrix_utils.c \
 						matrices/sub_matrix.c \
-						objects/object.c \
-						objects/object_intersections.c \
-						objects/material.c \
-						objects/sphere.c \
-						objects/plane.c \
-						objects/cube.c \
-						objects/cylinder.c \
-						objects/cone.c \
+						objects/abstract_object/abstract_object_intersections.c \
+						objects/abstract_object/abstract_object_normal.c \
+						objects/abstract_object/material.c \
+						objects/cone/cone_intersections.c \
+						objects/cone/cone_normal.c \
+						objects/cone/create_cone.c \
+						objects/cube/create_cube.c \
+						objects/cylinder/create_cylinder.c \
+						objects/cylinder/cylinder_intersections.c \
+						objects/cylinder/cylinder_normal.c \
+						objects/plane/create_plane.c \
+						objects/plane/plane_normal_and_intersections.c \
+						objects/sphere/create_sphere.c \
+						objects/sphere/sphere_normal_and_intersections.c \
 						ray_tracing/get_color_on_ray.c \
 						ray_tracing/get_lighted_color.c \
 						ray_tracing/ray.c \
@@ -59,6 +65,7 @@ SRCS				:=	main.c \
 						lexer_parser/parse_scene.c \
 						lexer_parser/lexer_parser.c \
 						lexer_parser/parse_objects.c \
+						lexer_parser/parse_lights.c \
 						lexer_parser/parsing_tool.c \
 						lexer_parser/value_getters.c \
 
