@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 12:15:58 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 19:50:31 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 22:16:32 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_camera	*create_camera(t_data *data, int hsize, int vsize, t_camera_values_tool
 	t_tuple	to;
 	t_tuple	tmp;
 	t_tuple	up;
+	double	tmp_coord;
 
 	data->world->camera = malloc(sizeof(t_camera));
 	if (!data->world->camera)
@@ -88,22 +89,17 @@ t_camera	*create_camera(t_data *data, int hsize, int vsize, t_camera_values_tool
 	data->world->camera->fov = values.fov;
 	data->world->camera->pixel_size = compute_pixel_size(data->world->camera, hsize, vsize, values.fov);
 	to = ft_add_tuples(values.origin, values.orientation_vector);
-	print_tuple("to", to);
 	if (to.x == 0.0)
 		to.x = EPSILON;
-	// if (to.z == 0.0)
-	// 	to.z == EPSILON;
 	tmp = ft_multiply_tuples(create_tuple(0, 1, 0, 0), ft_normalize_tuple(to));
-
-	////////
-	// tmp = ft_neg_tuple(tmp);
+	tmp_coord = tmp.x;
+	tmp.x = tmp.z;
+	tmp.z = tmp_coord;
 
 	if (ft_tuple_scalarproduct(create_tuple(0, 0, 1, 0), ft_normalize_tuple(values.orientation_vector)) >= 0.0)
 		tmp = ft_neg_tuple(tmp);
 	up = ft_normalize_tuple(ft_multiply_tuples(values.orientation_vector, tmp));
-	// if (up.x == 1.0 && up.y == 0 && up.z == 0)
-	// 	up = create_tuple(0, 0, 1, 0);
-	print_tuple("up", up);
+
 	data->world->camera->transform_m = compute_view_transform_m(values.origin, to, up);
 	return (data->world->camera);
 }

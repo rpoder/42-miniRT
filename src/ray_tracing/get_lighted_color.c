@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:09:32 by margot            #+#    #+#             */
-/*   Updated: 2022/11/27 19:52:25 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 22:16:14 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ t_color	get_lighted_color(t_world world, t_point_light *light, t_pcomp_tool pcom
 	if (pcomp.object->material.texture_type == PATTERN_TEXTURE_TYPE)
 		pcomp.object->material.color = checker_at_object(pcomp.object->material.pattern, *pcomp.object, pcomp.over_i);
 	if (light_dot_normal < 0 || is_in_shadow(world, pcomp.over_i, light))
-	// if (light_dot_normal < 0)
 	{
 		diffuse_color = create_color(0, 0, 0);
 		specular_color = create_color(0, 0, 0);
