@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:14:34 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/27 19:02:35 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 00:12:15 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_matrix4 compute_orientation_matrix(t_tuple leftv, t_tuple true_upv, t_t
 	orientation_m.matrix[2][1] = -forwardv.y;
 	orientation_m.matrix[2][2] = -forwardv.z;
 	translation_m = compute_translation_matrix(-from.x, -from.y, -from.z);
-	return(ft_multiply_matrices(orientation_m, translation_m));
+	return(multiply_matrices(orientation_m, translation_m));
 }
 
 t_matrix4 compute_view_transform_m(t_tuple from, t_tuple to, t_tuple up)
@@ -38,9 +38,9 @@ t_matrix4 compute_view_transform_m(t_tuple from, t_tuple to, t_tuple up)
 	t_tuple		leftv;
 	t_tuple		true_upv;
 
-	forwardv = ft_normalize_tuple(ft_sub_tuples(to, from));
-	leftv = ft_multiply_tuples(forwardv, ft_normalize_tuple(up));
-	true_upv = ft_multiply_tuples(leftv, forwardv);
+	forwardv = normalize_tuple(sub_tuples(to, from));
+	leftv = cross_product(forwardv, normalize_tuple(up));
+	true_upv = cross_product(leftv, forwardv);
 	view_transform_m = compute_orientation_matrix(leftv, true_upv, forwardv, from);
 	return(view_transform_m);
 }

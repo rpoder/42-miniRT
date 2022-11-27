@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 12:15:58 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 22:16:32 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 00:12:15 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,14 +91,14 @@ t_camera	*create_camera(t_data *data, int hsize, int vsize, t_camera_values_tool
 	to = ft_add_tuples(values.origin, values.orientation_vector);
 	if (to.x == 0.0)
 		to.x = EPSILON;
-	tmp = ft_multiply_tuples(create_tuple(0, 1, 0, 0), ft_normalize_tuple(to));
+	tmp = cross_product(create_tuple(0, 1, 0, 0), normalize_tuple(to));
 	tmp_coord = tmp.x;
 	tmp.x = tmp.z;
 	tmp.z = tmp_coord;
 
-	if (ft_tuple_scalarproduct(create_tuple(0, 0, 1, 0), ft_normalize_tuple(values.orientation_vector)) >= 0.0)
+	if (dot_product(create_tuple(0, 0, 1, 0), normalize_tuple(values.orientation_vector)) >= 0.0)
 		tmp = ft_neg_tuple(tmp);
-	up = ft_normalize_tuple(ft_multiply_tuples(values.orientation_vector, tmp));
+	up = normalize_tuple(cross_product(values.orientation_vector, tmp));
 
 	data->world->camera->transform_m = compute_view_transform_m(values.origin, to, up);
 	return (data->world->camera);
@@ -119,8 +119,8 @@ t_ray	ray_for_pixel(t_camera *camera, double canvas_x, double canvas_y)
 	world_x = camera->half_width - offset.x;
 	world_y = camera->half_height - offset.y;
 
-	pixel = ft_multiply_matrix_by_tuple(ft_inverse_matrix(camera->transform_m), create_tuple(world_x, world_y, -1, 1));
-	origin = ft_multiply_matrix_by_tuple(ft_inverse_matrix(camera->transform_m), create_tuple(0, 0, 0, 1));
-	direction = ft_normalize_tuple(ft_sub_tuples(pixel, origin));
+	pixel = multiply_matrix_by_tuple(ft_inverse_matrix(camera->transform_m), create_tuple(world_x, world_y, -1, 1));
+	origin = multiply_matrix_by_tuple(ft_inverse_matrix(camera->transform_m), create_tuple(0, 0, 0, 1));
+	direction = normalize_tuple(sub_tuples(pixel, origin));
 	return (ft_create_ray(origin, direction));
 }

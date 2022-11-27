@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 13:28:21 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/07 11:44:24 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:16:01 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_matrix4	apply_determinant_division_to_matrix(t_matrix4 m, double det);
 
 /* matrix_operations.c------------------------------------------------------- */
 t_matrix4	ft_transpose_matrix(t_matrix4 m4);
-t_matrix4	ft_multiply_matrices(t_matrix4 m4_1, t_matrix4 m4_2);
+t_matrix4	multiply_matrices(t_matrix4 m4_1, t_matrix4 m4_2);
 t_matrix4	ft_inverse_matrix(t_matrix4 m);
 
 /* matrix_utils.c------------------------------------------------------------ */

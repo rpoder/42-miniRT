@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 14:39:54 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:30:18 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ typedef struct s_camera_values_tool
 	double	fov;
 
 }	t_camera_values_tool;
+
+typedef struct s_triangle_values_tool
+{
+	t_tuple	origin;
+	t_tuple	orientation_vector;
+	t_color	color;
+	t_tuple	p1;
+	t_tuple	p2;
+	t_tuple	p3;
+
+}	t_triangle_values_tool;
 
 typedef struct s_plane_values_tool
 {
@@ -86,7 +97,7 @@ typedef struct s_double3
 	double	c;
 }	t_double3;
 
-typedef struct s_ray_precompute_tool
+typedef struct s_ray_pcomp_tool
 {
 	t_object	*object;
 	t_tuple		i;
@@ -94,7 +105,7 @@ typedef struct s_ray_precompute_tool
 	t_tuple		eyev;
 	t_tuple		normalv;
 	bool		inside;
-}	t_pcomp_tool;
+}	t_ray_pcomp_tool;
 
 typedef struct s_cube_faces_intersections_tool
 {

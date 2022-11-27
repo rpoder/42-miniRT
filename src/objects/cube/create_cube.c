@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:40:19 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/26 22:12:43 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:16:01 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_object	*create_cube(t_data *data, t_cube_values_tool values)
 	new_cube->object_type = CUBE_TYPE;
 	new_cube->material = get_default_material();
 	new_cube->material.color = values.color;
-	new_cube->transform_m = ft_multiply_matrices(get_identity_matrix(),
+	new_cube->transform_m = multiply_matrices(get_identity_matrix(),
 		compute_translation_matrix(values.origin.x,
 		values.origin.y, values.origin.z));
-	new_cube->transform_m = ft_multiply_matrices(new_cube->transform_m,
+	new_cube->transform_m = multiply_matrices(new_cube->transform_m,
 		compute_scaling_matrix(values.radius,
 		values.radius, values.radius));
 	node = ft_lstnew(new_cube);

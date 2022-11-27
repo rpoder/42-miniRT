@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:46:08 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 18:53:32 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:34:39 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,15 @@ void	print_world(t_data *data)
 		printf("-------------OBJETS\n");
 		printf("Object type:	%d\n", ((t_object *)tmp_objects->content)->object_type);
 		printcolor("Object color:	", ((t_object *)tmp_objects->content)->material.color);
+		if (((t_object *)tmp_objects->content)->object_type == TRIANGLE_TYPE)
+		{
+			print_tuple("p1", ((t_object *)tmp_objects->content)->triangle_cars.p1);
+			print_tuple("p2", ((t_object *)tmp_objects->content)->triangle_cars.p2);
+			print_tuple("p3", ((t_object *)tmp_objects->content)->triangle_cars.p3);
+			print_tuple("e1", ((t_object *)tmp_objects->content)->triangle_cars.e1);
+			print_tuple("e2", ((t_object *)tmp_objects->content)->triangle_cars.e2);
+			print_tuple("normal", ((t_object *)tmp_objects->content)->triangle_cars.normal);
+		}
 		tmp_objects = tmp_objects->next;
 	}
 	tmp_lights = world->point_lights;

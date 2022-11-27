@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lights.c                                           :+:      :+:    :+:   */
+/*   point_lights.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:31:56 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/03 16:57:52 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/28 00:12:03 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ t_point_light	*create_point_light(t_data *data, t_color intensity, t_tuple pos)
 
 t_tuple	ft_reflect_in(t_tuple in, t_tuple normal)
 {
-	return (ft_sub_tuples(in, ft_scale_tuple(normal, 2.0 * ft_tuple_scalarproduct(in, normal))));
+	return (sub_tuples(in, ft_scale_tuple(normal, 2.0 * dot_product(in, normal))));
 }

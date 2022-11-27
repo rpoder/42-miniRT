@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:46 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 13:39:15 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:16:01 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_matrix4	ft_transpose_matrix(t_matrix4 m4)
 	return (new_matrix);
 }
 
-t_matrix4	ft_multiply_matrices(t_matrix4 m4_1, t_matrix4 m4_2)
+t_matrix4	multiply_matrices(t_matrix4 m4_1, t_matrix4 m4_2)
 {
 	t_matrix4	new_matrix;
 	int			i;

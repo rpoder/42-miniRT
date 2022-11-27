@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:59:01 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/26 22:31:54 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:16:01 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static t_matrix4	orient_plane(t_object *plane, t_tuple orientation)
 	if (orientation.x > 0.0 + EPSILON || orientation.x < 0.0 - EPSILON)
 	{
 		radian_x = (orientation.x * 90) * M_PI / 180;
-		plane->transform_m = ft_multiply_matrices(plane->transform_m, compute_rotation_x_matrix(radian_x));
+		plane->transform_m = multiply_matrices(plane->transform_m, compute_rotation_x_matrix(radian_x));
 	}
 	if (orientation.y > 0.0 + EPSILON || orientation.y < 0.0 - EPSILON)
 	{
 		radian_y = (orientation.x * 90) * M_PI / 180;
-		plane->transform_m = ft_multiply_matrices(plane->transform_m, compute_rotation_y_matrix(radian_y));
+		plane->transform_m = multiply_matrices(plane->transform_m, compute_rotation_y_matrix(radian_y));
 	}
 		if (orientation.z > 0.0 + EPSILON || orientation.z < 0.0- EPSILON)
 	{
 		radian_z = (orientation.z * 90) * M_PI / 180;
-		plane->transform_m = ft_multiply_matrices(plane->transform_m, compute_rotation_z_matrix(radian_z));
+		plane->transform_m = multiply_matrices(plane->transform_m, compute_rotation_z_matrix(radian_z));
 	}
 	return (plane->transform_m);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   sphere_normal_and_intersections.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/25 19:00:01 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/28 00:12:03 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_tuple	get_sphere_normal_at(t_object *sphere, t_tuple object_point)
 	t_tuple	object_normal;
 
 	origin = create_tuple(0, 0, 0, 1);
-	object_normal = ft_sub_tuples(object_point, origin);
+	object_normal = sub_tuples(object_point, origin);
 	return (object_normal);
 }
 
@@ -54,10 +54,10 @@ t_intersections	get_sphere_intersections(t_object *sphere, t_ray ray)
 	t_double3				values;
 
 	w_origin = create_tuple(0, 0, 0, 1);
-	sphere_to_ray = ft_sub_tuples(ray.origin, w_origin);
-	values.a = ft_tuple_scalarproduct(ray.direction, ray.direction);
-	values.b = 2 * ft_tuple_scalarproduct(ray.direction, sphere_to_ray);
-	values.c = ft_tuple_scalarproduct(sphere_to_ray, sphere_to_ray) - 1;
+	sphere_to_ray = sub_tuples(ray.origin, w_origin);
+	values.a = dot_product(ray.direction, ray.direction);
+	values.b = 2 * dot_product(ray.direction, sphere_to_ray);
+	values.c = dot_product(sphere_to_ray, sphere_to_ray) - 1;
 	discriminant = powf(values.b, 2) - (4 * values.a * values.c);
 	return (compute_sphere_intersections(sphere, discriminant, values));
 }

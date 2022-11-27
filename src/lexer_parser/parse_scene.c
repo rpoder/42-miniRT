@@ -54,6 +54,8 @@ int	parse_scene(t_data *data, t_list *lst)
 			ret = parse_plane(data, (char *)lst->content, tool);
 		else if (((char *)lst->content)[0] == 'c' && ((char *)lst->content)[1] == 'y')
 			ret = parse_cylinder(data, (char *)lst->content, tool);
+		else if (((char *)lst->content)[0] == 't' && ((char *)lst->content)[1] == 'r')
+			ret = parse_triangle(data, (char *)lst->content, tool);
 		else if (((char *)lst->content)[0] == 'L')
 			ret = parse_light(data, (char *)lst->content, tool);
 		else if (((char *)lst->content)[0] == 'A')

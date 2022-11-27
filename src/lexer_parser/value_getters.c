@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:32:37 by margot            #+#    #+#             */
-/*   Updated: 2022/11/26 22:52:52 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 22:56:31 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ t_tuple get_coordinates(char *line, t_parsing_tool *tool)
 	double	double_value;
 	double	coordinates[3];
 
-	tool->i = 2;
+	//////////////////////////////
+	// tool->i = 2;
 	count = 0;
 	while (count < 3)
 	{

@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:14:58 by margot            #+#    #+#             */
-/*   Updated: 2022/11/26 22:32:14 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 22:46:14 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,33 @@ int	parse_sphere(t_data *data, char *line, t_parsing_tool *tool)
 		return (tool->error);
 	new_sphere = create_sphere(data, values);
 	if (!new_sphere)
+	{
+		tool->error = MALLOC_ERR;
+		return (tool->error);
+	}
+	return (NO_ERR);
+}
+
+int	parse_triangle(t_data *data, char *line, t_parsing_tool *tool)
+{
+	t_triangle_values_tool	values;
+	t_object				*new_triangle;
+
+	tool->i = 2;
+	values.p1 = get_coordinates(line, tool);
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	values.p2 = get_coordinates(line, tool);
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	values.p3 = get_coordinates(line, tool);
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	values.color = get_color(line, tool);
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	new_triangle = create_triangle(data, values);
+	if (!new_triangle)
 	{
 		tool->error = MALLOC_ERR;
 		return (tool->error);

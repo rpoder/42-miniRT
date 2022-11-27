@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 22:17:49 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/26 23:02:59 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 22:49:20 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ int				parse_scene(t_data *data, t_list *lst);
 int				parse_sphere(t_data *data, char *line, t_parsing_tool *tool);
 int				parse_cylinder(t_data *data, char *line, t_parsing_tool *tool);
 int				parse_plane(t_data *data, char *line, t_parsing_tool *tool);
+int				parse_triangle(t_data *data, char *line, t_parsing_tool *tool);
+int				parse_cube(t_data *data, char *line, t_parsing_tool *tool);
 
 /* parse_lights-------------------------------------------------------------- */
 int				parse_light(t_data *data, char *line, t_parsing_tool *tool);
+int				parse_ambient_light(t_data *data, char *line, t_parsing_tool *tool);
+
 
 /* parsing_tool.c------------------------------------------------------------ */
 t_parsing_tool	*init_parsing_tool();

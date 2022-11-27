@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/27 17:43:36 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/27 23:42:19 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,8 @@ SRCS				:=	main.c \
 						objects/plane/plane_normal_and_intersections.c \
 						objects/sphere/create_sphere.c \
 						objects/sphere/sphere_normal_and_intersections.c \
+						objects/triangle/create_triangle.c \
+						objects/triangle/triangle_normal_and_intersections.c \
 						ray_tracing/get_color_on_ray.c \
 						ray_tracing/get_lighted_color.c \
 						ray_tracing/ray.c \

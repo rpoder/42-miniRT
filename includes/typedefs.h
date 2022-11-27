@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 13:58:48 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:30:13 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,27 @@ typedef struct s_material
 	t_pattern	pattern;
 }	t_material;
 
+typedef struct s_triangle_caracteristics
+{
+	t_tuple	p1;
+	t_tuple	p2;
+	t_tuple	p3;
+	t_tuple	e1;
+	t_tuple	e2;
+	t_tuple	normal;
+}	t_triangle_caracteristics;
+
+
 typedef struct s_object
 {
-	int			id;
-	int			object_type;
-	t_matrix4	transform_m;
-	double		min;
-	double		max;
-	bool		is_capped;
-	t_material	material;
+	int							id;
+	int							object_type;
+	t_matrix4					transform_m;
+	double						min;
+	double						max;
+	bool						is_capped;
+	t_material					material;
+	t_triangle_caracteristics	triangle_cars;
 }	t_object;
 
 typedef struct s_point_light

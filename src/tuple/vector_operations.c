@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:05:12 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 15:50:14 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:16:10 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_tuple	ft_add_tuples(t_tuple a, t_tuple b)
 	return (new_tuple);
 }
 
-t_tuple	ft_sub_tuples(t_tuple a, t_tuple b)
+t_tuple	sub_tuples(t_tuple a, t_tuple b)
 {
 	t_tuple	new_tuple;
 

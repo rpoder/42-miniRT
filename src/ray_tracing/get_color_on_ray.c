@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:05:31 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 18:38:10 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 00:12:03 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ t_hit	find_w_hit(t_w_intersections w_intersections)
 - the interesected object
 - the eyevector = from point to camera
 - the normal vector */
-static t_pcomp_tool get_ray_computation_tool(t_w_intersections w_intersections, t_ray ray)
+static t_ray_pcomp_tool get_ray_computation_tool(t_w_intersections w_intersections, t_ray ray)
 {
-	t_pcomp_tool	pcomp;
+	t_ray_pcomp_tool	pcomp;
 	t_hit			hit;
 
 	hit = find_w_hit(w_intersections);
@@ -73,7 +73,7 @@ static t_pcomp_tool get_ray_computation_tool(t_w_intersections w_intersections, 
 	pcomp.object = hit.object;
 	pcomp.eyev = ft_neg_tuple(ray.direction);
 	pcomp.normalv = get_object_normal_at(pcomp.object, pcomp.i);
-	if (ft_tuple_scalarproduct(pcomp.normalv, pcomp.eyev) < 0)
+	if (dot_product(pcomp.normalv, pcomp.eyev) < 0)
 	{
 		pcomp.normalv = ft_neg_tuple(pcomp.normalv);
 		pcomp.inside = true;
@@ -111,7 +111,7 @@ t_w_intersections	compute_world_intersections(t_world world, t_ray ray)
 	return (w_intersections);
 }
 
-t_color	ft_normalize_color(t_color	tmp)
+t_color	normalize_color(t_color	tmp)
 {
 	t_color	final_color;
 	double	max;
@@ -137,7 +137,7 @@ t_color	ft_normalize_color(t_color	tmp)
 t_color	get_color_on_ray(t_world world, t_ray ray)
 {
 	t_w_intersections		w_intersections;
-	t_pcomp_tool			pcomp_tool;
+	t_ray_pcomp_tool			pcomp_tool;
 	t_color					tmp_color;
 	t_color					final_color;
 
@@ -159,5 +159,5 @@ t_color	get_color_on_ray(t_world world, t_ray ray)
 		else
 			return (create_color(0, 0, 0));
 	}
-	return (ft_normalize_color(tmp_color));
+	return (normalize_color(tmp_color));
 }

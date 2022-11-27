@@ -6,13 +6,13 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:50:28 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 18:13:14 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 00:12:15 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_tuple	ft_normalize_tuple(t_tuple a)
+t_tuple	normalize_tuple(t_tuple a)
 {
 	double	len;
 	t_tuple	new_tuple;
@@ -25,12 +25,12 @@ t_tuple	ft_normalize_tuple(t_tuple a)
 	return (new_tuple);
 }
 
-double	ft_tuple_scalarproduct(t_tuple a, t_tuple b)
+double	dot_product(t_tuple a, t_tuple b)
 {
 	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
 }
 
-t_tuple	ft_multiply_tuples(t_tuple a, t_tuple b)
+t_tuple	cross_product(t_tuple a, t_tuple b)
 {
 	t_tuple	new_tuple;
 
@@ -41,7 +41,7 @@ t_tuple	ft_multiply_tuples(t_tuple a, t_tuple b)
 	return (new_tuple);
 }
 
-t_tuple	ft_multiply_tuple_by_matrix(t_tuple tuple, t_matrix4 m)
+t_tuple	multiply_tuple_by_matrix(t_tuple tuple, t_matrix4 m)
 {
 	t_tuple	new_tuple;
 
@@ -56,7 +56,7 @@ t_tuple	ft_multiply_tuple_by_matrix(t_tuple tuple, t_matrix4 m)
 	return (new_tuple);
 }
 
-t_tuple	ft_multiply_matrix_by_tuple(t_matrix4 m, t_tuple tuple)
+t_tuple	multiply_matrix_by_tuple(t_matrix4 m, t_tuple tuple)
 {
 	t_tuple	new_tuple;
 
@@ -71,7 +71,7 @@ t_tuple	ft_multiply_matrix_by_tuple(t_matrix4 m, t_tuple tuple)
 	return (new_tuple);
 }
 
-t_tuple	ft_multiply_tuple_by_double(t_tuple tuple, double c)
+t_tuple	multiply_tuple_by_double(t_tuple tuple, double c)
 {
 	t_tuple	new_tuple;
 

@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 14:21:18 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 16:42:56 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:00:36 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_w_intersections	compute_world_intersections(t_world world, t_ray ray);
 t_hit	find_w_hit(t_w_intersections w_intersections);
 
 /* get_lighted_color.c */
-t_color	get_lighted_color(t_world world, t_point_light *light, t_pcomp_tool pcomp);
+t_color	get_lighted_color(t_world world, t_point_light *light, t_ray_pcomp_tool pcomp);
 // bool	is_in_shadow(t_world world, t_tuple point);
 
 /* ray.c----------------------------------------------------------------------*/

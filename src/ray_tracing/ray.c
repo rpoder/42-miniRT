@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:27:59 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/24 15:19:24 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 23:16:24 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_tuple	compute_new_point_on_normalized_ray(t_ray ray, double t)
 	t_tuple	new_tuple;
 	t_tuple	tmp;
 
-	tmp = ft_multiply_tuple_by_double(ray.direction, t);
+	tmp = multiply_tuple_by_double(ray.direction, t);
 	new_tuple = ft_add_tuples(ray.origin, tmp);
-	new_tuple = ft_normalize_tuple(new_tuple);
+	new_tuple = normalize_tuple(new_tuple);
 	return (new_tuple);
 }
 
@@ -37,7 +37,7 @@ t_tuple	compute_new_point_on_ray(t_ray ray, double t)
 	t_tuple	new_tuple;
 	t_tuple	tmp;
 
-	tmp = ft_multiply_tuple_by_double(ray.direction, t);
+	tmp = multiply_tuple_by_double(ray.direction, t);
 	new_tuple = ft_add_tuples(ray.origin, tmp);
 	return (new_tuple);
 }
@@ -46,7 +46,7 @@ t_ray	transform_ray_by_matrix(t_ray ray, t_matrix4 m)
 {
 	t_ray	new_ray;
 
-	new_ray.origin = ft_multiply_matrix_by_tuple(m, ray.origin);
-	new_ray.direction = ft_multiply_matrix_by_tuple(m, ray.direction);
+	new_ray.origin = multiply_matrix_by_tuple(m, ray.origin);
+	new_ray.direction = multiply_matrix_by_tuple(m, ray.direction);
 	return (new_ray);
 }
