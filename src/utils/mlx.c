@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:01:33 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/09 17:33:39 by ronanpoder       ###   ########.fr       */
+/*   Updated: 2022/11/27 17:39:14 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_mlx_data	*start_mlx(void)
 	if (!mlx_data)
 		return (NULL);
 	mlx_data->mlx = mlx_init();
- 	mlx_data->win = mlx_new_window(mlx_data->mlx, CANVAS_X, CANVAS_Y, "Hello Bouboule!");
+ 	mlx_data->win = mlx_new_window(mlx_data->mlx, CANVAS_X, CANVAS_Y, "Hello Zobi !");
 	mlx_hook(mlx_data->win, 2, 1 << 0, handle_key_event, NULL);
 	mlx_data->image.img = mlx_new_image(mlx_data->mlx, CANVAS_X, CANVAS_Y);
 	mlx_data->image.addr = mlx_get_data_addr(mlx_data->image.img,

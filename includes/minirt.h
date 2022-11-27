@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/21 19:50:27 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/27 18:37:13 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # include "parsing.h"
 
 /* defines */
-# define CANVAS_X 				680
-# define CANVAS_Y				300
+# define CANVAS_X 				640
+# define CANVAS_Y				320
 
 # define EPSILON				0.00001
 # define ACNE_PRECISION			0.0001

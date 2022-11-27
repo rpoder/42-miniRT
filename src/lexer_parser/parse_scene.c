@@ -12,7 +12,29 @@
 
 #include "minirt.h"
 
+int	parse_camera(t_data *data, char *line, t_parsing_tool *tool)
+{
+	t_camera_values_tool	values;
+	t_camera				*camera;
 
+	tool->i = 1;
+	values.origin = get_coordinates(line, tool);
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	values.orientation_vector = get_orientation_vector(line, tool);
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	values.fov = (get_one_parsing_value(line, tool) * M_PI) / 180;
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	camera = create_camera(data, CANVAS_X, CANVAS_Y, values);
+	if (!camera)
+	{
+		tool->error = MALLOC_ERR;
+		return (tool->error);
+	}
+	return (0);
+}
 
 int	parse_scene(t_data *data, t_list *lst)
 {
@@ -34,6 +56,10 @@ int	parse_scene(t_data *data, t_list *lst)
 			ret = parse_cylinder(data, (char *)lst->content, tool);
 		else if (((char *)lst->content)[0] == 'L')
 			ret = parse_light(data, (char *)lst->content, tool);
+		else if (((char *)lst->content)[0] == 'A')
+			ret = parse_ambient_light(data, (char *)lst->content, tool);
+		else if (((char *)lst->content)[0] == 'C')
+			ret = parse_camera(data, (char *)lst->content, tool);
 		else
 			printf("No object match.\n");
 		if (ret != NO_ERR)

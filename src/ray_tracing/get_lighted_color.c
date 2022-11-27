@@ -6,28 +6,28 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:09:32 by margot            #+#    #+#             */
-/*   Updated: 2022/11/10 11:51:26 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 19:52:25 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	is_in_shadow(t_world world, t_tuple point)
+static bool	is_in_shadow(t_world world, t_tuple point, t_point_light *light)
 {
 	t_tuple					v;
 	double					distance;
 	t_tuple					direction;
 	t_ray					ray;
-	t_w_intersections	w_intersections;
-	t_hit				hit;
+	t_w_intersections		w_intersections;
+	t_hit					hit;
 
-	v = ft_sub_tuples(((t_point_light *)world.point_lights->content)->position, point);
+	v = ft_sub_tuples(light->position, point);
 	distance = ft_tuple_len(v);
 	ray.direction = ft_normalize_tuple(v);
 	ray.origin = point;
 	w_intersections = compute_world_intersections(world, ray);
 	hit = find_w_hit(w_intersections);
-	if (hit.does_hit == true && hit.i < distance)
+	if (hit.does_hit == true && hit.i + EPSILON < distance)
 		return (true);
 	return (false);
 }
@@ -40,7 +40,7 @@ static t_color	get_final_specular_color(t_pcomp_tool pcomp, t_point_light *light
 	double	reflect_dot_eye;
 	double	factor;
 
-	lightv = ft_normalize_tuple(ft_sub_tuples(light->position, pcomp.i));
+	lightv = ft_normalize_tuple(ft_sub_tuples(light->position, pcomp.over_i));
 	reflectv = ft_reflect_in(ft_neg_tuple(lightv), pcomp.normalv);
 	reflect_dot_eye = ft_tuple_scalarproduct(reflectv, pcomp.eyev);
 	if (reflect_dot_eye <= 0)
@@ -74,39 +74,28 @@ static double	compute_light_dot_normal(t_pcomp_tool pcomp, t_point_light *light)
 	return (light_dot_normal);
 }
 
-static t_color	get_final_ambient_color(t_material material, t_point_light *light)
+t_color	get_lighted_color(t_world world, t_point_light *light, t_pcomp_tool pcomp)
 {
-	t_color	effective_color;
-	t_color	ambient_color;
-
-	effective_color = ft_multiply_colors(material.color, light->intensity);
-	ambient_color = ft_scale_color(effective_color, material.ambient);
-	return (ambient_color);
-}
-
-t_color	get_lighted_color(t_world world, t_pcomp_tool pcomp)
-{
-	t_point_light	*light_tmp;
 	double			light_dot_normal;
 	t_color			ambient_color;
 	t_color			diffuse_color;
 	t_color			specular_color;
 
-	light_tmp = (t_point_light *)world.point_lights->content;
-	ambient_color = get_final_ambient_color(pcomp.object->material, light_tmp);
-	light_dot_normal = compute_light_dot_normal(pcomp, light_tmp);
-	pcomp.over_i = ft_add_tuples(pcomp.i, ft_scale_tuple(pcomp.normalv, ACNE_PRECISION));
+	ambient_color = ft_multiply_colors(pcomp.object->material.color, world.ambient_light);
+	light_dot_normal = compute_light_dot_normal(pcomp, light);
+	pcomp.over_i = ft_add_tuples(pcomp.i, ft_scale_tuple(pcomp.normalv, ACNE_PRECISION ));
 	if (pcomp.object->material.texture_type == PATTERN_TEXTURE_TYPE)
 		pcomp.object->material.color = checker_at_object(pcomp.object->material.pattern, *pcomp.object, pcomp.over_i);
-	if (light_dot_normal < 0 || is_in_shadow(world, pcomp.over_i))
+	if (light_dot_normal < 0 || is_in_shadow(world, pcomp.over_i, light))
+	// if (light_dot_normal < 0)
 	{
 		diffuse_color = create_color(0, 0, 0);
 		specular_color = create_color(0, 0, 0);
 	}
 	else
 	{
-		diffuse_color = get_final_diffuse_color(pcomp.object->material, light_dot_normal, light_tmp);
-		specular_color = get_final_specular_color(pcomp, light_tmp);
+		diffuse_color = get_final_diffuse_color(pcomp.object->material, light_dot_normal, light);
+		specular_color = get_final_specular_color(pcomp, light);
 	}
 	return (ft_add_colors(ft_add_colors(ambient_color, diffuse_color), specular_color));
 }

@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 12:14:34 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/07 11:56:18 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 19:02:35 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_matrix4 compute_view_transform_m(t_tuple from, t_tuple to, t_tuple up)
 	forwardv = ft_normalize_tuple(ft_sub_tuples(to, from));
 	leftv = ft_multiply_tuples(forwardv, ft_normalize_tuple(up));
 	true_upv = ft_multiply_tuples(leftv, forwardv);
-
 	view_transform_m = compute_orientation_matrix(leftv, true_upv, forwardv, from);
 	return(view_transform_m);
 }

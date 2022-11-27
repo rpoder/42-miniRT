@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 13:47:10 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 13:47:26 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 18:53:32 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_matrix4	compute_rotation_y_matrix(double radian)
 	new_m.matrix[0][2] = sin(radian);
 	new_m.matrix[2][0] = -sin(radian);
 	new_m.matrix[2][2] = cos(radian);
-	ft_print_matrix4(new_m);
+	printmatrix4(new_m);
 	return (new_m);
 }
 

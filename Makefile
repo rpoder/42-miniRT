@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/26 23:03:56 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/27 17:43:36 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ SRCS				:=	main.c \
 						tools/init_tools.c \
 						tools/cmp_tools.c \
 						tools/print.c \
-						scene/lights.c \
+						scene/point_lights.c \
 						scene/world.c \
 						scene/camera.c \
 						utils/init.c \
@@ -115,7 +115,8 @@ endif
 fclean				:	clean
 	$(RM) -f $(PROGNAME)
 
-re					:	fclean $(NAME)
+re					:	fclean
+	make $(NAME)
 
 
 .PHONY				:	all clean fclean re

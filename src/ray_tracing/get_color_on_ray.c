@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:05:31 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/26 22:11:15 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 18:38:10 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,34 @@ t_w_intersections	compute_world_intersections(t_world world, t_ray ray)
 	return (w_intersections);
 }
 
+t_color	ft_normalize_color(t_color	tmp)
+{
+	t_color	final_color;
+	double	max;
+	double	coef;
+
+	if (tmp.red >= tmp.blue && tmp.red >= tmp.green)
+		max = tmp.red;
+	if (tmp.blue >= tmp.red && tmp.red >= tmp.green)
+		max = tmp.blue;
+	if (tmp.green >= tmp.blue && tmp.red >= tmp.red)
+		max = tmp.green;
+	if (max > 1)
+	{
+		coef = 1 / max;
+		final_color.red = tmp.red * coef;
+		final_color.green = tmp.green * coef;
+		final_color.blue = tmp.blue * coef;
+		return (final_color);
+	}
+	return (tmp);
+}
+
 t_color	get_color_on_ray(t_world world, t_ray ray)
 {
 	t_w_intersections		w_intersections;
 	t_pcomp_tool			pcomp_tool;
+	t_color					tmp_color;
 	t_color					final_color;
 
 	w_intersections = compute_world_intersections(world, ray);
@@ -124,9 +148,16 @@ t_color	get_color_on_ray(t_world world, t_ray ray)
 	{
 		pcomp_tool = get_ray_computation_tool(w_intersections, ray);
 		if (pcomp_tool.object)
-			final_color = get_lighted_color(world, pcomp_tool);
+		{
+			tmp_color = create_color(0, 0, 0);
+			while (world.point_lights)
+			{
+				tmp_color = ft_add_colors(tmp_color, get_lighted_color(world, (t_point_light *)world.point_lights->content, pcomp_tool));
+				world.point_lights = world.point_lights->next;
+			}
+		}
 		else
 			return (create_color(0, 0, 0));
 	}
-	return (final_color);
+	return (ft_normalize_color(tmp_color));
 }

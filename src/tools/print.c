@@ -6,23 +6,23 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:46:08 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/26 23:14:31 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 18:53:32 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	ft_print_tuple(char *tuple_name, t_tuple tuple)
+void	print_tuple(char *tuple_name, t_tuple tuple)
 {
 	printf("%s(%f, %f, %f, %f)\n", tuple_name, tuple.x, tuple.y, tuple.z, tuple.w);
 }
 
-void	ft_print_color(char *color_name, t_color color)
+void	printcolor(char *color_name, t_color color)
 {
 	printf("%s(%f, %f, %f)\n", color_name, color.red, color.green, color.blue);
 }
 
-void	ft_print_matrix4(t_matrix4 m4)
+void	printmatrix4(t_matrix4 m4)
 {
 	int			i;
 	int			j;
@@ -45,7 +45,7 @@ void	ft_print_matrix4(t_matrix4 m4)
 	printf("\n");
 }
 
-void	ft_print_matrix3(t_matrix3 m3)
+void	printmatrix3(t_matrix3 m3)
 {
 	int			i;
 	int			j;
@@ -68,7 +68,7 @@ void	ft_print_matrix3(t_matrix3 m3)
 	printf("\n");
 }
 
-void	ft_print_matrix2(t_matrix2 m2)
+void	printmatrix2(t_matrix2 m2)
 {
 	int			i;
 	int			j;
@@ -90,10 +90,10 @@ void	ft_print_matrix2(t_matrix2 m2)
 	}
 }
 
-void	ft_print_ray(t_ray ray)
+void	printray(t_ray ray)
 {
-	ft_print_tuple("ray.origin", ray.origin);
-	ft_print_tuple("ray.direction", ray.direction);
+	print_tuple("ray.origin", ray.origin);
+	print_tuple("ray.direction", ray.direction);
 }
 
 void	print_intersection(t_intersections intersections)
@@ -138,7 +138,7 @@ void	print_world(t_data *data)
 	printf("FOV:	%f\n", world->camera->fov);
 	printf("hsize:	%d\n", world->camera->hsize);
 	printf("vsize:	%d\n", world->camera->vsize);
-	ft_print_matrix4(world->camera->transform_m);
+	printmatrix4(world->camera->transform_m);
 	printf("pixel_size:	%f\n", world->camera->pixel_size);
 	printf("half_width:	%f\n", world->camera->half_width);
 	printf("half_height:	%f\n", world->camera->half_height);
@@ -148,16 +148,17 @@ void	print_world(t_data *data)
 	{
 		printf("-------------OBJETS\n");
 		printf("Object type:	%d\n", ((t_object *)tmp_objects->content)->object_type);
-		ft_print_color("Object color:	", ((t_object *)tmp_objects->content)->material.color);
+		printcolor("Object color:	", ((t_object *)tmp_objects->content)->material.color);
 		tmp_objects = tmp_objects->next;
 	}
 	tmp_lights = world->point_lights;
 	while (tmp_lights)
 	{
 		printf("-------------LIGHTS\n");
-		ft_print_tuple("Light position:	", ((t_point_light *)tmp_lights->content)->position);
-		ft_print_color("Light intensity:	", ((t_point_light *)tmp_lights->content)->intensity);
+		print_tuple("Light position:	", ((t_point_light *)tmp_lights->content)->position);
+		printcolor("Light intensity:	", ((t_point_light *)tmp_lights->content)->intensity);
 		tmp_lights = tmp_lights->next;
 	}
+	printcolor("Ambient Light", data->world->ambient_light);
 	printf("\n\n");
 }

@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/26 23:16:03 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 19:40:42 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,30 +50,30 @@ int	main(int argc, char **argv)
 	if (ret != NO_ERR)
 		return (ret);
 	///////////////////////////////////////////////////
-	create_camera(data, CANVAS_X, CANVAS_Y, M_PI/2);
+	/* create_camera(data, CANVAS_X, CANVAS_Y, M_PI/2);
 
 	parsing_origin = create_tuple(0, 0, -10, 1);
 	parsing_orientation = create_tuple(0, 0, 1, 0);
 
 	to = ft_add_tuples(parsing_origin, parsing_orientation);
-	// ft_print_tuple("to", to);
+	// print_tuple("to", to);
 
 	tmp = ft_multiply_tuples(create_tuple(0, 1, 0, 0), to);
 	if (ft_tuple_scalarproduct(create_tuple(0, 0, 1, 0), ft_normalize_tuple(parsing_orientation)) >= 0.0)
 		tmp = ft_neg_tuple(tmp);
-	// ft_print_tuple("tmp", tmp);
+	// print_tuple("tmp", tmp);
 
 	up = ft_normalize_tuple(ft_multiply_tuples(parsing_orientation, tmp));
-	// ft_print_tuple("up", up);
+	// print_tuple("up", up);
 
 	// printf("dot product %f\n", ft_tuple_scalarproduct(create_tuple(0, 1, 0, 0), ft_normalize_tuple(parsing_orientation)));
-	data->world->camera->transform_m = compute_view_transform_m(parsing_origin, to, up);
+	data->world->camera->transform_m = compute_view_transform_m(parsing_origin, to, up); */
 
 	// light = create_point_light(data, create_color(0, 0, 0), create_tuple(10, 5, -10, 1));
 
 	print_world(data);
 	render(data, data->world->camera, data->world);
-
+	// my_mlx_pixel_put(&data->mlx_data->image, 433, 195, 0xffffffff);
 	mlx_put_image_to_window(data->mlx_data->mlx, data->mlx_data->win,
 		data->mlx_data->image.img, 0, 0);
 	printf("IMAGE DISPLAYED ------------------------------------------------------------------------------------\n");

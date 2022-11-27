@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:00:07 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/26 23:13:48 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 19:26:47 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static t_matrix4	translate_and_scale_sphere(t_tuple origin, double radius)
 	t_matrix4	t2;
 	t_matrix4	transform_matrix;
 
-	ft_print_tuple("sphere origin", origin);
 	t1 = ft_multiply_matrices(get_identity_matrix(),
 		compute_translation_matrix(origin.x, origin.y, origin.z));
 	t2 = compute_scaling_matrix(radius, radius, radius);

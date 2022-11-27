@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_intersections.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:25:05 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/25 19:25:21 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/27 17:50:58 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ t_intersections	get_cylinder_intersections(t_object *cylinder, t_ray ray)
 
 	/* ray is parallel to y axis */
 	if (values.a <= EPSILON)
+	{
 		return (get_cylinder_caps_intersections(intersections.object, ray, intersections));
+	}
 
 	values.b = 2.0 * ray.origin.x * ray.direction.x + 2.0 * ray.origin.z * ray.direction.z;
 	values.c = powf(ray.origin.x, 2) +  powf(ray.origin.z, 2) - 1.0;
@@ -73,7 +75,10 @@ t_intersections	get_cylinder_intersections(t_object *cylinder, t_ray ray)
 
 	/* ray misses infinite cylinder */
 	if (discriminant < 0)
+	{
+
 		return (get_cylinder_caps_intersections(intersections.object, ray, intersections));
+	}
 
 	/* calcul des intersections */
 	intersections.nb_of_intersections = 2;

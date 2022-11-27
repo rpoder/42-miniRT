@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:54:59 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/26 22:15:11 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 19:26:41 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ static t_matrix4	translate_and_scale_cylinder(t_tuple origin, double radius)
 	t_matrix4	t2;
 	t_matrix4	transform_matrix;
 
-	t1 = get_identity_matrix();
-	if (origin.x != 0.0 || origin.y != 0.0 || origin.x != 0.0)
-		t1 = compute_translation_matrix(origin.x, origin.y, origin.z);
+	t1 = ft_multiply_matrices(get_identity_matrix(),
+		compute_translation_matrix(origin.x, origin.y, origin.z));
 	t2 = compute_scaling_matrix(radius, radius, radius);
 	transform_matrix = ft_multiply_matrices(t1, t2);
 	return (transform_matrix);

@@ -6,9 +6,18 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/26 22:07:36 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/27 14:39:54 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+typedef struct s_camera_values_tool
+{
+	t_tuple	origin;
+	t_tuple	orientation_vector;
+	double	radius;
+	double	fov;
+
+}	t_camera_values_tool;
 
 typedef struct s_plane_values_tool
 {
