@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/27 23:42:19 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/28 11:55:01 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS				:=	main.c \
 						scene/camera.c \
 						utils/init.c \
 						utils/mlx.c \
+						utils/frees.c \
 						texture/pattern.c \
 						lexer_parser/parse_scene.c \
 						lexer_parser/lexer_parser.c \

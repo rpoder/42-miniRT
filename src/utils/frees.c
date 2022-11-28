@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 15:10:58 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/28 12:45:23 by rpoder           ###   ########.fr       */
+/*   Created: 2022/11/28 11:49:24 by rpoder            #+#    #+#             */
+/*   Updated: 2022/11/28 12:25:20 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-/* mlx.c--------------------------------------------------------------------- */
-void		my_mlx_pixel_put(t_image *image, int x, int y, long color);
-t_mlx_data	*start_mlx(t_data *data);
-
-/* utils.c------------------------------------------------------------------- */
-t_data		*init_data(void);
-
-/* frees.c------------------------------------------------------------- */
-void		global_free(t_data *data, int error);
+void	global_free(t_data *data, int error)
+{
+	if (data)
+	{
+		if (data->mlx_data)
+		{
+			mlx_destroy_image(data->mlx_data->mlx, data->mlx_data->image.img);
+			mlx_destroy_window(data->mlx_data->mlx, data->mlx_data->win);
+			mlx_destroy_display(data->mlx_data->mlx);
+			free(data->mlx_data);
+		}
+		if (data->world)
+		{
+			free(data->world);
+		}
+		free(data);
+	}
+	exit (error);
+}
