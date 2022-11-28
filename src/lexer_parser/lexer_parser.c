@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:07:27 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/26 20:20:44 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 15:27:04 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static t_list	*lexer(int fd)
 	t_list	*node;
 	char	*line;
 
-	line = get_next_line(fd); ////////////////
+	line = get_next_line(fd);
 	alst = NULL;
 	while (line)
 	{
@@ -39,14 +39,14 @@ static t_list	*lexer(int fd)
 			node = ft_lstnew(line);
 			if (!node)
 			{
+				free(line);
 				ft_lstclear(&alst, free);
 				return (NULL);
 			}
 			ft_lstadd_back(&alst, node);
 		}
-		line = get_next_line(fd); /////////////
+		line = get_next_line(fd);
 	}
-	close (fd);
 	return (alst);
 }
 
@@ -72,20 +72,21 @@ static int	open_file(char *file)
 	return (fd);
 }
 
-int	lexer_parser(t_data *data, char *file)
+void	lexer_parser(t_data *data, char *file)
 {
-	int				fd;
-	t_list			*parsing_lst;
-	int				ret;
+	int		fd;
+	t_list	*parsing_lst;
+	int		ret;
 
 	fd = open_file(file);
 	if (fd == -1)
-		return (PARSING_ERR);
+		global_free(data, PARSING_ERR);
 	parsing_lst = lexer(fd);
+	close(fd);
 	if (!parsing_lst)
-		return (MALLOC_ERR);
-
+		global_free(data, MALLOC_ERR);
 	ret = parse_scene(data, parsing_lst);
 	ft_lstclear(&parsing_lst, free);
-	return (ret);
+	if (ret != NO_ERR)
+		global_free(data, ret);
 }

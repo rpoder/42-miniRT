@@ -41,6 +41,7 @@ int	parse_scene(t_data *data, t_list *lst)
 	int				ret;
 	t_parsing_tool	*tool;
 
+	ret = NO_ERR;
 	tool = init_parsing_tool();
 	if (!tool)
 		return (MALLOC_ERR);
@@ -62,8 +63,16 @@ int	parse_scene(t_data *data, t_list *lst)
 			ret = parse_ambient_light(data, (char *)lst->content, tool);
 		else if (((char *)lst->content)[0] == 'C')
 			ret = parse_camera(data, (char *)lst->content, tool);
+		else if (((char *)lst->content)[0] == '#')
+		{
+			ft_putstr_fd("ERR : No object match on line :\n", 2);
+			ft_putstr_fd((char *)lst->content, 2);
+		}
 		else
-			printf("No object match.\n");
+		{
+			free(tool);
+			return (PARSING_ERR);
+		}
 		if (ret != NO_ERR)
 			break ;
 		lst = lst->next;

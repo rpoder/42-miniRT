@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/28 00:45:15 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 13:32:26 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # include "tools.h"
 # include "tuples.h"
 # include "texture.h"
-# include "parsing.h"
+# include "lexer_parser.h"
 
 /* defines */
 # define CANVAS_X 				840
@@ -49,6 +49,8 @@
 # define NO_ERR					0
 # define MALLOC_ERR 			1
 # define PARSING_ERR			2
+# define MLX_ERR				3
+
 
 # define SPHERE_TYPE			10
 # define CUBE_TYPE				11

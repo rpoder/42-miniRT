@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 23:01:53 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 18:53:32 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 15:37:38 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,9 @@ int	parse_light(t_data *data, char *line, t_parsing_tool *tool)
 	color = get_color(line, tool);
 	if (tool->error != NO_ERR)
 		return (tool->error);
-	printcolor("color", color);
 	color.red = color.red * ratio;
 	color.green = color.green * ratio;
 	color.blue =color.blue * ratio;
-	print_tuple("origin", origin);
-	printcolor("color", color);
 	light = create_point_light(data, color, origin);
 	if (!light)
 		return (MALLOC_ERR);
