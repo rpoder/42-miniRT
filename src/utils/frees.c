@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 11:49:24 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/28 15:22:42 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 16:06:46 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	global_free(t_data *data, int error)
 		{
 			if (data->world->objects)
 				ft_lstclear(&data->world->objects, free);
+			if (data->world->point_lights)
+				ft_lstclear(&data->world->point_lights, free);
+			if (data->world->camera)
+				free(data->world->camera);
 			free(data->world);
 		}
 		free(data);

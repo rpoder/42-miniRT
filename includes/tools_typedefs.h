@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 23:30:18 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 18:04:38 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@ typedef struct s_parsing_tool
 	int i;
 	int error;
 }	t_parsing_tool;
+
+typedef struct	check_parsing_tool
+{
+	int		camera;
+	int		ambient;
+	long	lights;
+	long	objects;
+}	t_check_parsing_tool;
 
 typedef struct s_counter3
 {

@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/28 11:55:01 by rpoder           ###   ########.fr        #
+#    Updated: 2022/11/28 18:12:59 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,8 @@ SRCS				:=	main.c \
 						lexer_parser/lexer_parser.c \
 						lexer_parser/parse_objects.c \
 						lexer_parser/parse_lights.c \
+						lexer_parser/parse_camera.c \
+						lexer_parser/parsing_checker.c \
 						lexer_parser/parsing_tool.c \
 						lexer_parser/value_getters.c \
 

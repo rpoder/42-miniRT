@@ -12,67 +12,106 @@
 
 #include "minirt.h"
 
-int	parse_camera(t_data *data, char *line, t_parsing_tool *tool)
+static int	parse_if_camera(t_data *data, char *line, t_parsing_tool *tool)
 {
-	t_camera_values_tool	values;
-	t_camera				*camera;
+	int	ret;
 
-	tool->i = 1;
-	values.origin = get_coordinates(line, tool);
-	if (tool->error != NO_ERR)
-		return (tool->error);
-	values.orientation_vector = get_orientation_vector(line, tool);
-	if (tool->error != NO_ERR)
-		return (tool->error);
-	values.fov = (get_one_parsing_value(line, tool) * M_PI) / 180;
-	if (tool->error != NO_ERR)
-		return (tool->error);
-	camera = create_camera(data, CANVAS_X, CANVAS_Y, values);
-	if (!camera)
+	ret = NO_ERR;
+	if (line[0] == 'C' && ft_is_space(line[1]))
+		ret = parse_camera(data, line, tool);
+	else
 	{
-		tool->error = MALLOC_ERR;
-		return (tool->error);
+		ft_putstr_fd("ERR : Invalid line in your scene.rt : ", 2);
+		ft_putstr_fd(line, 2);
+		return (PARSING_ERR);
 	}
-	return (0);
+	return (ret);
+}
+
+static int	parse_if_light(t_data *data, char *line, t_parsing_tool *tool)
+{
+	int	ret;
+
+	ret = NO_ERR;
+	if (line[0] == 'L' && ft_is_space(line[1]))
+		ret = parse_light(data, line, tool);
+	else if (line[0] == 'A' && ft_is_space(line[1]))
+		ret = parse_ambient_light(data, line, tool);
+	else
+	{
+		ft_putstr_fd("ERR : Invalid line in your scene.rt : ", 2);
+		ft_putstr_fd(line, 2);
+		return (PARSING_ERR);
+	}
+	return (ret);
+}
+
+static int	parse_if_object(t_data *data, char *line, t_parsing_tool *tool)
+{
+	int	ret;
+
+	ret = NO_ERR;
+	if (line[0] == 'c' && line[1] == 'u' && ft_is_space(line[2]))
+		ret = parse_cube(data, line, tool);
+	else if (line[0] == 's' && line[1] == 'p' && ft_is_space(line[2]))
+		ret = parse_sphere(data, line, tool);
+ 	else if (line[0] == 'p' && line[1] == 'l' && ft_is_space(line[2]))
+		ret = parse_plane(data, line, tool);
+	else if (line[0] == 'c' && line[1] == 'y' && ft_is_space(line[2]))
+		ret = parse_cylinder(data, line, tool);
+	else if (line[0] == 't' && line[1] == 'r' && ft_is_space(line[2]))
+		ret = parse_triangle(data, line, tool);
+	else
+	{
+		ft_putstr_fd("ERR : Invalid line in your scene.rt : ", 2);
+		ft_putstr_fd(line, 2);
+		return (PARSING_ERR);
+	}
+	return (ret);
+}
+
+static int	parse_line(t_data *data, char *line, t_parsing_tool *tool)
+{
+	int	ret;
+
+	ret = NO_ERR;
+	if (line[0] == 'c' || line[0] == 's' || line[0] == 'p' || line[0] == 't')
+		ret = parse_if_object(data, line, tool);
+	else if (line[0] == 'A' || line[0] == 'L')
+		ret = parse_if_light(data, line, tool);
+	else if (line[0] == 'C')
+		ret = parse_if_camera(data, line, tool);
+	else if (line[0] == '#')
+	{
+		ft_putstr_fd("WARING : Comment on your scene.rt : ", 2);
+		ft_putstr_fd(line, 2);
+	}
+	else
+	{
+		ft_putstr_fd("ERR : Invalid line in your scene.rt : ", 2);
+		ft_putstr_fd(line, 2);
+		ret = PARSING_ERR;
+	}
+	return (ret);
 }
 
 int	parse_scene(t_data *data, t_list *lst)
 {
 	int				ret;
 	t_parsing_tool	*tool;
+	char			*line;
 
 	ret = NO_ERR;
+	ret = check_scene_is_complete(lst);
+	if (ret != NO_ERR)
+		return (ret);
 	tool = init_parsing_tool();
 	if (!tool)
 		return (MALLOC_ERR);
 	while (lst)
 	{
-		if (((char *)lst->content)[0] == 'c' && ((char *)lst->content)[1] == 'u')
-			ret = parse_cube(data, (char *)lst->content, tool);
-		else if (((char *)lst->content)[0] == 's' && ((char *)lst->content)[1] == 'p')
-			ret = parse_sphere(data, (char *)lst->content, tool);
- 		else if (((char *)lst->content)[0] == 'p' && ((char *)lst->content)[1] == 'l')
-			ret = parse_plane(data, (char *)lst->content, tool);
-		else if (((char *)lst->content)[0] == 'c' && ((char *)lst->content)[1] == 'y')
-			ret = parse_cylinder(data, (char *)lst->content, tool);
-		else if (((char *)lst->content)[0] == 't' && ((char *)lst->content)[1] == 'r')
-			ret = parse_triangle(data, (char *)lst->content, tool);
-		else if (((char *)lst->content)[0] == 'L')
-			ret = parse_light(data, (char *)lst->content, tool);
-		else if (((char *)lst->content)[0] == 'A')
-			ret = parse_ambient_light(data, (char *)lst->content, tool);
-		else if (((char *)lst->content)[0] == 'C')
-			ret = parse_camera(data, (char *)lst->content, tool);
-		else if (((char *)lst->content)[0] == '#')
-		{
-			ft_putstr_fd("ERR : No object match on line :\n", 2);
-			ft_putstr_fd((char *)lst->content, 2);
-		}
-		else
-		{
-			free(tool);
-			return (PARSING_ERR);
-		}
+		line = (char *)lst->content;
+		ret = parse_line(data, line, tool);
 		if (ret != NO_ERR)
 			break ;
 		lst = lst->next;

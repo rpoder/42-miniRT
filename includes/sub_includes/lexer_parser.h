@@ -27,10 +27,15 @@ int				parse_cube(t_data *data, char *line, t_parsing_tool *tool);
 int				parse_light(t_data *data, char *line, t_parsing_tool *tool);
 int				parse_ambient_light(t_data *data, char *line, t_parsing_tool *tool);
 
+/* parse_camera */
+int				parse_camera(t_data *data, char *line, t_parsing_tool *tool);
 
 /* parsing_tool.c------------------------------------------------------------ */
 t_parsing_tool	*init_parsing_tool();
 void			set_parsing_tool(t_parsing_tool *tool, int i, int ret);
+
+/* parsing_checker----------------------------------------------------------- */
+int				check_scene_is_complete(t_list *lst);
 
 /* value_getters------------------------------------------------------------- */
 t_tuple 		get_coordinates(char *line, t_parsing_tool *tool);

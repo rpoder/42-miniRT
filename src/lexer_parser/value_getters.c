@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:32:37 by margot            #+#    #+#             */
-/*   Updated: 2022/11/27 22:56:31 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/28 18:49:01 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ t_tuple get_orientation_vector(char *line, t_parsing_tool *tool)
 			tool->error = MALLOC_ERR;
 			return (create_tuple(0, 0, 0, 0));
 		}
+		if (str_value[0] == '\0')
+		{
+			printf("ERR : invalid line in your scene.rt : %s", line);
+			free(str_value);
+			tool->error = PARSING_ERR;
+			return (create_tuple(0, 0, 0, 0));
+		}
 		if (ft_atof_checker(str_value) != 1)
 		{
 			printf("ERR : %s in your scene.rt is not a valid value\n", str_value);
@@ -111,8 +118,6 @@ t_tuple get_coordinates(char *line, t_parsing_tool *tool)
 	double	double_value;
 	double	coordinates[3];
 
-	//////////////////////////////
-	// tool->i = 2;
 	count = 0;
 	while (count < 3)
 	{
@@ -122,6 +127,13 @@ t_tuple get_coordinates(char *line, t_parsing_tool *tool)
 		if (!str_value)
 		{
 			tool->error = MALLOC_ERR;
+			return (create_tuple(0, 0, 0, 0));
+		}
+		if (str_value[0] == '\0')
+		{
+			printf("ERR : invalid line in your scene.rt : %s", line);
+			free(str_value);
+			tool->error = PARSING_ERR;
 			return (create_tuple(0, 0, 0, 0));
 		}
 		if (ft_atof_checker(str_value) != 1)
