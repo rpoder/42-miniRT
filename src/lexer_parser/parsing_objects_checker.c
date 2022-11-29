@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_checker.c                                  :+:      :+:    :+:   */
+/*   parsing_objects_checker.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:33:04 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/29 15:32:05 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/29 22:23:20 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_check_parsing_tool	set_check_parsing_tool(t_check_parsing_tool tool)
+static t_check_p_tool	set_check_p_tool(t_check_p_tool tool)
 {
 	tool.camera = 0;
 	tool.ambient = 0;
@@ -21,18 +21,19 @@ static t_check_parsing_tool	set_check_parsing_tool(t_check_parsing_tool tool)
 	return (tool);
 }
 
-static t_check_parsing_tool count_parsing_objects(t_list *lst, t_check_parsing_tool tool)
+static t_check_p_tool	count_parsing_objects(t_list *lst, t_check_p_tool tool)
 {
 	char	*line;
 
 	while (lst)
 	{
 		line = (char *)lst->content;
-		if (line[0] == 'c' || line[0] == 's' || line[0] == 'p' || line[0] == 't')
+		if (line[0] == 'c' || line[0] == 's' || line[0] == 'p'
+			|| line[0] == 't')
 		{
 			tool.objects++;
 			if (tool.objects > INT_MAX)
-				break;
+				break ;
 		}
 		else if (line[0] == 'A')
 			tool.ambient++;
@@ -40,7 +41,7 @@ static t_check_parsing_tool count_parsing_objects(t_list *lst, t_check_parsing_t
 		{
 			tool.lights++;
 			if (tool.lights > INT_MAX)
-				break;
+				break ;
 		}
 		else if (line[0] == 'C')
 			tool.camera++;
@@ -51,17 +52,17 @@ static t_check_parsing_tool count_parsing_objects(t_list *lst, t_check_parsing_t
 
 int	check_scene_is_complete(t_list *lst)
 {
-	t_check_parsing_tool	tool;
+	t_check_p_tool	tool;
 
-	tool = set_check_parsing_tool(tool);
+	tool = set_check_p_tool(tool);
 	tool = count_parsing_objects(lst, tool);
-	if (tool.camera != 1 || tool.ambient != 1 || tool.lights < 1 || tool.lights > INT_MAX
-		|| tool.objects < 1 || tool.objects > INT_MAX)
-		{
-			ft_putstr_fd("ERR : Your scene.rt must contain one camera, one", 2);
-			ft_putstr_fd(" ambient light, at least one point light and", 2);
-			ft_putstr_fd(" at least one object.\n", 2);
-			return (PARSING_ERR);
-		}
+	if (tool.camera != 1 || tool.ambient != 1 || tool.lights < 1
+		|| tool.lights > INT_MAX || tool.objects < 1 || tool.objects > INT_MAX)
+	{
+		ft_putstr_fd("ERR : Your scene.rt must contain one camera, one", 2);
+		ft_putstr_fd(" ambient light, at least one point light and", 2);
+		ft_putstr_fd(" at least one object.\n", 2);
+		return (PARSING_ERR);
+	}
 	return (NO_ERR);
 }

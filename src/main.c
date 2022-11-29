@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 13:37:48 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/29 19:37:40 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/29 22:17:32 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	main(int argc, char **argv)
 		data->mlx_data->image.img, 0, 0);
 	printf("IMAGE DISPLAYED ------------------------------------------------------------------------------------\n");
 	mlx_loop(data->mlx_data->mlx);
-
+	global_free(data, NO_ERR);
 	return (0);
 }

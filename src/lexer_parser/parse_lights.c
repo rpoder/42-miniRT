@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 23:01:53 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/29 19:36:23 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/29 22:19:39 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	parse_light(t_data *data, char *line, t_parsing_tool *tool)
 	tool->i = 1;
 	if (nb_values_checker(line, 7, tool) != NO_ERR)
 		return (tool->error);
-
 	values.origin = get_coordinates(line, tool);
 	if (tool->error != NO_ERR)
 		return (tool->error);
@@ -53,7 +52,7 @@ int	parse_light(t_data *data, char *line, t_parsing_tool *tool)
 		return (tool->error);
 	values.color.red = values.color.red * values.ratio;
 	values.color.green = values.color.green * values.ratio;
-	values.color.blue =values.color.blue * values.ratio;
+	values.color.blue = values.color.blue * values.ratio;
 	light = create_point_light(data, values.color, values.origin);
 	if (!light)
 		return (MALLOC_ERR);

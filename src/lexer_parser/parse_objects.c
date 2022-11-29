@@ -6,11 +6,37 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:14:58 by margot            #+#    #+#             */
-/*   Updated: 2022/11/29 20:16:19 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/29 22:13:32 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int	parse_cone(t_data *data, char *line, t_parsing_tool *tool)
+{
+	t_sphere_values_tool	values;
+	t_object				*new_sphere;
+
+	tool->i = 2;
+	if (nb_values_checker(line, 11, tool) != NO_ERR)
+		return (tool->error);
+	values.origin = get_coordinates(line, tool);
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	values.radius = get_one_parsing_value(line, tool) / 2;
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	values.color = get_color(line, tool);
+	if (color_checker(values.color, line, tool) != NO_ERR)
+		return (tool->error);
+	new_sphere = create_sphere(data, values);
+	if (!new_sphere)
+	{
+		tool->error = MALLOC_ERR;
+		return (tool->error);
+	}
+	return (NO_ERR);
+}
 
 int	parse_sphere(t_data *data, char *line, t_parsing_tool *tool)
 {

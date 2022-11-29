@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cylinder.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:54:59 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/27 23:16:01 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/29 22:05:24 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ t_object	*create_cylinder(t_data *data, t_cylinder_values_tool values)
 	new_cylinder->is_capped = true;
 	new_cylinder->transform_m = translate_and_scale_cylinder(values.origin, values.radius);
 	new_cylinder->transform_m = orient_cylinder(new_cylinder, values.orientation_vector);
-
-//	new_cylinder->transform_m = compute_parsing_cylinder_transform_m(values.origin, values.radius);
-//	transform_cylinder_orientation(new_cylinder, values.orientation_vector);
 	node = ft_lstnew(new_cylinder);
 	if (!node)
 	{

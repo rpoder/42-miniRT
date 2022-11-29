@@ -21,7 +21,7 @@ static int	parse_if_camera(t_data *data, char *line, t_parsing_tool *tool)
 		ret = parse_camera(data, line, tool);
 	else
 	{
-		ft_putstr_fd("ERR : Invalid line in your scene.rt, : ", 2);
+		ft_putstr_fd("ERR : Invalid object in your scene.rt, : ", 2);
 		ft_putstr_fd(line, 2);
 		return (PARSING_ERR);
 	}
@@ -39,7 +39,7 @@ static int	parse_if_light(t_data *data, char *line, t_parsing_tool *tool)
 		ret = parse_light(data, line, tool);
 	else
 	{
-		ft_putstr_fd("ERR : Invalid line in your scene.rt : ", 2);
+		ft_putstr_fd("ERR : Invalid object in your scene.rt : ", 2);
 		ft_putstr_fd(line, 2);
 		return (PARSING_ERR);
 	}
@@ -55,15 +55,17 @@ static int	parse_if_object(t_data *data, char *line, t_parsing_tool *tool)
 		ret = parse_cube(data, line, tool);
 	else if (line[0] == 's' && line[1] == 'p' && ft_is_space(line[2]))
 		ret = parse_sphere(data, line, tool);
- 	else if (line[0] == 'p' && line[1] == 'l' && ft_is_space(line[2]))
+	else if (line[0] == 'p' && line[1] == 'l' && ft_is_space(line[2]))
 		ret = parse_plane(data, line, tool);
 	else if (line[0] == 'c' && line[1] == 'y' && ft_is_space(line[2]))
 		ret = parse_cylinder(data, line, tool);
 	else if (line[0] == 't' && line[1] == 'r' && ft_is_space(line[2]))
 		ret = parse_triangle(data, line, tool);
+	else if (line[0] == 'c' && line[1] == 'o' && ft_is_space(line[2]))
+		ret = parse_cone(data, line, tool);
 	else
 	{
-		ft_putstr_fd("ERR : Invalid line in your scene.rt : ", 2);
+		ft_putstr_fd("ERR : Invalid object in your scene.rt : ", 2);
 		ft_putstr_fd(line, 2);
 		return (PARSING_ERR);
 	}
@@ -88,7 +90,7 @@ static int	parse_line(t_data *data, char *line, t_parsing_tool *tool)
 	}
 	else
 	{
-		ft_putstr_fd("ERR : Invalid line in your scene.rt : ", 2);
+		ft_putstr_fd("ERR : Invalid object in your scene.rt : ", 2);
 		ft_putstr_fd(line, 2);
 		ret = PARSING_ERR;
 	}
@@ -110,6 +112,7 @@ int	parse_scene(t_data *data, t_list *lst)
 		return (MALLOC_ERR);
 	while (lst)
 	{
+		tool = set_parsing_tool(tool);
 		line = (char *)lst->content;
 		ret = parse_line(data, line, tool);
 		if (ret != NO_ERR)
@@ -119,5 +122,3 @@ int	parse_scene(t_data *data, t_list *lst)
 	free(tool);
 	return (ret);
 }
-
-

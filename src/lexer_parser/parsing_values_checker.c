@@ -72,6 +72,7 @@ int	orientation_vector_checker(t_tuple or_v, char *line, t_parsing_tool *tool)
 {
 	if (tool->error != NO_ERR)
 		return (tool->error);
+	print_tuple("ori vector", or_v);
 	if (or_v.x < -1.0 || or_v.x > 1.0 || or_v.y < -1.0 || or_v.y > 1.0 || or_v.z < -1.0 
 		|| or_v.z > 1.0)
 	{
@@ -91,6 +92,27 @@ int	fov_checker(double fov, char *line, t_parsing_tool *tool)
 		ft_putstr_fd("ERR : Invalid fov value in your scene.rt in line : ", 2);
 		ft_putstr_fd(line, 2);
 		tool->error = PARSING_ERR;
+	}
+	return (tool->error);
+}
+
+void	print_value_error(char *value, char *line, t_parsing_tool *tool)
+{
+	ft_putstr_fd("ERR : Invalid value ", 2);
+	ft_putstr_fd(value, 2);
+	ft_putstr_fd(" in your scene.rt in line : ", 2);
+	ft_putstr_fd(line, 2);
+}
+
+int	str_value_checker(char *str_value, char *line, t_parsing_tool *tool)
+{
+	if (!tool->str_value)
+		tool->error = MALLOC_ERR;
+	if (tool->str_value && tool->str_value[0] == '\0')
+	{
+		print_value_error(str_value, line, tool);
+		tool->error = PARSING_ERR;
+		free(str_value);
 	}
 	return (tool->error);
 }

@@ -6,7 +6,7 @@
 #    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/29 15:57:44 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/11/30 00:07:14 by mpourrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,8 @@ SRCS				:=	main.c \
 						lexer_parser/parsing_values_checker.c \
 						lexer_parser/parsing_tool.c \
 						lexer_parser/value_getters.c \
+						lexer_parser/value_getters_utils.c \
+
 
 
 CC					:=	cc

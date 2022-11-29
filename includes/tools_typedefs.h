@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/29 18:28:00 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/29 23:35:07 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ typedef struct s_plane_values_tool
 
 }	t_plane_values_tool;
 
+typedef struct s_cone_values_tool
+{
+	t_tuple	origin;
+	t_tuple	orientation_vector;
+	double	radius;
+	double	height;
+	t_color	color;
+
+}	t_cone_values_tool;
+
 typedef struct s_sphere_values_tool
 {
 	t_tuple	origin;
@@ -73,17 +83,19 @@ typedef struct s_cube_values_tool
 
 typedef struct s_parsing_tool
 {
-	int i;
-	int error;
+	int 	i;
+	int 	error;
+	int		count;
+	char	*str_value;
 }	t_parsing_tool;
 
-typedef struct	check_parsing_tool
+typedef struct	check_p_tool
 {
 	int		camera;
 	int		ambient;
 	long	lights;
 	long	objects;
-}	t_check_parsing_tool;
+}	t_check_p_tool;
 
 typedef struct s_counter3
 {

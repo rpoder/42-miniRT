@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 14:09:51 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 23:46:58 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/29 22:12:31 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_intersections		get_cube_intersections(t_object *cube, t_ray ray);
 
 /* ----------------------------------------------------------------------CONE */
 /* create_cone.c------------------------------------------------------------- */
-t_object			*create_cone(t_data *data, t_tuple origin, double radius);
+t_object			*create_cone(t_data *data, t_cone_values_tool values);
 /* cone_intersections.c------------------------------------------------------ */
 t_intersections		get_cone_intersections(t_object *cone, t_ray ray);
 /* cone_normal.c------------------------------------------------------------- */
