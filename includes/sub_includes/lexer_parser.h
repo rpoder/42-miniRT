@@ -18,11 +18,13 @@ int				parse_scene(t_data *data, t_list *lst);
 
 /* parse_objects------------------------------------------------------------- */
 int				parse_sphere(t_data *data, char *line, t_parsing_tool *tool);
-int				parse_cylinder(t_data *data, char *line, t_parsing_tool *tool);
 int				parse_plane(t_data *data, char *line, t_parsing_tool *tool);
 int				parse_triangle(t_data *data, char *line, t_parsing_tool *tool);
 int				parse_cube(t_data *data, char *line, t_parsing_tool *tool);
 int				parse_cone(t_data *data, char *line, t_parsing_tool *tool);
+
+/* parse_objects_2----------------------------------------------------------- */
+int				parse_cylinder(t_data *data, char *line, t_parsing_tool *tool);
 
 /* parse_lights-------------------------------------------------------------- */
 int				parse_light(t_data *data, char *line, t_parsing_tool *tool);
@@ -45,6 +47,8 @@ int				ratio_checker(double ratio, char *line, t_parsing_tool *tool);
 int				color_checker(t_color color, char *line, t_parsing_tool *tool);
 int				orientation_vector_checker(t_tuple or_v, char *line, t_parsing_tool *tool);
 int				fov_checker(double fov, char *line, t_parsing_tool *tool);
+
+/* parsing_values_checker_2-------------------------------------------------- */
 int				str_value_checker(char *str_value, char *line, t_parsing_tool *tool);
 void			print_value_error(char *value, char *line, t_parsing_tool *tool); 
 

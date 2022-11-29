@@ -6,13 +6,11 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:32:37 by margot            #+#    #+#             */
-/*   Updated: 2022/11/30 00:05:37 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:10:38 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-
 
 t_color	get_color(char *line, t_parsing_tool *tool)
 {

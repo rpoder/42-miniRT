@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:12:46 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/29 23:12:13 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:12:08 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@ int	parse_camera(t_data *data, char *line, t_parsing_tool *tool)
 	t_camera				*camera;
 
 	tool->i = 1;
-	
 	if (nb_values_checker(line, 7, tool) != NO_ERR)
 		return (tool->error);
 	values.origin = get_coordinates(line, tool);
 	if (tool->error != NO_ERR)
 		return (tool->error);
-	printf("I = %d\n", tool->i);
 	values.orientation_vector = get_orientation_vector(line, tool);
-		printf("I = %d\n", tool->i);
-	if (orientation_vector_checker(values.orientation_vector, line, tool) != NO_ERR)
+	if (orientation_vector_checker(values.orientation_vector,
+			line, tool) != NO_ERR)
 		return (tool->error);
 	values.fov = (get_one_parsing_value(line, tool) * M_PI) / 180;
 	if (fov_checker(values.fov, line, tool) != NO_ERR)

@@ -38,7 +38,6 @@ int	nb_values_checker(char *line, int nb, t_parsing_tool *tool)
 		tool->error = PARSING_ERR;
 	}
 	return (tool->error);
-
 }
 
 int	ratio_checker(double ratio, char *line, t_parsing_tool *tool)
@@ -47,7 +46,8 @@ int	ratio_checker(double ratio, char *line, t_parsing_tool *tool)
 		return (tool->error);
 	if (ratio < 0.0 || ratio > 1.0)
 	{
-		ft_putstr_fd("ERR : Invalid ratio value in your scene.rt in line : ", 2);
+		ft_putstr_fd("ERR : Invalid ratio value ", 2);
+		ft_putstr_fd("in your scene.rt in line : ", 2);
 		ft_putstr_fd(line, 2);
 		tool->error = PARSING_ERR;
 	}
@@ -58,10 +58,11 @@ int	color_checker(t_color color, char *line, t_parsing_tool *tool)
 {
 	if (tool->error != NO_ERR)
 		return (tool->error);
-	if (color.red < 0.0 || color.red > 1.0 || color.green < 0.0 || color.green > 1.0
-		|| color.blue < 0.0 || color.blue > 1.0)
+	if (color.red < 0.0 || color.red > 1.0 || color.green < 0.0
+		|| color.green > 1.0 || color.blue < 0.0 || color.blue > 1.0)
 	{
-		ft_putstr_fd("ERR : Invalid color value in your scene.rt in line : ", 2);
+		ft_putstr_fd("ERR : Invalid color value ", 2);
+		ft_putstr_fd("in your scene.rt in line : ", 2);
 		ft_putstr_fd(line, 2);
 		tool->error = PARSING_ERR;
 	}
@@ -73,10 +74,11 @@ int	orientation_vector_checker(t_tuple or_v, char *line, t_parsing_tool *tool)
 	if (tool->error != NO_ERR)
 		return (tool->error);
 	print_tuple("ori vector", or_v);
-	if (or_v.x < -1.0 || or_v.x > 1.0 || or_v.y < -1.0 || or_v.y > 1.0 || or_v.z < -1.0 
-		|| or_v.z > 1.0)
+	if (or_v.x < -1.0 || or_v.x > 1.0 || or_v.y < -1.0 || or_v.y > 1.0
+		|| or_v.z < -1.0 || or_v.z > 1.0)
 	{
-		ft_putstr_fd("ERR : Invalid orientation vector value in your scene.rt in line : ", 2);
+		ft_putstr_fd("ERR : Invalid orientation vector value ", 2);
+		ft_putstr_fd("in your scene.rt in line : ", 2);
 		ft_putstr_fd(line, 2);
 		tool->error = PARSING_ERR;
 	}
@@ -92,27 +94,6 @@ int	fov_checker(double fov, char *line, t_parsing_tool *tool)
 		ft_putstr_fd("ERR : Invalid fov value in your scene.rt in line : ", 2);
 		ft_putstr_fd(line, 2);
 		tool->error = PARSING_ERR;
-	}
-	return (tool->error);
-}
-
-void	print_value_error(char *value, char *line, t_parsing_tool *tool)
-{
-	ft_putstr_fd("ERR : Invalid value ", 2);
-	ft_putstr_fd(value, 2);
-	ft_putstr_fd(" in your scene.rt in line : ", 2);
-	ft_putstr_fd(line, 2);
-}
-
-int	str_value_checker(char *str_value, char *line, t_parsing_tool *tool)
-{
-	if (!tool->str_value)
-		tool->error = MALLOC_ERR;
-	if (tool->str_value && tool->str_value[0] == '\0')
-	{
-		print_value_error(str_value, line, tool);
-		tool->error = PARSING_ERR;
-		free(str_value);
 	}
 	return (tool->error);
 }

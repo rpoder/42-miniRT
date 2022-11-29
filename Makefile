@@ -6,7 +6,7 @@
 #    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/30 00:07:14 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/11/30 00:34:44 by mpourrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,10 +68,12 @@ SRCS				:=	main.c \
 						lexer_parser/parse_scene.c \
 						lexer_parser/lexer_parser.c \
 						lexer_parser/parse_objects.c \
+						lexer_parser/parse_objects_2.c \
 						lexer_parser/parse_lights.c \
 						lexer_parser/parse_camera.c \
 						lexer_parser/parsing_objects_checker.c \
 						lexer_parser/parsing_values_checker.c \
+						lexer_parser/parsing_values_checker_2.c \
 						lexer_parser/parsing_tool.c \
 						lexer_parser/value_getters.c \
 						lexer_parser/value_getters_utils.c \
