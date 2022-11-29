@@ -3,12 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/28 18:04:38 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/29 18:28:00 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+typedef struct s_light_values_tool
+{
+	t_tuple	origin;
+	double	ratio;
+	t_color	color;
+	
+}	t_light_values_tool;
 
 typedef struct s_camera_values_tool
 {

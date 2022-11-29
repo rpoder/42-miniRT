@@ -34,8 +34,16 @@ int				parse_camera(t_data *data, char *line, t_parsing_tool *tool);
 t_parsing_tool	*init_parsing_tool();
 void			set_parsing_tool(t_parsing_tool *tool, int i, int ret);
 
-/* parsing_checker----------------------------------------------------------- */
+/* parsing_objects_checker--------------------------------------------------- */
 int				check_scene_is_complete(t_list *lst);
+
+/* parsing_values_checker---------------------------------------------------- */
+int				nb_values_checker(char *line, int nb, t_parsing_tool *tool);
+int				ratio_checker(double ratio, char *line, t_parsing_tool *tool);
+int				color_checker(t_color color, char *line, t_parsing_tool *tool);
+int				orientation_vector_checker(t_tuple or_v, char *line, t_parsing_tool *tool);
+int				fov_checker(double fov, char *line, t_parsing_tool *tool);
+
 
 /* value_getters------------------------------------------------------------- */
 t_tuple 		get_coordinates(char *line, t_parsing_tool *tool);

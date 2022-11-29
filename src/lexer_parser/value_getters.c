@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   value_getters.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:32:37 by margot            #+#    #+#             */
-/*   Updated: 2022/11/28 18:49:01 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/29 20:13:31 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,9 +166,12 @@ double	get_one_parsing_value(char *line, t_parsing_tool *tool)
 		tool->error = MALLOC_ERR;
 		return (0.0);
 	}
-	if (ft_atof_checker(str_value) != 1)
+	if (ft_atof_checker(str_value) != 1 || str_value[0] == '-')
 	{
-		printf("ERR : %s in your scene.rt is not a valid value\n", str_value);
+		ft_putstr_fd("ERR : Invalid value ", 2);
+		ft_putstr_fd(str_value, 2);
+		ft_putstr_fd(" in your scene.rt in line : ", 2);
+		ft_putstr_fd(line, 2);
 		tool->error = PARSING_ERR;
 		free(str_value);
 		return (0.0);

@@ -21,7 +21,7 @@ static int	parse_if_camera(t_data *data, char *line, t_parsing_tool *tool)
 		ret = parse_camera(data, line, tool);
 	else
 	{
-		ft_putstr_fd("ERR : Invalid line in your scene.rt : ", 2);
+		ft_putstr_fd("ERR : Invalid line in your scene.rt, : ", 2);
 		ft_putstr_fd(line, 2);
 		return (PARSING_ERR);
 	}
@@ -33,10 +33,10 @@ static int	parse_if_light(t_data *data, char *line, t_parsing_tool *tool)
 	int	ret;
 
 	ret = NO_ERR;
-	if (line[0] == 'L' && ft_is_space(line[1]))
-		ret = parse_light(data, line, tool);
-	else if (line[0] == 'A' && ft_is_space(line[1]))
+	if (line[0] == 'A' && ft_is_space(line[1]))
 		ret = parse_ambient_light(data, line, tool);
+	else if (line[0] == 'L' && ft_is_space(line[1]))
+		ret = parse_light(data, line, tool);
 	else
 	{
 		ft_putstr_fd("ERR : Invalid line in your scene.rt : ", 2);
@@ -83,7 +83,7 @@ static int	parse_line(t_data *data, char *line, t_parsing_tool *tool)
 		ret = parse_if_camera(data, line, tool);
 	else if (line[0] == '#')
 	{
-		ft_putstr_fd("WARING : Comment on your scene.rt : ", 2);
+		ft_putstr_fd("WAR : Comment in your scene.rt : ", 2);
 		ft_putstr_fd(line, 2);
 	}
 	else
