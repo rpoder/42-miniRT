@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:27:59 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 23:16:24 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 16:31:41 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_ray	ft_create_ray(t_tuple origin, t_tuple direction)
+t_ray	create_ray(t_tuple origin, t_tuple direction)
 {
 	t_ray	new_ray;
 
