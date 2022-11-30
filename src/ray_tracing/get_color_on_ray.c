@@ -6,47 +6,48 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:05:31 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 15:32:40 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:09:46 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_hit	find_w_hit(t_w_intersections w_intersections)
+static t_color	normalize_color(t_color	tmp)
 {
-	int		j;
-	t_hit	hit;
+	t_color	final_color;
+	double	max;
+	double	coef;
 
-	j = 0;
-	hit.i = DBL_MAX;
-	while (j < w_intersections.nb_of_intersected_obj)
+	if (tmp.red >= tmp.blue && tmp.red >= tmp.green)
+		max = tmp.red;
+	if (tmp.blue >= tmp.red && tmp.red >= tmp.green)
+		max = tmp.blue;
+	if (tmp.green >= tmp.blue && tmp.red >= tmp.red)
+		max = tmp.green;
+	if (max > 1)
 	{
-		if (w_intersections.i[j].nb_of_intersections > 0)
-		{
-			if (w_intersections.i[j].i1 < hit.i
-				&& w_intersections.i[j].i1 > 0.0 + EPSILON)
-			{
-				hit.object = w_intersections.i[j].object;
-				hit.i = w_intersections.i[j].i1;
-			}
-			if (w_intersections.i[j].i2 < hit.i
-				&& w_intersections.i[j].i2 > 0.0 + EPSILON)
-			{
-				hit.object = w_intersections.i[j].object;
-				hit.i = w_intersections.i[j].i2;
-			}
-		}
-		j++;
+		coef = 1 / max;
+		final_color.red = tmp.red * coef;
+		final_color.green = tmp.green * coef;
+		final_color.blue = tmp.blue * coef;
+		return (final_color);
 	}
-	if (hit.i < DBL_MAX)
-		hit.does_hit = true;
-	else
+	return (tmp);
+}
+
+static t_color	get_color_on_object(t_world world, t_ray_pcomp_tool pcomp_tool)
+{
+	t_color	tmp_color;
+
+	tmp_color = create_color(0, 0, 0);
+	while (world.point_lights)
 	{
-		hit.i = 0;
-		hit.does_hit = false;
-		hit.object = NULL;
+		tmp_color = ft_add_colors(tmp_color, get_lighted_color(world,
+					(t_point_light *)world.point_lights->content,
+					pcomp_tool));
+		world.point_lights = world.point_lights->next;
 	}
-	return (hit);
+	return (tmp_color);
 }
 
 /* ray_computation_tool :
@@ -81,84 +82,22 @@ static t_ray_pcomp_tool	get_ray_computation_tool(
 	return (pcomp);
 }
 
-t_w_intersections	compute_world_intersections(t_world world, t_ray ray)
-{
-	t_intersections		tmp_intersections;
-	t_w_intersections	w_intersections;
-	t_list				*tmp;
-	int					count;
-
-	w_intersections.nb_of_intersected_obj = 0;
-	count = 0;
-	if (world.objects)
-	{
-		tmp = world.objects;
-		while (tmp)
-		{
-			tmp_intersections = get_object_intersections(((t_object *)
-						tmp->content), ray);
-			if (tmp_intersections.nb_of_intersections > 0)
-			{
-				w_intersections.i[count] = tmp_intersections;
-				w_intersections.i[count].object = ((t_object *)tmp->content);
-				w_intersections.nb_of_intersected_obj++;
-				count++;
-			}
-			tmp = tmp->next;
-		}
-	}
-	return (w_intersections);
-}
-
-t_color	normalize_color(t_color	tmp)
-{
-	t_color	final_color;
-	double	max;
-	double	coef;
-
-	if (tmp.red >= tmp.blue && tmp.red >= tmp.green)
-		max = tmp.red;
-	if (tmp.blue >= tmp.red && tmp.red >= tmp.green)
-		max = tmp.blue;
-	if (tmp.green >= tmp.blue && tmp.red >= tmp.red)
-		max = tmp.green;
-	if (max > 1)
-	{
-		coef = 1 / max;
-		final_color.red = tmp.red * coef;
-		final_color.green = tmp.green * coef;
-		final_color.blue = tmp.blue * coef;
-		return (final_color);
-	}
-	return (tmp);
-}
-
 t_color	get_color_on_ray(t_world world, t_ray ray)
 {
 	t_w_intersections		w_intersections;
 	t_ray_pcomp_tool		pcomp_tool;
-	t_color					tmp_color;
 	t_color					final_color;
 
-	w_intersections = compute_world_intersections(world, ray);
+	w_intersections = get_world_intersections(world, ray);
 	if (w_intersections.nb_of_intersected_obj == 0)
 		return (create_color(0, 0, 0));
 	else
 	{
 		pcomp_tool = get_ray_computation_tool(w_intersections, ray);
 		if (pcomp_tool.object)
-		{
-			tmp_color = create_color(0, 0, 0);
-			while (world.point_lights)
-			{
-				tmp_color = ft_add_colors(tmp_color, get_lighted_color(world,
-							(t_point_light *)world.point_lights->content,
-							pcomp_tool));
-				world.point_lights = world.point_lights->next;
-			}
-		}
+			final_color = get_color_on_object(world, pcomp_tool);
 		else
 			return (create_color(0, 0, 0));
 	}
-	return (normalize_color(tmp_color));
+	return (normalize_color(final_color));
 }

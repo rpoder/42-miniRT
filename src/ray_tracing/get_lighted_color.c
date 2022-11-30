@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_lighted_color.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:09:32 by margot            #+#    #+#             */
-/*   Updated: 2022/11/28 00:12:03 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 16:17:32 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 
 static bool	is_in_shadow(t_world world, t_tuple point, t_point_light *light)
 {
-	t_tuple					v;
 	double					distance;
 	t_tuple					direction;
 	t_ray					ray;
 	t_w_intersections		w_intersections;
 	t_hit					hit;
 
-	v = sub_tuples(light->position, point);
-	distance = ft_tuple_len(v);
-	ray.direction = normalize_tuple(v);
+	distance = ft_tuple_len(sub_tuples(light->position, point));
+	ray.direction = normalize_tuple(sub_tuples(light->position, point));
 	ray.origin = point;
-	w_intersections = compute_world_intersections(world, ray);
+	w_intersections = get_world_intersections(world, ray);
 	hit = find_w_hit(w_intersections);
 	if (hit.does_hit == true && hit.i + EPSILON < distance)
 		return (true);
 	return (false);
 }
 
-static t_color	get_final_specular_color(t_ray_pcomp_tool pcomp, t_point_light *light)
+static t_color	get_final_specular_color(t_ray_pcomp_tool pcomp,
+		t_point_light *light)
 {
 	t_color	specular_color;
 	t_tuple	lightv;
@@ -48,7 +47,8 @@ static t_color	get_final_specular_color(t_ray_pcomp_tool pcomp, t_point_light *l
 	else
 	{
 		factor = pow(reflect_dot_eye, pcomp.object->material.shininess);
-		specular_color = ft_scale_color(ft_scale_color(light->intensity, pcomp.object->material.specular), factor);
+		specular_color = ft_scale_color(ft_scale_color(light->intensity,
+					pcomp.object->material.specular), factor);
 	}
 	return (specular_color);
 }
@@ -60,11 +60,13 @@ static t_color	get_final_diffuse_color( t_material material,
 	t_color	diffuse_color;
 
 	effective_color = multiply_colors(material.color, light->intensity);
-	diffuse_color = ft_scale_color(effective_color, material.diffuse * light_dot_normal);
+	diffuse_color = ft_scale_color(effective_color,
+			material.diffuse * light_dot_normal);
 	return (diffuse_color);
 }
 
-static double	compute_light_dot_normal(t_ray_pcomp_tool pcomp, t_point_light *light)
+static double	compute_light_dot_normal(t_ray_pcomp_tool pcomp,
+		t_point_light *light)
 {
 	t_tuple	lightv;
 	double	light_dot_normal;
@@ -74,18 +76,21 @@ static double	compute_light_dot_normal(t_ray_pcomp_tool pcomp, t_point_light *li
 	return (light_dot_normal);
 }
 
-t_color	get_lighted_color(t_world world, t_point_light *light, t_ray_pcomp_tool pcomp)
+t_color	get_lighted_color(t_world world, t_point_light *light,
+		t_ray_pcomp_tool pcomp)
 {
 	double			light_dot_normal;
 	t_color			ambient_color;
 	t_color			diffuse_color;
 	t_color			specular_color;
 
-	ambient_color = multiply_colors(pcomp.object->material.color, world.ambient_light);
+	ambient_color = multiply_colors(pcomp.object->material.color,
+			world.ambient_light);
 	light_dot_normal = compute_light_dot_normal(pcomp, light);
-	pcomp.over_i = ft_add_tuples(pcomp.i, ft_scale_tuple(pcomp.normalv, ACNE_PRECISION ));
+	pcomp.over_i = ft_add_tuples(pcomp.i, ft_scale_tuple(pcomp.normalv, ACNE));
 	if (pcomp.object->material.texture_type == PATTERN_TEXTURE_TYPE)
-		pcomp.object->material.color = checker_at_object(pcomp.object->material.pattern, *pcomp.object, pcomp.over_i);
+		pcomp.object->material.color = checker_at_object(
+				pcomp.object->material.pattern, *pcomp.object, pcomp.over_i);
 	if (light_dot_normal < 0 || is_in_shadow(world, pcomp.over_i, light))
 	{
 		diffuse_color = create_color(0, 0, 0);
@@ -93,8 +98,10 @@ t_color	get_lighted_color(t_world world, t_point_light *light, t_ray_pcomp_tool 
 	}
 	else
 	{
-		diffuse_color = get_final_diffuse_color(pcomp.object->material, light_dot_normal, light);
+		diffuse_color = get_final_diffuse_color(pcomp.object->material,
+				light_dot_normal, light);
 		specular_color = get_final_specular_color(pcomp, light);
 	}
-	return (ft_add_colors(ft_add_colors(ambient_color, diffuse_color), specular_color));
+	return (ft_add_colors(ft_add_colors(ambient_color, diffuse_color),
+			specular_color));
 }

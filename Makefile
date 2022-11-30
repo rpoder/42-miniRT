@@ -6,7 +6,7 @@
 #    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/30 01:13:03 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/11/30 16:09:05 by mpourrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS				:=	main.c \
 						ray_tracing/get_color_on_ray.c \
 						ray_tracing/get_lighted_color.c \
 						ray_tracing/ray.c \
+						ray_tracing/world_intersections.c \
 						tuple/vectors.c \
 						tuple/vector_operations.c \
 						tuple/vector_operations_2.c \
