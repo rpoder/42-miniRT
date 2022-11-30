@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:00:07 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/30 01:00:17 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:21:22 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_object	*create_sphere(t_data *data, t_sphere_values_tool values)
 	new_sphere->id = ft_lstlen(data->world->objects);
 	new_sphere->object_type = SPHERE_TYPE;
 	new_sphere->transform_m = translate_and_scale_object(values.origin,
-		values.radius);
+			values.radius);
 	new_sphere->material = get_default_material();
 	new_sphere->material.color = values.color;
 	node = ft_lstnew(new_sphere);

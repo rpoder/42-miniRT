@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 01:09:41 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/30 01:15:16 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:25:45 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,10 @@ static t_cube_faces_intersections	check_axis(double origin, double direction)
 		faces_intersections.t_min = faces_intersections.t_max;
 		faces_intersections.t_max = tmp;
 	}
-
 	return (faces_intersections);
 }
 
-static	double get_min(double a, double b, double c)
+static double	get_min(double a, double b, double c)
 {
 	if (a <= b && a <= c)
 		return (a);
@@ -51,7 +50,7 @@ static	double get_min(double a, double b, double c)
 		return (c);
 }
 
-static	double get_max(double a, double b, double c)
+static double	get_max(double a, double b, double c)
 {
 	if (a >= b && a >= c)
 		return (a);
@@ -72,8 +71,10 @@ t_intersections	get_cube_intersections(t_object *cube, t_ray ray)
 	faces_intersections_x = check_axis(ray.origin.x, ray.direction.x);
 	faces_intersections_y = check_axis(ray.origin.y, ray.direction.y);
 	faces_intersections_z = check_axis(ray.origin.z, ray.direction.z);
-	cube_intersections.i1 = get_max(faces_intersections_x.t_min, faces_intersections_y.t_min, faces_intersections_z.t_min);
-	cube_intersections.i2 = get_min(faces_intersections_x.t_max, faces_intersections_y.t_max, faces_intersections_z.t_max);
+	cube_intersections.i1 = get_max(faces_intersections_x.t_min,
+			faces_intersections_y.t_min, faces_intersections_z.t_min);
+	cube_intersections.i2 = get_min(faces_intersections_x.t_max,
+			faces_intersections_y.t_max, faces_intersections_z.t_max);
 	if (cube_intersections.i1 < cube_intersections.i2)
 		cube_intersections.nb_of_intersections = 2;
 	else

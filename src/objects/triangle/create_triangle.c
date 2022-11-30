@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 22:29:47 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 00:47:51 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:19:51 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	set_triangle_cars(t_object *triangle, t_triangle_values_tool values)
 	triangle->triangle_cars.e1 = sub_tuples(triangle->triangle_cars.p2,
 			triangle->triangle_cars.p1);
 	triangle->triangle_cars.e2 = sub_tuples(triangle->triangle_cars.p3,
-			triangle->triangle_cars.p1);		
+			triangle->triangle_cars.p1);
 	triangle->triangle_cars.normal = normalize_tuple(cross_product
 			(triangle->triangle_cars.e2, triangle->triangle_cars.e1));
 }
@@ -38,7 +38,7 @@ t_object	*create_triangle(t_data *data, t_triangle_values_tool values)
 	new_triangle->transform_m = get_identity_matrix();
 	new_triangle->material = get_default_material();
 	new_triangle->material.color = values.color;
-	set_triangle_cars(new_triangle, values);		
+	set_triangle_cars(new_triangle, values);
 	node = ft_lstnew(new_triangle);
 	if (!node)
 	{

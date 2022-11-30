@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:40:37 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/30 00:55:50 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:20:08 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ t_object	*create_cone(t_data *data, t_cone_values_tool values)
 	new_cone->min = -values.height / 2.0;
 	new_cone->max = values.height / 2.0;
 	new_cone->is_capped = true;
-	new_cone->transform_m = translate_and_scale_object(values.origin, values.radius);
+	new_cone->transform_m = translate_and_scale_object(values.origin,
+			values.radius);
 	new_cone->transform_m = orient_object(new_cone, values.orientation_vector);
 	node = ft_lstnew(new_cone);
 	if (!node)

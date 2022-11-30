@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   abstract_object_normal.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:34:34 by ronanpoder        #+#    #+#             */
-/*   Updated: 2022/11/27 23:24:20 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 14:22:39 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ t_tuple	get_object_normal_at(t_object *object, t_tuple world_point)
 		object_normal = get_cone_normal_at(object, object_point);
 	else if (object->object_type == TRIANGLE_TYPE)
 		object_normal = get_triangle_normal_at(object, object_point);
-	else
-	{
-		printf("ERR: undefined object type on normal_at().\n");
-		exit(1);
-	}
 	transposed_matrix = ft_transpose_matrix(inv_matrix);
 	world_normal = multiply_matrix_by_tuple(transposed_matrix, object_normal);
 	world_normal.w = 0;

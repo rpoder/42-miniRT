@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cofactor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 13:34:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 13:44:54 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 15:26:49 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	compute_m3_cofactor(t_matrix3 m3, int i, int j)
 {
-	double	cofactor;
+	double		cofactor;
 	t_matrix2	sub_m2;
 	double		minor;
 
@@ -47,11 +47,12 @@ t_matrix4	apply_cofactors_to_matrix(t_matrix4 m)
 	t_matrix4	new_m;
 	int			i;
 	int			j;
+
 	j = 0;
-	while(j < 4)
+	while (j < 4)
 	{
 		i = 0;
-		while(i < 4)
+		while (i < 4)
 		{
 			new_m.matrix[j][i] = compute_m4_cofactor(m, i, j);
 			i++;

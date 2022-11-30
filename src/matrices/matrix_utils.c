@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:04:59 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/07 11:44:06 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 15:25:33 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ t_matrix4	m4_bzero(void)
 	int			j;
 
 	j = 0;
-	while(j < 4)
+	while (j < 4)
 	{
 		i = 0;
-		while(i < 4)
+		while (i < 4)
 		{
 			new_matrix.matrix[i][j] = 0.0;
 			i++;

@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:54:59 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/30 00:55:29 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:26:14 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ t_object	*create_cylinder(t_data *data, t_cylinder_values_tool values)
 	new_cylinder->min = -values.height / 2.0;
 	new_cylinder->max = values.height / 2.0;
 	new_cylinder->is_capped = true;
-	new_cylinder->transform_m = translate_and_scale_object(values.origin, values.radius);
-	new_cylinder->transform_m = orient_object(new_cylinder, values.orientation_vector);
+	new_cylinder->transform_m = translate_and_scale_object(values.origin,
+			values.radius);
+	new_cylinder->transform_m = orient_object(new_cylinder,
+			values.orientation_vector);
 	node = ft_lstnew(new_cylinder);
 	if (!node)
 	{

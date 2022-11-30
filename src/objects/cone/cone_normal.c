@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:38:38 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/30 00:51:08 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:20:19 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ t_tuple	get_cone_normal_at(t_object *cone, t_tuple object_point)
 		return (create_tuple(0, -1, 0, 0));
 	else
 		return (create_tuple(object_point.x, dist_from_y_axis,
-			object_point.z, 0));
+				object_point.z, 0));
 }

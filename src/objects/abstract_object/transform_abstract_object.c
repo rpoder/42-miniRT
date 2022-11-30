@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 00:53:25 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/30 01:08:13 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:22:58 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_matrix4	orient_object(t_object *object, t_tuple orientation)
 		object->transform_m = multiply_matrices(object->transform_m,
 				compute_rotation_y_matrix(radian_y));
 	}
-	if (orientation.z > 0.0 + EPSILON || orientation.z < 0.0- EPSILON)
+	if (orientation.z > 0.0 + EPSILON || orientation.z < 0.0 - EPSILON)
 	{
 		radian_z = (orientation.z * 90) * M_PI / 180;
 		object->transform_m = multiply_matrices(object->transform_m,

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   compute_determinants.c                             :+:      :+:    :+:   */
+/*   determinant.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 17:50:14 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 13:38:06 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 15:23:23 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ t_matrix4	apply_determinant_division_to_matrix(t_matrix4 m, double det)
 	int			j;
 
 	j = 0;
-	while(j < 4)
+	while (j < 4)
 	{
 		i = 0;
-		while(i < 4)
+		while (i < 4)
 		{
 			new_m.matrix[j][i] = m.matrix[j][i] / det;
 			i++;
