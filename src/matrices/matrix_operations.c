@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 10:52:46 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 15:25:18 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:00:25 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_matrix4	ft_inverse_matrix(t_matrix4 m)
 	determinant = compute_m4_determinant(m);
 	if (is_matrix_invertible(m) == false)
 	{
-		ft_putstr_fd("ERR : Matrix is not invertible\n", 2);
+		// ft_putstr_fd("ERR : Matrix is not invertible\n", 2);
 		return (m);
 	}
 	new_m = apply_cofactors_to_matrix(m);

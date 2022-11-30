@@ -3,34 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:14:58 by margot            #+#    #+#             */
-/*   Updated: 2022/11/30 00:40:58 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:31:30 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	parse_cone(t_data *data, char *line, t_parsing_tool *tool)
+static t_cone_values_tool	get_cone_values(char *line, t_parsing_tool *tool)
 {
-	t_sphere_values_tool	values;
-	t_object				*new_sphere;
+	t_cone_values_tool	values;
 
-	tool->i = 2;
-	if (nb_values_checker(line, 11, tool) != NO_ERR)
-		return (tool->error);
 	values.origin = get_coordinates(line, tool);
 	if (tool->error != NO_ERR)
-		return (tool->error);
+		return (values);
+	values.orientation_vector = get_orientation_vector(line, tool);
+	if (orientation_vector_checker(values.orientation_vector,
+			line, tool) != NO_ERR)
+		return (values);
 	values.radius = get_one_parsing_value(line, tool) / 2;
 	if (tool->error != NO_ERR)
-		return (tool->error);
+		return (values);
 	values.color = get_color(line, tool);
 	if (color_checker(values.color, line, tool) != NO_ERR)
+		return (values);
+	return (values);
+}
+
+int	parse_cone(t_data *data, char *line, t_parsing_tool *tool)
+{
+	t_cone_values_tool	values;
+	t_object				*new_cone;
+
+	tool->i = 2;
+	if (nb_values_checker(line, 10, tool) != NO_ERR)
 		return (tool->error);
-	new_sphere = create_sphere(data, values);
-	if (!new_sphere)
+	values = get_cone_values(line, tool);
+	if (tool->error != NO_ERR)
+		return (tool->error);
+	new_cone = create_cone(data, values);
+	if (!new_cone)
 	{
 		tool->error = MALLOC_ERR;
 		return (tool->error);

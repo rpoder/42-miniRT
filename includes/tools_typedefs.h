@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 17:14:11 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:56:03 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_cube_values_tool
 	t_color	color;
 }	t_cube_values_tool;
 
+
 typedef struct s_parsing_tool
 {
 	int		i;
@@ -143,5 +144,17 @@ typedef struct s_cube_faces_intersections_tool
 	double	t_min;
 	double	t_max;
 }	t_cube_faces_intersections;
+
+typedef struct s_triangle_intersections_tool
+{
+	bool			does_intersect;
+	t_tuple			dir_cross_e2;
+	double			f;
+	double			u;
+	double			v;
+	double						determinant;
+	t_tuple						p1_to_origin;
+	t_tuple			origin_cross_e1;
+}	t_triangle_intersections_tool;
 
 #endif

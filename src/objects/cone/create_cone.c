@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_cone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:40:37 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/30 15:20:08 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 19:29:42 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ t_object	*create_cone(t_data *data, t_cone_values_tool values)
 	new_cone->object_type = CONE_TYPE;
 	new_cone->material = get_default_material();
 	new_cone->material.color = values.color;
-	new_cone->min = -values.height / 2.0;
-	new_cone->max = values.height / 2.0;
+	new_cone->min = 0 ;
+	new_cone->max = 1;
 	new_cone->is_capped = true;
 	new_cone->transform_m = translate_and_scale_object(values.origin,
 			values.radius);
+	new_cone->transform_m =  multiply_matrices(new_cone->transform_m,
+			compute_rotation_z_matrix(M_PI));
 	new_cone->transform_m = orient_object(new_cone, values.orientation_vector);
 	node = ft_lstnew(new_cone);
 	if (!node)
