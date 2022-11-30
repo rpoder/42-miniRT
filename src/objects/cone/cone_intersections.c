@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:03:32 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/25 19:40:31 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:50:53 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ t_intersections	get_cone_intersections(t_object *cone, t_ray ray)
 	values.a = powf(ray.direction.x, 2) - powf(ray.direction.y, 2) + powf(ray.direction.z, 2);
 	values.b = 2.0 * ray.origin.x * ray.direction.x - 2.0 * ray.origin.y * ray.direction.y + 2.0 * ray.origin.z * ray.direction.z;
 	values.c = powf(ray.origin.x, 2) -  powf(ray.origin.y, 2) + powf(ray.origin.z, 2);
-	// printf("a = %f\nb = %f\nc = %f\n", values.a, values.b, values.c);
-
 	if (values.a >= -EPSILON && values.a <= EPSILON
 		&& values.b >= -EPSILON && values.b <= EPSILON)
 	{
@@ -78,7 +76,6 @@ t_intersections	get_cone_intersections(t_object *cone, t_ray ray)
 		intersections.i1 = -values.c / (2 * values.b);
 		return (intersections);
 	}
-
 	discriminant = powf(values.b, 2) - 4 * values.a * values.c;
 
 	/* ray misses infinite cone */

@@ -6,7 +6,7 @@
 #    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/30 00:34:44 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/11/30 01:13:03 by mpourrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,10 +34,12 @@ SRCS				:=	main.c \
 						objects/abstract_object/abstract_object_intersections.c \
 						objects/abstract_object/abstract_object_normal.c \
 						objects/abstract_object/material.c \
+						objects/abstract_object/transform_abstract_object.c \
 						objects/cone/cone_intersections.c \
 						objects/cone/cone_normal.c \
 						objects/cone/create_cone.c \
 						objects/cube/create_cube.c \
+						objects/cube/cube_normal_and_intersections.c \
 						objects/cylinder/create_cylinder.c \
 						objects/cylinder/cylinder_intersections.c \
 						objects/cylinder/cylinder_normal.c \

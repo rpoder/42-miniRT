@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_normal_and_intersections.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/28 00:12:03 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 01:01:59 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_tuple	get_sphere_normal_at(t_object *sphere, t_tuple object_point)
 	return (object_normal);
 }
 
-static t_intersections	compute_sphere_intersections(t_object *object, double discr, t_double3 values)
+static t_intersections	compute_sphere_intersections(t_object *object,
+	double discr, t_double3 values)
 {
 	t_intersections	intersections;
 

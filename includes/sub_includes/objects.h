@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 14:09:51 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/29 22:12:31 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 00:58:52 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ t_intersections		get_cylinder_intersections(t_object *cylinder, t_ray ray);
 
 /* ------------------------------------------------------------------TRIANGLE */
 /* create_triangle.c */
-t_object	*create_triangle(t_data *data, t_triangle_values_tool values);
+t_object			*create_triangle(t_data *data, t_triangle_values_tool values);
 /* triangle_normal and intersections.c */
-t_tuple		get_triangle_normal_at(t_object *triangle, t_tuple object_point);
-t_intersections	get_triangle_intersections(t_object *triangle, t_ray ray);
+t_tuple				get_triangle_normal_at(t_object *triangle, t_tuple object_point);
+t_intersections		get_triangle_intersections(t_object *triangle, t_ray ray);
 
 /* -----------------------------------------------------------ABSTRACT_OBJECT */
 /* abstract_object_intersections */
@@ -66,3 +66,9 @@ t_intersections		init_intersections(t_object *object);
 t_tuple				get_object_normal_at(t_object *object, t_tuple world_point);
 /* material.c */
 t_material			get_default_material(void);
+/* transform_abstract_object */
+t_matrix4			translate_and_scale_object(t_tuple origin, double radius);
+t_matrix4			orient_object(t_object *object, t_tuple orientation);
+
+
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   abstract_object_intersections.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:48:27 by margot            #+#    #+#             */
-/*   Updated: 2022/11/27 23:44:25 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 01:06:02 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ t_intersections	get_object_intersections(t_object *object, t_ray ray)
 	t_intersections	ret;
 	t_ray			ray2;
 
-	ray2 = 	transform_ray_by_matrix(ray, ft_inverse_matrix(object->transform_m));
+	ray2 = transform_ray_by_matrix(ray,
+			ft_inverse_matrix(object->transform_m));
 	if (object->object_type == SPHERE_TYPE)
 		ret = get_sphere_intersections(object, ray2);
 	else if (object->object_type == PLANE_TYPE)
