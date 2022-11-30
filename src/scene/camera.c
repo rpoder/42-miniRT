@@ -6,11 +6,47 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 12:15:58 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 16:47:31 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:52:31 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static t_matrix4	compute_view_orientation_matrix(t_tuple leftv, t_tuple true_upv,
+		t_tuple forwardv, t_tuple from)
+{
+	t_matrix4	orientation_m;
+	t_matrix4	translation_m;
+
+	orientation_m = get_identity_matrix();
+	orientation_m.matrix[0][0] = leftv.x;
+	orientation_m.matrix[0][1] = leftv.y;
+	orientation_m.matrix[0][2] = leftv.z;
+	orientation_m.matrix[1][0] = true_upv.x;
+	orientation_m.matrix[1][1] = true_upv.y;
+	orientation_m.matrix[1][2] = true_upv.z;
+	orientation_m.matrix[2][0] = -forwardv.x;
+	orientation_m.matrix[2][1] = -forwardv.y;
+	orientation_m.matrix[2][2] = -forwardv.z;
+	translation_m = compute_translation_matrix(-from.x, -from.y, -from.z);
+	return (multiply_matrices(orientation_m, translation_m));
+}
+
+static t_matrix4	compute_view_transform_m(t_tuple from, t_tuple to,
+		t_tuple up)
+{
+	t_matrix4	view_transform_m;
+	t_tuple		forwardv;
+	t_tuple		leftv;
+	t_tuple		true_upv;
+
+	forwardv = normalize_tuple(sub_tuples(to, from));
+	leftv = cross_product(forwardv, normalize_tuple(up));
+	true_upv = cross_product(leftv, forwardv);
+	view_transform_m = compute_view_orientation_matrix(leftv, true_upv,
+			forwardv, from);
+	return (view_transform_m);
+}
 
 static double	compute_pixel_size(t_camera *camera, int hsize, int vsize,
 	double fov)
@@ -45,7 +81,7 @@ static t_tuple	compute_up(t_tuple to, t_camera_values_tool values)
 	tmp.z = tmp_coord;
 	if (dot_product(create_tuple(0, 0, 1, 0),
 			normalize_tuple(values.orientation_vector)) >= 0.0)
-		tmp = ft_neg_tuple(tmp);
+		tmp = neg_tuple(tmp);
 	up = normalize_tuple(cross_product(values.orientation_vector, tmp));
 	return (up);
 }
@@ -64,7 +100,7 @@ t_camera	*create_camera(t_data *data, int hsize, int vsize,
 	data->world->camera->fov = values.fov;
 	data->world->camera->pixel_size = compute_pixel_size(data->world->camera,
 			hsize, vsize, values.fov);
-	to = ft_add_tuples(values.origin, values.orientation_vector);
+	to = add_tuples(values.origin, values.orientation_vector);
 	if (to.x == 0.0)
 		to.x = EPSILON;
 	up = compute_up(to, values);

@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 16:25:26 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/30 16:33:47 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:52:03 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	render(t_data *data, t_camera *camera, t_world *world)
 			ray = ray_for_pixel(camera, x, y);
 			color = get_color_on_ray(*world, ray);
 			my_mlx_pixel_put(&data->mlx_data->image, x, y,
-				ft_convert_color_to_longint(color));
+				convert_color_to_longint(color));
 			x++;
 		}
 		y++;

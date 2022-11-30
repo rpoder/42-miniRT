@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmp_tools.c                                        :+:      :+:    :+:   */
+/*   vector_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 15:08:41 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 16:50:08 by mpourrey         ###   ########.fr       */
+/*   Created: 2022/10/30 15:50:28 by rpoder            #+#    #+#             */
+/*   Updated: 2022/11/30 17:52:55 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-bool	ft_doublecmp(double a, double b)
+t_tuple	normalize_tuple(t_tuple a)
 {
-	if (fabs(a - b) < EPSILON)
-		return (true);
-	return (false);
+	double	len;
+	t_tuple	new_tuple;
+
+	len = tuple_len(a);
+	new_tuple.x = a.x / len;
+	new_tuple.y = a.y / len;
+	new_tuple.z = a.z / len;
+	new_tuple.w = a.w;
+	return (new_tuple);
 }
 
-bool	ft_tuplescmp(t_tuple a, t_tuple b)
+double	dot_product(t_tuple a, t_tuple b)
 {
-	if (a.x == b.x && a.y == b.y && a.z == b.z && a.w == b.w)
-		return (true);
-	return (false);
+	return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
+}
+
+double	tuple_len(t_tuple a)
+{
+	double	len;
+
+	len = sqrtf(powf(a.x, 2) + powf(a.y, 2) + powf(a.z, 2));
+	return (len);
 }

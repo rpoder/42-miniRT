@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   typedefs.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:28:40 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/28 11:47:58 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:17:28 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef TYPEDEFS_H
+# define TYPEDEFS_H
+
 /* MATRICES------------------------------------------------------------------ */
-typedef struct	s_matrix4 {
+typedef struct s_matrix4 {
 	double	matrix[4][4];
 }	t_matrix4;
 
-typedef struct	s_matrix3 {
+typedef struct s_matrix3 {
 	double	matrix[3][3];
 }	t_matrix3;
 
-typedef struct	s_matrix2 {
+typedef struct s_matrix2 {
 	double	matrix[2][2];
 }	t_matrix2;
 
@@ -51,7 +54,6 @@ typedef struct s_material
 {
 	int			texture_type;
 	t_color		color;
-	double		ambient; ///////////mettre dans world ?
 	double		diffuse;
 	double		specular;
 	double		shininess;
@@ -67,7 +69,6 @@ typedef struct s_triangle_caracteristics
 	t_tuple	e2;
 	t_tuple	normal;
 }	t_triangle_caracteristics;
-
 
 typedef struct s_object
 {
@@ -87,7 +88,7 @@ typedef struct s_point_light
 	t_tuple	position;
 }	t_point_light;
 
-typedef struct	s_camera {
+typedef struct s_camera {
 	int			hsize;
 	int			vsize;
 	double		fov;
@@ -104,7 +105,7 @@ typedef struct s_world {
 	t_camera	*camera;
 }	t_world;
 
-/* RAY------------------------------------------------------------------------- */
+/* RAY----------------------------------------------------------------------- */
 typedef struct s_ray
 {
 	t_tuple	origin;
@@ -133,7 +134,7 @@ typedef struct s_hit
 }	t_hit;
 
 /* MLX----------------------------------------------------------------------- */
-typedef struct	s_image{
+typedef struct s_image {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -147,14 +148,12 @@ typedef struct s_mlx_data {
 	t_image		image;
 }	t_mlx_data;
 
-/* DATA------------------------------------------------------------------------ */
-typedef struct	s_data
+/* DATA---------------------------------------------------------------------- */
+typedef struct s_data
 {
 	t_mlx_data	*mlx_data;
 	t_world		*world;
 }	t_data;
-
-
 
 typedef struct s_shearing_values
 {
@@ -165,3 +164,5 @@ typedef struct s_shearing_values
 	double	zx;
 	double	zy;
 }	t_shearing_values;
+
+#endif

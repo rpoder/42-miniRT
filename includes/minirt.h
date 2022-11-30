@@ -6,27 +6,27 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 16:19:03 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:12:08 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
-#define MINIRT_H
+# define MINIRT_H
 
-/* libs */
+/* INCLUDES */
 # include "mlx.h"
 # include <stdio.h>
 # include <math.h>
 # include <sys/time.h>
 # include <stdbool.h>
 # include <float.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
 # include "libft.h"
 # include "typedefs.h"
 # include "tools_typedefs.h"
 
-/* includes/sub_includes */
+/* SUB_INCLUDES */
 # include "matrices.h"
 # include "objects.h"
 # include "ray_tracing.h"
@@ -37,7 +37,7 @@
 # include "texture.h"
 # include "lexer_parser.h"
 
-/* defines */
+/* DEFINES */
 # define CANVAS_X 				840
 # define CANVAS_Y				680
 
@@ -50,7 +50,6 @@
 # define MALLOC_ERR 			1
 # define PARSING_ERR			2
 # define MLX_ERR				3
-
 
 # define SPHERE_TYPE			10
 # define CUBE_TYPE				11

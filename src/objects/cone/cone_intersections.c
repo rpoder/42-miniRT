@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 18:03:32 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/30 00:50:53 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:31:43 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static bool	check_cone_caps(t_ray ray, double i, double y)
 	return (false);
 }
 
-t_intersections	get_cone_caps_intersections(t_object *cone, t_ray ray, t_intersections intersections)
+static t_intersections	get_cone_caps_intersections(t_object *cone, t_ray ray, t_intersections intersections)
 {
 	double	tmp_i;
 

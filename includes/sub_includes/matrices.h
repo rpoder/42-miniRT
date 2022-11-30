@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   matrices.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 13:28:21 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 23:16:01 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:26:46 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef MATRICES_H
+# define MATRICES_H
 
 /* cofactor.c---------------------------------------------------------------- */
 double		compute_m3_cofactor(t_matrix3 m3, int i, int j);
@@ -44,3 +47,5 @@ t_matrix4	m4_bzero(void);
 /* sub_matrix.c-------------------------------------------------------------- */
 t_matrix3	sub_m4tom3(t_matrix4 m4, int row, int column);
 t_matrix2	sub_m3tom2(t_matrix3 m3, int row, int column);
+
+#endif

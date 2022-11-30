@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 16:05:12 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 23:16:10 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:52:44 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_tuple	ft_add_tuples(t_tuple a, t_tuple b)
+t_tuple	add_tuples(t_tuple a, t_tuple b)
 {
 	t_tuple	new_tuple;
 
@@ -34,7 +34,7 @@ t_tuple	sub_tuples(t_tuple a, t_tuple b)
 	return (new_tuple);
 }
 
-t_tuple	ft_neg_tuple(t_tuple a)
+t_tuple	neg_tuple(t_tuple a)
 {
 	t_tuple	new_tuple;
 
@@ -45,8 +45,7 @@ t_tuple	ft_neg_tuple(t_tuple a)
 	return (new_tuple);
 }
 
-// faut-il checker si seulement vecteur ???
-t_tuple	ft_scale_tuple(t_tuple a, double scale)
+t_tuple	scale_tuple(t_tuple a, double scale)
 {
 	t_tuple	new_tuple;
 
@@ -57,11 +56,13 @@ t_tuple	ft_scale_tuple(t_tuple a, double scale)
 	return (new_tuple);
 }
 
-// faut-il checker si seulement vecteur ???
-double	ft_tuple_len(t_tuple a)
+t_tuple	cross_product(t_tuple a, t_tuple b)
 {
-	double	len;
+	t_tuple	new_tuple;
 
-	len = sqrtf(powf(a.x, 2) + powf(a.y, 2) + powf(a.z, 2));
-	return (len);
+	new_tuple.x = (a.y * b.z) - (a.z * b.y);
+	new_tuple.y = (a.z * b.x) - (a.x * b.z);
+	new_tuple.z = (a.x * b.y) - (a.y * b.x);
+	new_tuple.w = a.w;
+	return (new_tuple);
 }

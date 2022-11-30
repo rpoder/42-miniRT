@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:01:36 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 01:01:59 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:06:20 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static t_intersections	compute_sphere_intersections(t_object *object,
 	if (discr == 0)
 	{
 		intersections.nb_of_intersections = 1;
-		intersections.i1 = (- values.b - sqrtf(discr)) / (2 * values.a);
-		intersections.i2 = (- values.b + sqrtf(discr)) / (2 * values.a);
+		intersections.i1 = (-values.b - sqrtf(discr)) / (2 * values.a);
+		intersections.i2 = (-values.b + sqrtf(discr)) / (2 * values.a);
 	}
 	else if (discr > 0)
 	{
 		intersections.nb_of_intersections = 2;
-		intersections.i1 = (- values.b - sqrtf(discr)) / (2 * values.a);
-		intersections.i2 = (- values.b + sqrtf(discr)) / (2 * values.a);
+		intersections.i1 = (-values.b - sqrtf(discr)) / (2 * values.a);
+		intersections.i2 = (-values.b + sqrtf(discr)) / (2 * values.a);
 	}
 	return (intersections);
 }

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:14:24 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/28 16:04:16 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:03:23 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_data	*init_data()
+t_data	*init_data(void)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = malloc(sizeof(t_data));
 	if (!data)

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   point_lights.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 20:31:56 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/28 00:12:03 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:52:44 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_point_light	*create_point_light(t_data *data, t_color intensity, t_tuple pos)
+t_point_light	*create_point_light(t_data *data, t_color intensity,
+		t_tuple pos)
 {
 	t_list			*node;
 	t_point_light	*point_light;
@@ -34,5 +35,6 @@ t_point_light	*create_point_light(t_data *data, t_color intensity, t_tuple pos)
 
 t_tuple	ft_reflect_in(t_tuple in, t_tuple normal)
 {
-	return (sub_tuples(in, ft_scale_tuple(normal, 2.0 * dot_product(in, normal))));
+	return (sub_tuples(in, scale_tuple(normal, 2.0
+			* dot_product(in, normal))));
 }

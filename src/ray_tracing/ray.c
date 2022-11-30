@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 12:27:59 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 16:31:41 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:52:17 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_tuple	compute_new_point_on_normalized_ray(t_ray ray, double t)
 	t_tuple	tmp;
 
 	tmp = multiply_tuple_by_double(ray.direction, t);
-	new_tuple = ft_add_tuples(ray.origin, tmp);
+	new_tuple = add_tuples(ray.origin, tmp);
 	new_tuple = normalize_tuple(new_tuple);
 	return (new_tuple);
 }
@@ -38,7 +38,7 @@ t_tuple	compute_new_point_on_ray(t_ray ray, double t)
 	t_tuple	tmp;
 
 	tmp = multiply_tuple_by_double(ray.direction, t);
-	new_tuple = ft_add_tuples(ray.origin, tmp);
+	new_tuple = add_tuples(ray.origin, tmp);
 	return (new_tuple);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 17:05:31 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 16:09:46 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:52:31 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_color	get_color_on_object(t_world world, t_ray_pcomp_tool pcomp_tool)
 	tmp_color = create_color(0, 0, 0);
 	while (world.point_lights)
 	{
-		tmp_color = ft_add_colors(tmp_color, get_lighted_color(world,
+		tmp_color = add_colors(tmp_color, get_lighted_color(world,
 					(t_point_light *)world.point_lights->content,
 					pcomp_tool));
 		world.point_lights = world.point_lights->next;
@@ -70,11 +70,11 @@ static t_ray_pcomp_tool	get_ray_computation_tool(
 	pcomp.i = compute_new_point_on_ray(ray, hit.i);
 	pcomp.over_i = pcomp.i;
 	pcomp.object = hit.object;
-	pcomp.eyev = ft_neg_tuple(ray.direction);
+	pcomp.eyev = neg_tuple(ray.direction);
 	pcomp.normalv = get_object_normal_at(pcomp.object, pcomp.i);
 	if (dot_product(pcomp.normalv, pcomp.eyev) < 0)
 	{
-		pcomp.normalv = ft_neg_tuple(pcomp.normalv);
+		pcomp.normalv = neg_tuple(pcomp.normalv);
 		pcomp.inside = true;
 	}
 	else

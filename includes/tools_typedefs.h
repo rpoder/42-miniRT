@@ -6,16 +6,19 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/29 23:35:07 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:14:11 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef TOOLS_TYPEDEFS_H
+# define TOOLS_TYPEDEFS_H
 
 typedef struct s_light_values_tool
 {
 	t_tuple	origin;
 	double	ratio;
 	t_color	color;
-	
+
 }	t_light_values_tool;
 
 typedef struct s_camera_values_tool
@@ -83,13 +86,13 @@ typedef struct s_cube_values_tool
 
 typedef struct s_parsing_tool
 {
-	int 	i;
-	int 	error;
+	int		i;
+	int		error;
 	int		count;
 	char	*str_value;
 }	t_parsing_tool;
 
-typedef struct	check_p_tool
+typedef struct s_check_p_tool
 {
 	int		camera;
 	int		ambient;
@@ -140,3 +143,5 @@ typedef struct s_cube_faces_intersections_tool
 	double	t_min;
 	double	t_max;
 }	t_cube_faces_intersections;
+
+#endif

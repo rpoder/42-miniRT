@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   color_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 12:18:55 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/27 23:16:10 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:51:36 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_color	ft_add_colors(t_color a, t_color b)
+t_color	add_colors(t_color a, t_color b)
 {
 	t_color	new_color;
 
@@ -32,7 +32,7 @@ t_color	sub_colors(t_color a, t_color b)
 	return (new_color);
 }
 
-t_color	ft_scale_color(t_color a, double scale)
+t_color	scale_color(t_color a, double scale)
 {
 	t_color	new_color;
 

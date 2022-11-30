@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margot <margot@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 15:43:59 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/03 12:13:38 by margot           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:52:03 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_color	create_color(double red, double green, double blue)
 	return (new_color);
 }
 
-int	ft_convert_prime_color_to_int(double prime_color)
+int	convert_prime_color_to_int(double prime_color)
 {
 	int	new_prime_color;
 
@@ -32,17 +32,16 @@ int	ft_convert_prime_color_to_int(double prime_color)
 		new_prime_color = 255;
 	else
 		new_prime_color = prime_color * 255;
-	return(new_prime_color);
+	return (new_prime_color);
 }
 
-long	ft_convert_color_to_longint(t_color rgb)
+long	convert_color_to_longint(t_color rgb)
 {
 	long	color;
 
 	color = 0;
-	color += (long)ft_convert_prime_color_to_int(rgb.red) << 16;
-	color += (long)ft_convert_prime_color_to_int(rgb.green) << 8;
-	color += (long)ft_convert_prime_color_to_int(rgb.blue);
-	// print_bits_of_long(color);
+	color += (long)convert_prime_color_to_int(rgb.red) << 16;
+	color += (long)convert_prime_color_to_int(rgb.green) << 8;
+	color += (long)convert_prime_color_to_int(rgb.blue);
 	return (color);
 }

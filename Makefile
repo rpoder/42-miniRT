@@ -6,7 +6,7 @@
 #    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/30 16:34:08 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/11/30 17:42:31 by mpourrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,14 +56,14 @@ SRCS				:=	main.c \
 						ray_tracing/renderer.c \
 						tuple/vectors.c \
 						tuple/vector_operations.c \
-						tuple/vector_operations_2.c \
+						tuple/vector_multiplications.c \
+						tuple/vector_utils.c \
 						tuple/color_operations.c \
 						tuple/colors.c \
 						tools/init_tools.c \
 						tools/cmp_tools.c \
 						tools/print.c \
 						scene/point_lights.c \
-						scene/world.c \
 						scene/camera.c \
 						utils/init.c \
 						utils/mlx.c \

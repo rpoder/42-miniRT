@@ -6,7 +6,7 @@
 /*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:09:32 by margot            #+#    #+#             */
-/*   Updated: 2022/11/30 16:17:32 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:52:55 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static bool	is_in_shadow(t_world world, t_tuple point, t_point_light *light)
 	t_w_intersections		w_intersections;
 	t_hit					hit;
 
-	distance = ft_tuple_len(sub_tuples(light->position, point));
+	distance = tuple_len(sub_tuples(light->position, point));
 	ray.direction = normalize_tuple(sub_tuples(light->position, point));
 	ray.origin = point;
 	w_intersections = get_world_intersections(world, ray);
@@ -40,14 +40,14 @@ static t_color	get_final_specular_color(t_ray_pcomp_tool pcomp,
 	double	factor;
 
 	lightv = normalize_tuple(sub_tuples(light->position, pcomp.over_i));
-	reflectv = ft_reflect_in(ft_neg_tuple(lightv), pcomp.normalv);
+	reflectv = ft_reflect_in(neg_tuple(lightv), pcomp.normalv);
 	reflect_dot_eye = dot_product(reflectv, pcomp.eyev);
 	if (reflect_dot_eye <= 0)
 		specular_color = create_color(0, 0, 0);
 	else
 	{
 		factor = pow(reflect_dot_eye, pcomp.object->material.shininess);
-		specular_color = ft_scale_color(ft_scale_color(light->intensity,
+		specular_color = scale_color(scale_color(light->intensity,
 					pcomp.object->material.specular), factor);
 	}
 	return (specular_color);
@@ -60,7 +60,7 @@ static t_color	get_final_diffuse_color( t_material material,
 	t_color	diffuse_color;
 
 	effective_color = multiply_colors(material.color, light->intensity);
-	diffuse_color = ft_scale_color(effective_color,
+	diffuse_color = scale_color(effective_color,
 			material.diffuse * light_dot_normal);
 	return (diffuse_color);
 }
@@ -87,7 +87,7 @@ t_color	get_lighted_color(t_world world, t_point_light *light,
 	ambient_color = multiply_colors(pcomp.object->material.color,
 			world.ambient_light);
 	light_dot_normal = compute_light_dot_normal(pcomp, light);
-	pcomp.over_i = ft_add_tuples(pcomp.i, ft_scale_tuple(pcomp.normalv, ACNE));
+	pcomp.over_i = add_tuples(pcomp.i, scale_tuple(pcomp.normalv, ACNE));
 	if (pcomp.object->material.texture_type == PATTERN_TEXTURE_TYPE)
 		pcomp.object->material.color = checker_at_object(
 				pcomp.object->material.pattern, *pcomp.object, pcomp.over_i);
@@ -102,6 +102,6 @@ t_color	get_lighted_color(t_world world, t_point_light *light,
 				light_dot_normal, light);
 		specular_color = get_final_specular_color(pcomp, light);
 	}
-	return (ft_add_colors(ft_add_colors(ambient_color, diffuse_color),
+	return (add_colors(add_colors(ambient_color, diffuse_color),
 			specular_color));
 }
