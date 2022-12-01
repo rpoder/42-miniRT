@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 19:32:17 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/01 02:36:11 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # include "lexer_parser.h"
 
 /* DEFINES */
-# define CANVAS_X 				840
-# define CANVAS_Y				680
+# define CANVAS_X 				250
+# define CANVAS_Y				100
 
 # define EPSILON				0.00001
 # define ACNE					0.001

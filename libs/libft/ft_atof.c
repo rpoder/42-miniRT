@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:22:04 by margot            #+#    #+#             */
-/*   Updated: 2022/11/26 22:54:16 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/01 00:38:59 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static double	compute_decimal(char *str, int i)
 	{
 		decimal = decimal * 10.0 + ((double)str[i + j] - 48);
 		j++;
-
 	}
 	while (j > 0)
 	{
@@ -51,7 +50,7 @@ double	ft_atof(char *str)
 		str++;
 	}
 	i = 0;
-	while(str[i] && str[i] != '.')
+	while (str[i] && str[i] != '.')
 	{
 		nb = nb * 10.0 + ((double)str[i] - 48);
 		i++;
@@ -60,5 +59,5 @@ double	ft_atof(char *str)
 		return (nb * sign);
 	else
 		decimal = compute_decimal(str, i + 1);
-	return((nb + decimal) * sign);
+	return ((nb + decimal) * sign);
 }

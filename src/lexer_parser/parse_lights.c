@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_lights.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 23:01:53 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/29 22:19:39 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/12/01 01:55:07 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	parse_light(t_data *data, char *line, t_parsing_tool *tool)
 	t_point_light		*light;
 
 	tool->i = 1;
-	if (nb_values_checker(line, 7, tool) != NO_ERR)
+	if (nb_values_checker(line, 4, tool) != NO_ERR)
 		return (tool->error);
 	values.origin = get_coordinates(line, tool);
 	if (tool->error != NO_ERR)
@@ -47,12 +47,9 @@ int	parse_light(t_data *data, char *line, t_parsing_tool *tool)
 	values.ratio = get_one_parsing_value(line, tool);
 	if (ratio_checker(values.ratio, line, tool) != NO_ERR)
 		return (tool->error);
-	values.color = get_color(line, tool);
-	if (color_checker(values.color, line, tool) != NO_ERR)
-		return (tool->error);
-	values.color.red = values.color.red * values.ratio;
-	values.color.green = values.color.green * values.ratio;
-	values.color.blue = values.color.blue * values.ratio;
+	values.color.red = 1 * values.ratio;
+	values.color.green = 1 * values.ratio;
+	values.color.blue =1 * values.ratio;
 	light = create_point_light(data, values.color, values.origin);
 	if (!light)
 		return (MALLOC_ERR);

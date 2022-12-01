@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   value_getters.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:32:37 by margot            #+#    #+#             */
-/*   Updated: 2022/11/30 00:10:38 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/12/01 00:16:53 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_color	get_color(char *line, t_parsing_tool *tool)
 {
-	double	double_value;
 	double	color[3];
 
 	tool->count = 0;
@@ -27,7 +26,8 @@ t_color	get_color(char *line, t_parsing_tool *tool)
 			return (create_color(0, 0, 0));
 		if (ft_atof_checker(tool->str_value) != 1)
 		{
-			print_value_error(tool->str_value, line, tool);
+			tool->error = PARSING_ERR;
+			print_value_error(tool->str_value, line);
 			return (create_color(0, 0, 0));
 		}
 		color[tool->count] = ft_atof(tool->str_value);
@@ -40,7 +40,6 @@ t_color	get_color(char *line, t_parsing_tool *tool)
 
 t_tuple	get_orientation_vector(char *line, t_parsing_tool *tool)
 {
-	double	double_value;
 	double	coordinates[3];
 
 	tool->count = 0;
@@ -53,7 +52,7 @@ t_tuple	get_orientation_vector(char *line, t_parsing_tool *tool)
 			return (create_tuple(0, 0, 0, 0));
 		if (ft_atof_checker(tool->str_value) != 1)
 		{
-			print_value_error(tool->str_value, line, tool);
+			print_value_error(tool->str_value, line);
 			return (create_tuple(0, 0, 0, 0));
 		}
 		coordinates[tool->count] = ft_atof(tool->str_value);
@@ -66,7 +65,6 @@ t_tuple	get_orientation_vector(char *line, t_parsing_tool *tool)
 
 t_tuple	get_coordinates(char *line, t_parsing_tool *tool)
 {
-	double	double_value;
 	double	coordinates[3];
 
 	tool->count = 0;
@@ -79,7 +77,7 @@ t_tuple	get_coordinates(char *line, t_parsing_tool *tool)
 			return (create_tuple(0, 0, 0, 0));
 		if (ft_atof_checker(tool->str_value) != 1)
 		{
-			print_value_error(tool->str_value, line, tool);
+			print_value_error(tool->str_value, line);
 			return (create_tuple(0, 0, 0, 0));
 		}
 		coordinates[tool->count] = ft_atof(tool->str_value);
@@ -101,7 +99,7 @@ double	get_one_parsing_value(char *line, t_parsing_tool *tool)
 		return (0.0);
 	if (ft_atof_checker(tool->str_value) != 1 || tool->str_value[0] == '-')
 	{
-		print_value_error(tool->str_value, line, tool);
+		print_value_error(tool->str_value, line);
 		return (0.0);
 	}
 	double_value = ft_atof(tool->str_value);

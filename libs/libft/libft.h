@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:32:48 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/11/27 23:39:10 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/01 00:35:24 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <limits.h>
 # include <stdbool.h>
 
-# define BUFFER_SIZE 50
+# define BUFFER_SIZE 1
+# define GNL_MALLOC_ERR -2
 
 double	ft_atof(char *str);
 int		ft_atof_checker(char *str);
@@ -122,6 +123,12 @@ int		ft_itoabase_ui_fd(unsigned int n, char *base, int fd);
 /* GNL */
 bool	ft_gnl_strrchr(char *str, char c);
 char	*ft_gnl_strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int *error);
+
+typedef struct s_int3 {
+	int	i;
+	int	j;
+	int	k;
+}	t_int3;
 
 #endif

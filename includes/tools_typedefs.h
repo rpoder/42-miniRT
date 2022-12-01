@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 19:56:03 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 21:33:26 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct s_cube_values_tool
 	t_color	color;
 }	t_cube_values_tool;
 
-
 typedef struct s_parsing_tool
 {
 	int		i;
@@ -152,8 +151,8 @@ typedef struct s_triangle_intersections_tool
 	double			f;
 	double			u;
 	double			v;
-	double						determinant;
-	t_tuple						p1_to_origin;
+	double			determinant;
+	t_tuple			p1_to_origin;
 	t_tuple			origin_cross_e1;
 }	t_triangle_intersections_tool;
 

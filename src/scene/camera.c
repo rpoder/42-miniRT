@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 12:15:58 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 17:52:31 by mpourrey         ###   ########.fr       */
+/*   Updated: 2022/11/30 22:11:47 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_matrix4	compute_view_orientation_matrix(t_tuple leftv, t_tuple true_upv,
-		t_tuple forwardv, t_tuple from)
+static t_matrix4	compute_view_orientation_matrix(t_tuple leftv,
+	t_tuple true_upv, t_tuple forwardv, t_tuple from)
 {
 	t_matrix4	orientation_m;
 	t_matrix4	translation_m;

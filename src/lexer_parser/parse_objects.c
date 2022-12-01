@@ -6,51 +6,11 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:14:58 by margot            #+#    #+#             */
-/*   Updated: 2022/11/30 19:31:30 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 20:21:28 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-static t_cone_values_tool	get_cone_values(char *line, t_parsing_tool *tool)
-{
-	t_cone_values_tool	values;
-
-	values.origin = get_coordinates(line, tool);
-	if (tool->error != NO_ERR)
-		return (values);
-	values.orientation_vector = get_orientation_vector(line, tool);
-	if (orientation_vector_checker(values.orientation_vector,
-			line, tool) != NO_ERR)
-		return (values);
-	values.radius = get_one_parsing_value(line, tool) / 2;
-	if (tool->error != NO_ERR)
-		return (values);
-	values.color = get_color(line, tool);
-	if (color_checker(values.color, line, tool) != NO_ERR)
-		return (values);
-	return (values);
-}
-
-int	parse_cone(t_data *data, char *line, t_parsing_tool *tool)
-{
-	t_cone_values_tool	values;
-	t_object				*new_cone;
-
-	tool->i = 2;
-	if (nb_values_checker(line, 10, tool) != NO_ERR)
-		return (tool->error);
-	values = get_cone_values(line, tool);
-	if (tool->error != NO_ERR)
-		return (tool->error);
-	new_cone = create_cone(data, values);
-	if (!new_cone)
-	{
-		tool->error = MALLOC_ERR;
-		return (tool->error);
-	}
-	return (NO_ERR);
-}
 
 int	parse_sphere(t_data *data, char *line, t_parsing_tool *tool)
 {

@@ -3,14 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
+#    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/16 17:38:32 by rpoder            #+#    #+#              #
-#    Updated: 2022/11/30 17:42:31 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/12/01 02:09:47 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROGNAME			:=	minirt
+PROGNAMEBONUS		:=	minirt_bonus
 
 LIBFT				:=	./libs/libft/libft.a
 MLX					:=	./libs/minilibx-linux/libmlx_Linux.a
@@ -18,10 +19,12 @@ MLX					:=	./libs/minilibx-linux/libmlx_Linux.a
 INCLUDEDIR			:=	./includes
 SUBINCLUDEDIR		:=	./includes/sub_includes
 SRCDIR				:=	./src
+SRCBONUSDIR			:=	./src_bonus
 
 MLXFLAGS			:=	-L/usr/lib -lXext -lX11 -lm -lz
 
 OBJDIR				:=	./obj
+OBJBONUSDIR			:=	./obj_bonus
 
 SRCS				:=	main.c \
 						matrices/cofactor.c \
@@ -36,6 +39,7 @@ SRCS				:=	main.c \
 						objects/abstract_object/material.c \
 						objects/abstract_object/transform_abstract_object.c \
 						objects/cone/cone_intersections.c \
+						objects/cone/cone_caps.c \
 						objects/cone/cone_normal.c \
 						objects/cone/create_cone.c \
 						objects/cube/create_cube.c \
@@ -62,7 +66,6 @@ SRCS				:=	main.c \
 						tuple/colors.c \
 						tools/init_tools.c \
 						tools/cmp_tools.c \
-						tools/print.c \
 						scene/point_lights.c \
 						scene/camera.c \
 						utils/init.c \
@@ -71,6 +74,7 @@ SRCS				:=	main.c \
 						texture/pattern.c \
 						lexer_parser/parse_scene.c \
 						lexer_parser/lexer_parser.c \
+						lexer_parser/lexer_parser_utils.c \
 						lexer_parser/parse_objects.c \
 						lexer_parser/parse_objects_2.c \
 						lexer_parser/parse_lights.c \
@@ -82,27 +86,36 @@ SRCS				:=	main.c \
 						lexer_parser/value_getters.c \
 						lexer_parser/value_getters_utils.c \
 
-
-
 CC					:=	cc
 RM					:=	rm
 
-# CCFLAGS				:=	-Wall -Wextra -Werror
+CCFLAGS				:=	-Wall -Wextra -Werror
 
 NAME				:=	$(PROGNAME)
+NAMEBONUS			:=	$(PROGNAMEBONUS)
 
 OUTDIR				:=	$(OBJDIR)
+OUTBONUSDIR			:=	$(OBJBONUSDIR)
 
 $(OUTDIR)/%.o		:	$(SRCDIR)/%.c | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(CC) -c $(CCFLAGS) -o3 -I $(INCLUDEDIR) -I $(SUBINCLUDEDIR) -I $(dir $(MLX)) -I $(dir $(LIBFT)) $< -o $@
 
+
+$(OUTBONUSDIR)/%.o		:	$(SRCBONUSDIR)/%.c | $(OUTDIR)
+	@mkdir -p $(dir $@)
+	$(CC) -c $(CCFLAGS) -o3 -I $(INCLUDEDIR) -I $(SUBINCLUDEDIR) -I $(dir $(MLX)) -I $(dir $(LIBFT)) $< -o $@
+
+
 $(NAME)				:	$(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
 	$(CC) $(CCFLAGS) $(addprefix $(OUTDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-linux -lmlx_Linux $(MLXFLAGS) -o $(NAME)
 
+$(NAMEBONUS)		:	$(addprefix $(OUTBONUSDIR)/,$(SRCS:.c=.o)) $(LIBFT) $(MLX)
+	$(CC) $(CCFLAGS) $(addprefix $(OUTBONUSDIR)/,$(SRCS:.c=.o)) -o3 -L libs/libft -lft -L libs/minilibx-linux -lmlx_Linux $(MLXFLAGS) -o $(NAMEBONUS)
+
 all					:	$(NAME)
 
-bonus				:	$(NAME)
+bonus				:	$(NAMEBONUS)
 
 ifdef LIBFT
 $(LIBFT)			:
@@ -125,9 +138,11 @@ ifdef MLX
 	$(MAKE) -C $(dir $(MLX)) clean
 endif
 	$(RM) -rf $(OBJDIR)
+	$(RM) -rf $(OBJBONUSDIR)
 
 fclean				:	clean
 	$(RM) -f $(PROGNAME)
+	$(RM) -f $(PROGNAMEBONUS)
 
 re					:	fclean
 	make $(NAME)

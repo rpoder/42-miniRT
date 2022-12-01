@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 11:51:07 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/16 11:52:42 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/01 00:37:34 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	ft_gnl_strrchr(char *str, char c)
 	int	i;
 
 	i = 0;
-	while(str && str[i])
+	while (str && str[i])
 	{
 		if (str[i] == c)
 			return (true);
@@ -26,35 +26,41 @@ bool	ft_gnl_strrchr(char *str, char c)
 	return (false);
 }
 
+static t_int3	init_counter(void)
+{
+	t_int3	counter;
+
+	counter.i = 0;
+	counter.j = 0;
+	counter.k = 0;
+	return (counter);
+}
+
 char	*ft_gnl_strjoin(char *s1, char *s2)
 {
-	int		i;
-	int		j;
-	int		k;
+	t_int3	counter;
 	char	*dst;
 
-	i = 0;
-	j = 0;
-	k = 0;
+	counter = init_counter();
 	if (!s1 && !s2)
 		return (NULL);
 	dst = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!dst)
 		return (NULL);
-	while (s1 && s1[j])
+	while (s1 && s1[counter.j])
 	{
-		dst[i] = s1[j];
-		i++;
-		j++;
+		dst[counter.i] = s1[counter.j];
+		counter.i++;
+		counter.j++;
 	}
 	if (s1)
 		free(s1);
-	while (s2 && s2[k])
+	while (s2 && s2[counter.k])
 	{
-		dst[i] = s2[k];
-		i++;
-		k++;
+		dst[counter.i] = s2[counter.k];
+		counter.i++;
+		counter.k++;
 	}
-	dst[i] = '\0';
+	dst[counter.i] = '\0';
 	return (dst);
 }
