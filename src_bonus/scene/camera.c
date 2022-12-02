@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 12:15:58 by rpoder            #+#    #+#             */
-/*   Updated: 2022/12/01 02:42:39 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/02 02:08:13 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,9 @@ static double	compute_pixel_size(t_camera *camera, int hsize, int vsize,
 static t_tuple	compute_up(t_tuple to, t_camera_values_tool values)
 {
 	t_tuple	tmp;
-	// double	tmp_coord;
 	t_tuple	up;
 
 	tmp = cross_product(create_tuple(0, 1, 0, 0), normalize_tuple(to));
-	// tmp_coord = tmp.x;
-	// tmp.x = tmp.z;
-	// tmp.z = tmp_coord;
 	if (dot_product(create_tuple(0, 0, 1, 0),
 			normalize_tuple(values.orientation_vector)) >= 0.0)
 		tmp = neg_tuple(tmp);

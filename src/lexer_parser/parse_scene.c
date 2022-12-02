@@ -21,7 +21,6 @@ static int	parse_if_camera(t_data *data, char *line, t_parsing_tool *tool)
 		ret = parse_camera(data, line, tool);
 	else
 	{
-
 		ft_putstr_fd("Error \n Invalid object in your scene.rt, : ", 2);
 		ft_putstr_fd(line, 2);
 		return (PARSING_ERR);
@@ -114,7 +113,7 @@ int	parse_scene(t_data *data, t_list *lst)
 			break ;
 		lst = lst->next;
 	}
-	if (tool->error != NO_ERR)
+	if (tool->str_value)
 		free(tool->str_value);
 	free(tool);
 	return (ret);

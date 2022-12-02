@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   value_getters.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 22:32:37 by margot            #+#    #+#             */
-/*   Updated: 2022/12/01 00:16:53 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/02 01:42:52 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_color	get_color(char *line, t_parsing_tool *tool)
 		go_to_next_value(line, tool);
 		tool->count++;
 		free(tool->str_value);
+		tool->str_value = NULL;
 	}
 	return (create_color(color[0] / 255.0, color[1] / 255.0, color[2] / 255.0));
 }
@@ -59,6 +60,7 @@ t_tuple	get_orientation_vector(char *line, t_parsing_tool *tool)
 		go_to_next_value(line, tool);
 		tool->count++;
 		free(tool->str_value);
+		tool->str_value = NULL;
 	}
 	return (create_tuple(coordinates[0], coordinates[1], coordinates[2], 0.0));
 }
@@ -84,6 +86,7 @@ t_tuple	get_coordinates(char *line, t_parsing_tool *tool)
 		go_to_next_value(line, tool);
 		tool->count++;
 		free(tool->str_value);
+		tool->str_value = NULL;
 	}
 	return (create_tuple(coordinates[0], coordinates[1], coordinates[2], 1.0));
 }
@@ -107,5 +110,6 @@ double	get_one_parsing_value(char *line, t_parsing_tool *tool)
 	while (line[tool->i] && !ft_is_space(line[tool->i - 1]))
 		tool->i++;
 	free(tool->str_value);
+	tool->str_value = NULL;
 	return (double_value);
 }

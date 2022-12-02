@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_objects_checker.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:33:04 by rpoder            #+#    #+#             */
-/*   Updated: 2022/12/01 01:52:48 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/02 01:48:20 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	check_scene_is_complete(t_list *lst)
 	if (tool.camera != 1 || tool.ambient != 1 || tool.lights < 1
 		|| tool.lights != 1 || tool.objects < 1 || tool.objects > INT_MAX)
 	{
-		ft_putstr_fd("Error\nERR :	 Your scene.rt must contain one camera, one", 2);
+		ft_putstr_fd("Error\nERR :	 ", 2);
+		ft_putstr_fd("Your scene.rt must contain one camera, one", 2);
 		ft_putstr_fd(" ambient light, one point light and", 2);
 		ft_putstr_fd(" at least one object.\n", 2);
 		return (PARSING_ERR);

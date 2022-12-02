@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_parser.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:21:23 by mpourrey          #+#    #+#             */
-/*   Updated: 2022/12/01 02:32:10 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/02 02:07:17 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ t_tuple			get_orientation_vector(char *line, t_parsing_tool *tool);
 double			get_one_parsing_value(char *line, t_parsing_tool *tool);
 t_color			get_color(char *line, t_parsing_tool *tool);
 bool			get_is_pattern(char *line, t_parsing_tool *tool);
-
 
 /* value_getters_utils------------------------------------------------------- */
 char			*get_parsing_value(int i, char *line);

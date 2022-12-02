@@ -90,7 +90,8 @@ int	fov_checker(double fov, char *line, t_parsing_tool *tool)
 		return (tool->error);
 	if (fov > 180.0 || fov < 0.0)
 	{
-		ft_putstr_fd("Error\nERR :	 Invalid fov value in your scene.rt in line : ", 2);
+		ft_putstr_fd("Error\nERR :	 ", 2);
+		ft_putstr_fd("Invalid fov value in your scene.rt in line : ", 2);
 		ft_putstr_fd(line, 2);
 		tool->error = PARSING_ERR;
 	}

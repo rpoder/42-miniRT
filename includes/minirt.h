@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:09:02 by rpoder            #+#    #+#             */
-/*   Updated: 2022/12/01 02:36:11 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/02 02:01:01 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # include "lexer_parser.h"
 
 /* DEFINES */
-# define CANVAS_X 				250
-# define CANVAS_Y				100
+# define CANVAS_X 				500
+# define CANVAS_Y				250
 
 # define EPSILON				0.00001
 # define ACNE					0.001

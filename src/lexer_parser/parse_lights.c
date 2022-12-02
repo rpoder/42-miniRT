@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_lights.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 23:01:53 by rpoder            #+#    #+#             */
-/*   Updated: 2022/12/01 01:55:07 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/02 01:46:58 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	parse_light(t_data *data, char *line, t_parsing_tool *tool)
 		return (tool->error);
 	values.color.red = 1 * values.ratio;
 	values.color.green = 1 * values.ratio;
-	values.color.blue =1 * values.ratio;
+	values.color.blue = 1 * values.ratio;
 	light = create_point_light(data, values.color, values.origin);
 	if (!light)
 		return (MALLOC_ERR);

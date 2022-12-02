@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools_typedefs.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 18:11:29 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/30 21:33:26 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/12/02 01:58:01 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_plane_values_tool
 	t_tuple	origin;
 	t_tuple	orientation_vector;
 	t_color	color;
+	bool	is_pattern;
 
 }	t_plane_values_tool;
 

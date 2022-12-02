@@ -119,7 +119,7 @@ int	parse_scene(t_data *data, t_list *lst)
 			break ;
 		lst = lst->next;
 	}
-	if (tool->str_value && tool->error != NO_ERR)
+	if (tool->str_value)
 		free(tool->str_value);
 	free(tool);
 	return (ret);
