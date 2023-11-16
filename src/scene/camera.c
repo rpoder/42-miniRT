@@ -3,61 +3,103 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/30 18:53:37 by rpoder            #+#    #+#             */
-/*   Updated: 2022/11/02 12:02:50 by ronanpoder       ###   ########.fr       */
+/*   Created: 2022/11/07 12:15:58 by rpoder            #+#    #+#             */
+/*   Updated: 2022/12/02 13:11:29 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_hit	find_w_hit(t_w_intersections w_intersections)
+static t_matrix4	compute_view_orientation_matrix(t_tuple leftv,
+	t_tuple true_upv, t_tuple forwardv, t_tuple from)
 {
-	int		j;
-	t_hit	hit;
+	t_matrix4	orientation_m;
+	t_matrix4	translation_m;
 
-	j = 0;
-	hit.i = DBL_MAX;
-	while (j < w_intersections.nb_of_intersected_obj)
-	{
-		if (w_intersections.i[j].nb_of_intersections > 0)
-		{
-			if (w_intersections.i[j].i1 < hit.i && w_intersections.i[j].i1 > 0)
-			{
-				hit.object = w_intersections.i[j].object;
-				hit.i = w_intersections.i[j].i1;
-			}
-			if (w_intersections.i[j].i2 < hit.i && w_intersections.i[j].i2 > 0)
-			{
-				hit.object = w_intersections.i[j].object;
-				hit.i = w_intersections.i[j].i2;
-			}
-		}
-		j++;
-	}
-	if (hit.i < DBL_MAX)
-		hit.does_hit = true;
-	else
-		hit.does_hit = false;
-	return (hit);
+	orientation_m = get_identity_matrix();
+	orientation_m.matrix[0][0] = leftv.x;
+	orientation_m.matrix[0][1] = leftv.y;
+	orientation_m.matrix[0][2] = leftv.z;
+	orientation_m.matrix[1][0] = true_upv.x;
+	orientation_m.matrix[1][1] = true_upv.y;
+	orientation_m.matrix[1][2] = true_upv.z;
+	orientation_m.matrix[2][0] = -forwardv.x;
+	orientation_m.matrix[2][1] = -forwardv.y;
+	orientation_m.matrix[2][2] = -forwardv.z;
+	translation_m = compute_translation_matrix(-from.x, -from.y, -from.z);
+	return (multiply_matrices(orientation_m, translation_m));
 }
 
-t_pcomp_tool precompute_ray(t_w_intersections w_intersections, t_ray ray)
+static t_matrix4	compute_view_transform_m(t_tuple from, t_tuple to,
+		t_tuple up)
 {
-	t_pcomp_tool	tool;
+	t_matrix4	view_transform_m;
+	t_tuple		forwardv;
+	t_tuple		leftv;
+	t_tuple		true_upv;
 
-	tool.hit = find_w_hit(w_intersections);
-	tool.w_point = compute_new_point_on_ray(ray, tool.hit.i);
-	tool.eyev = ft_neg_tuple(ray.direction);
-	/////////////// maybe envoyer hit a normal_at et y checker le type de l'objet
-	tool.normalv = sphere_normal_at(tool.hit.object, tool.w_point);
-	if (ft_tuple_scalarproduct(tool.normalv, tool.eyev) < 0)
+	forwardv = normalize_tuple(sub_tuples(to, from));
+	leftv = cross_product(forwardv, normalize_tuple(up));
+	true_upv = cross_product(leftv, forwardv);
+	view_transform_m = compute_view_orientation_matrix(leftv, true_upv,
+			forwardv, from);
+	return (view_transform_m);
+}
+
+static double	compute_pixel_size(t_camera *camera, int hsize, int vsize,
+	double fov)
+{
+	double		half_fov;
+	double		aspect;
+
+	half_fov = tan(fov / 2.0);
+	aspect = (double)hsize / (double)vsize;
+	if (aspect >= 1)
 	{
-		tool.normalv = ft_neg_tuple(tool.normalv);
-		tool.inside = true;
+		camera->half_width = half_fov;
+		camera->half_height = half_fov / aspect;
 	}
 	else
-		tool.inside = false;
-	return (tool);
+	{
+		camera->half_width = half_fov * aspect;
+		camera->half_height = half_fov;
+	}
+	return ((camera->half_width * 2) / (double)hsize);
+}
+
+static t_tuple	compute_up(t_camera_values_tool values)
+{
+	t_tuple	tmp;
+	t_tuple	up;
+
+	tmp = cross_product(create_tuple(0, 1, 0, 0),
+			normalize_tuple(values.orientation_vector));
+	up = normalize_tuple(cross_product(
+				normalize_tuple(values.orientation_vector), tmp));
+	return (up);
+}
+
+t_camera	*create_camera(t_data *data, int hsize, int vsize,
+		t_camera_values_tool values)
+{
+	t_tuple	to;
+	t_tuple	up;
+
+	data->world->camera = malloc(sizeof(t_camera));
+	if (!data->world->camera)
+		return (NULL);
+	data->world->camera->vsize = vsize;
+	data->world->camera->hsize = hsize;
+	data->world->camera->fov = values.fov;
+	data->world->camera->pixel_size = compute_pixel_size(data->world->camera,
+			hsize, vsize, values.fov);
+	to = add_tuples(values.origin, values.orientation_vector);
+	if (values.orientation_vector.x == 0.0)
+		values.orientation_vector.x = EPSILON;
+	up = compute_up(values);
+	data->world->camera->transform_m = compute_view_transform_m(values.origin,
+			to, up);
+	return (data->world->camera);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+         #
+#    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 17:12:53 by mpourrey          #+#    #+#              #
-#    Updated: 2022/09/25 15:01:42 by mpourrey         ###   ########.fr        #
+#    Updated: 2022/11/27 23:38:43 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME		= libft.a
 HEADER		= libft.h
 OBJ_PATH	= ./obj
 
-SRC = ft_atoi.c ft_atoli.c \
+SRC = ft_atoi.c ft_atof.c ft_atof_checker.c ft_atoli.c \
 	ft_bzero.c ft_calloc.c \
 	ft_free_tab.c ft_free_int_tab.c \
 	ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isinset.c ft_isprint.c ft_isint.c \
@@ -40,6 +40,8 @@ SRC = ft_atoi.c ft_atoli.c \
 	ft_printf.c printf_handle_write.c printf_utils.c \
 	ft_printf_fd.c printf_fd_handle_write.c printf_fd_utils.c \
 	ft_alloc_and_fill.c \
+	get_next_line.c get_next_line_utils.c \
+	ft_is_space.c \
 
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
 

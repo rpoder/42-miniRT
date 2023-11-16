@@ -1,14 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.h                                           :+:      :+:    :+:   */
+/*   matrices.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mpourrey <mpourrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 13:28:21 by rpoder            #+#    #+#             */
-/*   Updated: 2022/10/30 14:07:16 by rpoder           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:26:46 by mpourrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef MATRICES_H
+# define MATRICES_H
 
 /* cofactor.c---------------------------------------------------------------- */
 double		compute_m3_cofactor(t_matrix3 m3, int i, int j);
@@ -33,13 +36,16 @@ t_matrix4	apply_determinant_division_to_matrix(t_matrix4 m, double det);
 
 /* matrix_operations.c------------------------------------------------------- */
 t_matrix4	ft_transpose_matrix(t_matrix4 m4);
-t_matrix4	ft_multiply_matrices(t_matrix4 m4_1, t_matrix4 m4_2);
+t_matrix4	multiply_matrices(t_matrix4 m4_1, t_matrix4 m4_2);
 t_matrix4	ft_inverse_matrix(t_matrix4 m);
 
 /* matrix_utils.c------------------------------------------------------------ */
 t_matrix4	get_identity_matrix(void);
 bool		is_matrix_invertible(t_matrix4 m);
+t_matrix4	m4_bzero(void);
 
 /* sub_matrix.c-------------------------------------------------------------- */
 t_matrix3	sub_m4tom3(t_matrix4 m4, int row, int column);
 t_matrix2	sub_m3tom2(t_matrix3 m3, int row, int column);
+
+#endif
